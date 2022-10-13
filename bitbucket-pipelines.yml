@@ -10,7 +10,7 @@ pipelines:
           script:
             - npm --version
             - node --version
-            - npm ci
+            - npm install
       - step:
           name: Running tests..
           script:
