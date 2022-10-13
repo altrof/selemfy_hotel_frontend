@@ -40,14 +40,11 @@ pipelines:
                     API_TOKEN: $deployment_token
     dev:
       - step:
-          name: Installing packages..
+          name: Build and test
           caches:
             - node
           script:
             - npm --version
             - node --version
             - npm ci
-      - step:
-          name: Running tests..
-          script:
             - npm run test:unit
