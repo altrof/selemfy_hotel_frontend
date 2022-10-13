@@ -1,0 +1,53 @@
+image: node:16.17.1
+
+pipelines:
+  pull-requests:
+    '**':
+      - step:
+          name: Build and test
+          caches:
+            - node
+          script:
+            - npm --version
+            - node --version
+            - npm ci
+            - npm run test:unit
+  branches:
+    master:
+      - parallel:
+          - step:
+              name: Build and Test
+              caches:
+                - node
+              script:
+                - npm ci
+                - npm run test:unit
+                - npm run build
+          - step:
+              name: Security Scan
+              script:
+                # Run a security scan for sensitive data.
+                # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
+                - pipe: atlassian/git-secrets-scan:0.5.1
+          - step:
+              name: Deploy to prod
+              deployment: prod
+              script:
+                - pipe: microsoft/azure-static-web-apps-deploy:main
+                  variables:
+                    APP_LOCATION: '$BITBUCKET_CLONE_DIR'
+                    OUTPUT_LOCATION: '$BITBUCKET_CLONE_DIR/dist'
+                    API_TOKEN: $deployment_token
+    dev:
+      - step:
+          name: Installing packages..
+          caches:
+            - node
+          script:
+            - npm --version
+            - node --version
+            - npm ci
+      - step:
+          name: Running tests..
+          script:
+            - npm run test:unit
