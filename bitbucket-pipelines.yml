@@ -3,16 +3,19 @@ image: node:16.17.1
 pipelines:
   pull-requests:
     '**':
-      - step:
-          name: Installing packages..
-          script:
-            - npm --version
-            - node --version
-            - npm install
-      - step:
-          name: Running tests..
-          script:
-            - npm run test:unit
+      - parallel:
+          - step:
+              name: Installing packages..
+              caches:
+                - node
+              script:
+                - npm --version
+                - node --version
+                - npm ci
+          - step:
+              name: Running tests..
+              script:
+                - npm run test:unit
   branches:
     master:
       - parallel:
