@@ -4,6 +4,9 @@ pipelines:
   pull-requests:
     '**':
       - step:
+          runs-on:
+            - self.hosted
+            - linux
           name: Build and test
           caches:
             - node
@@ -13,9 +16,12 @@ pipelines:
             - npm ci
             - npm run test:unit
   branches:
-    feature/HOT-17-vite-vue-initialization:
+    master:
       - parallel:
           - step:
+              runs-on:
+                - self.hosted
+                - linux
               name: Build and Test
               caches:
                 - node
@@ -24,6 +30,9 @@ pipelines:
                 - npm run test:unit
                 - npm run build
           - step:
+              runs-on:
+                - self.hosted
+                - linux
               name: Security Scan
               script:
                 # Run a security scan for sensitive data.
@@ -56,6 +65,9 @@ pipelines:
     dev:
       - parallel:
           - step:
+              runs-on:
+                - self.hosted
+                - linux
               name: Build and Test
               caches:
                 - node
