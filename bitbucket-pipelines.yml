@@ -4,6 +4,9 @@ pipelines:
   pull-requests:
     '**':
       - step:
+          runs-on:
+            - self.hosted
+            - linux
           name: Build and test
           caches:
             - node
@@ -16,6 +19,55 @@ pipelines:
     master:
       - parallel:
           - step:
+              runs-on:
+                - self.hosted
+                - linux
+              name: Build and Test
+              caches:
+                - node
+              script:
+                - npm ci
+                - npm run test:unit
+                - npm run build
+          - step:
+              runs-on:
+                - self.hosted
+                - linux
+              name: Security Scan
+              script:
+                # Run a security scan for sensitive data.
+                # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
+                - pipe: atlassian/git-secrets-scan:0.5.1
+      - step:
+          name: Build and Push Docker Image to Docker HUB
+          runs-on:
+            - self.hosted
+            - linux
+          services:
+            - docker
+          script:
+            - export IMAGE_NAME="${DOCKER_HUB_USER}/${BITBUCKET_REPO_SLUG}:latest"
+            - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+            - docker build -t "$IMAGE_NAME" .
+            - docker push "$IMAGE_NAME"
+      - step:
+          name: Deploy to AWS PROD
+          runs-on:
+            - self.hosted
+            - linux
+          script:
+            - pipe: atlassian/ssh-run:0.4.1
+              variables:
+                SSH_USER: $SSH_USER_PROD
+                SERVER: $SERVER_IP_PROD
+                MODE: 'command'
+                COMMAND: './deploy-to-prod.sh'
+    dev:
+      - parallel:
+          - step:
+              runs-on:
+                - self.hosted
+                - linux
               name: Build and Test
               caches:
                 - node
@@ -29,22 +81,27 @@ pipelines:
                 # Run a security scan for sensitive data.
                 # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
                 - pipe: atlassian/git-secrets-scan:0.5.1
-          - step:
-              name: Deploy to prod
-              deployment: prod
-              script:
-                - pipe: microsoft/azure-static-web-apps-deploy:main
-                  variables:
-                    APP_LOCATION: '$BITBUCKET_CLONE_DIR'
-                    OUTPUT_LOCATION: '$BITBUCKET_CLONE_DIR/dist'
-                    API_TOKEN: $deployment_token
-    dev:
       - step:
-          name: Build and test
-          caches:
-            - node
+          name: Build and Push Docker Image to Docker HUB
+          runs-on:
+            - self.hosted
+            - linux
+          services:
+            - docker
           script:
-            - npm --version
-            - node --version
-            - npm ci
-            - npm run test:unit
+            - export IMAGE_NAME="${DOCKER_HUB_USER}/dev_${BITBUCKET_REPO_SLUG}:latest"
+            - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+            - docker build -t "$IMAGE_NAME" .
+            - docker push "$IMAGE_NAME"
+      - step:
+          name: Deploy to AWS DEV
+          runs-on:
+            - self.hosted
+            - linux
+          script:
+            - pipe: atlassian/ssh-run:0.4.1
+              variables:
+                SSH_USER: $SSH_USER_DEV
+                SERVER: $SERVER_IP_DEV
+                MODE: 'command'
+                COMMAND: './deploy-to-dev.sh'
