@@ -17,7 +17,7 @@ const router = createRouter({
       component: () => RoomsDataView
     },
     {
-      path: '/backendHealth',
+      path: '/backend-health',
       name: 'Backend Health',
       component: () => BackendTestHealthDataView
     }
