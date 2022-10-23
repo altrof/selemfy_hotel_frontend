@@ -9,7 +9,7 @@ export const useRoomsStore = defineStore("Rooms", () => {
     RoomsAPI.getAllRooms()
         .then(response => {
             responseData.value = response;
-            apiUrl.value = response.config.baseURL;
+            apiUrl.value = response.config.baseURL + response.config.url;
         })
 
     return {
