@@ -7,7 +7,7 @@ services:
       context: ./
       dockerfile: Dockerfile
       args:
-        VITE_API_URL: '' # It should be empty if you want to use local api
+        VITE_API_URL: '<API_URL>' # here should be api url without /api
     volumes:
       - '.:/app'
     ports:
