@@ -62,7 +62,7 @@ pipelines:
                 SERVER: $SERVER_IP_PROD
                 MODE: 'command'
                 COMMAND: './deploy-to-prod.sh'
-    feature/HOT-55-fix-frontend-passing-api:
+    dev:
       - parallel:
           - step:
               runs-on:
