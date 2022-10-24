@@ -7,7 +7,7 @@ services:
       context: ./
       dockerfile: Dockerfile
       args:
-        VITE_API_URL: '<API_URL>' # here should be api url without /api
+        env: '<..>' # here should be env (local, prod, dev)
     volumes:
       - '.:/app'
     ports:
