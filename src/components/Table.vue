@@ -1,22 +1,28 @@
 <script>
 export default {
   props: {
-    data: Array
+    tableData: Object
+  },
+
+  created() {  
+    const values = Object.keys(this.tableData)
+    console.log(values) // siit edasi
   }
 }
+
+
 </script>
 
 <template>
-    <p>I am table component</p>
     <table id="tableComponent">
-      <thead >
-          <tr >
-            <td v-for="item in data" :key="item">{{item}}</td>
+      <thead>
+          <tr>
+            <td v-for="(item, key) in tableData" :key="key">{{key}}</td>
           </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Data below Header1</td>
+        <tr v-for="item in tableData" :key="item">{{item}}
+          <td v-for="field in tableData[item]" :key="field">{{item[field]}}</td>
           <td>Data below Header2</td>
           <td>Data below Header3</td>
         </tr>

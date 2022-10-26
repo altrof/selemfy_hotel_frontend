@@ -1,8 +1,13 @@
 <script setup>
 import Table from '../components/Table.vue'
-const testArray = ['Header1', 'Header2', 'Header3']
+const testObject = 
+    {
+        'Animals': ['Cow', 'Chicken', 'Wolf'],
+        'Plants': ['Cabbage', 'Apple', 'Oak'],
+        'Misc': ['Rock', 'Nail', 'Window']
+    }
 </script>
 
 <template>
-    <Table :data ="testArray" />
+    <Table :tableData ="testObject" />
 </template>
