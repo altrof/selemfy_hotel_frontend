@@ -1,14 +1,9 @@
-<script>
-export default {
-  props: {
-    tableData: Object
-  },
+<script setup>
 
-  created() {  
-    const values = Object.keys(this.tableData)
-    console.log(values) // siit edasi
-  }
-}
+  defineProps({
+    tableData: Object
+  })
+
 
 
 </script>
@@ -17,14 +12,14 @@ export default {
     <table id="tableComponent">
       <thead>
           <tr>
-            <td v-for="(item, key) in tableData" :key="key">{{key}}</td>
+            <th v-for="(item, key) in tableData" :key="item">{{key}}</th>
           </tr>
       </thead>
-      <tbody>
-        <tr v-for="item in tableData" :key="item">{{item}}
-          <td v-for="field in tableData[item]" :key="field">{{item[field]}}</td>
-          <td>Data below Header2</td>
-          <td>Data below Header3</td>
+      <tbody v-for="(item, key, i) in tableData" :key="i">
+        <tr >
+          <td>{{item[i]}} </td>
+          <td>{{item[i]}}</td>
+          <td>{{item[i]}}</td>
         </tr>
         
       </tbody>
