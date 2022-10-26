@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import BackendTestHealthDataView from '@/views/DataView/BackendTestHealthDataView.vue'
 import RoomsDataView from '@/views/DataView/RoomsDataView.vue'
+import TableView from '@/views/TableView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,6 +23,12 @@ const router = createRouter({
       name: 'Backend Health',
       // lazy load
       component: () => BackendTestHealthDataView
+    },
+    {
+      path: '/table-view',
+      name: 'Table',
+      // lazy load
+      component: TableView
     }
   ]
 })
