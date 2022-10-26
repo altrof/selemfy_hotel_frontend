@@ -1,7 +1,7 @@
 <script>
 export default {
   props: {
-    data: String
+    data: Array
   }
 }
 </script>
@@ -9,16 +9,16 @@ export default {
 <template>
     <p>I am table component</p>
     <table id="tableComponent">
-      <thead>
-          <tr>
-            <th>Chicken</th>
-            <th>Cows</th>
+      <thead >
+          <tr >
+            <td v-for="item in data" :key="item">{{item}}</td>
           </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Data below Chicken</td>
-          <td>Data below Cows</td>
+          <td>Data below Header1</td>
+          <td>Data below Header2</td>
+          <td>Data below Header3</td>
         </tr>
         
       </tbody>
