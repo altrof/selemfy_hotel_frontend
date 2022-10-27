@@ -2,9 +2,11 @@
 import Table from '../components/Table.vue'
 const testObject = 
     {
-        'Animals': ['Cow', 'Chicken', 'Wolf'],
-        'Plants': ['Cabbage', 'Apple', 'Oak'],
-        'Misc': ['Rock', 'Nail', 'Window']
+      "size": 5,
+      "floorId": 1,
+      "roomNumber": 1,
+      "numberOfBeds": 2,
+      "roomType": "REGULAR"
     }
 </script>
 
