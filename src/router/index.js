@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import MainHotelView from '@/views/MainHotelView.vue'
 import BackendTestHealthDataView from '@/views/DataView/BackendTestHealthDataView.vue'
 import RoomsDataView from '@/views/DataView/RoomsDataView.vue'
+import RoomsTableView from '@/views/DataView/RoomsTableView.vue'
 import PersonTableView from '@/views/DataView/PersonTableView.vue'
 import DataMainView from '@/views/DataView/DataMainView.vue'
 import Examples from '@/components/Examples.vue'
@@ -40,6 +41,12 @@ const router = createRouter({
       path: '/data/person-table',
       name: 'person-table',
       component: PersonTableView
+    },
+    {
+      path: '/data/rooms-table',
+      name: 'Rooms Table',
+      // lazy load
+      component: () => RoomsTableView
     }
   ]
 })
