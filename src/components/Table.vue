@@ -34,6 +34,11 @@
   }
 
   .header {
+
     background-color: rgba(25, 25, 255, 0.527);
+  }
+
+  td {
+    padding: 5px 30px 5px 30px;
   }
 </style>
