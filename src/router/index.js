@@ -23,12 +23,6 @@ const router = createRouter({
       name: 'Backend Health',
       // lazy load
       component: () => BackendTestHealthDataView
-    },
-    {
-      path: '/table-view',
-      name: 'Table',
-      // lazy load
-      component: TableView
     }
   ]
 })
