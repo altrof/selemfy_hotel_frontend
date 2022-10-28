@@ -17,6 +17,7 @@ import HelloWorld from '@/components/HelloWorld.vue'
         <RouterLink to="/data/examples">Examples</RouterLink>
         <RouterLink to="/data/rooms">Rooms</RouterLink>
         <RouterLink to="/data/backend-health">Backend Health</RouterLink>
+        <RouterLink to="/data/rooms-table">Rooms Table</RouterLink>
         <RouterLink to="/data/person-table">Person Table</RouterLink>
       </nav>
     </div>
