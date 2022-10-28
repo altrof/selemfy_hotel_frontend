@@ -5,7 +5,6 @@ import { storeToRefs } from 'pinia';
 import DataMainView from "@/views/DataView/DataMainView.vue";
 
 const { responseData } = storeToRefs(useRoomsStore());
-console.log(responseData)
 </script>
 
 <template>
