@@ -1,10 +1,9 @@
 <script setup>
 import WelcomeItem from './WelcomeItem.vue'
 import DocumentationIcon from './icons/IconDocumentation.vue'
-import EcosystemIcon from './icons/IconEcosystem.vue'
 import IconTooling from "@/components/icons/IconTooling.vue";
 import CounterWithPinia from "@/components/CounterWithPinia.vue";
-import FieldText from "@/components/FieldText.vue";
+import FieldText from "@/components/_atoms/FieldText/FieldText.vue";
 import DataMainView from "@/views/DataView/DataMainView.vue";
 </script>
 
