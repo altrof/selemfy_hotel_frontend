@@ -6,6 +6,7 @@ import ContentWrapper from '@/components/_molecules/ContentWrapper/ContentWrappe
 const imagesDir = "service-imgs"
 const parkingImage = "parking.webp"
 const champagneImage = "champagne.jpeg"
+const shuttleImage = "shuttle.png"
 </script>
 
 <template>
@@ -15,7 +16,7 @@ const champagneImage = "champagne.jpeg"
     <div class="flex flex-wrap place-content-around">
         <Product product-name="Parking" product-description="Enjoy this wonderful special offer on our behalf" :file-name="parkingImage" :dir-name="imagesDir"/>
         <Product product-name="Champagne" product-description="Enjoy this wonderful special offer on our behalf" :file-name="champagneImage" :dir-name="imagesDir"/>
-        <Product product-name="Product Name" product-description="Enjoy this wonderful special offer on our behalf" :file-name="parkingImage" :dir-name="imagesDir"/>
+        <Product product-name="Shuttle" product-description="Enjoy this wonderful special offer on our behalf" :file-name="shuttleImage" :dir-name="imagesDir"/>
         <Product product-name="Product Name" product-description="Enjoy this wonderful special offer on our behalf" :file-name="champagneImage" :dir-name="imagesDir"/>        
     </div>
   </ContentWrapper>
