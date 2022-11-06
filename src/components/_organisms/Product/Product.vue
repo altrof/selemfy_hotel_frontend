@@ -14,6 +14,6 @@ const props = defineProps({
 <template>
     <div class="w-1/3 p-10 border-4 border-gray-200 rounded-lg m-2" >
         <ProductDescriptionBox :name="productName" :description="productDescription" :file-name="fileName" :dir-name="dirName"/>
-        <Basket />
+        <Basket :product-name="productName" />
     </div>
 </template>
