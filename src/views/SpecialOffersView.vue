@@ -13,13 +13,10 @@ const champagneImage = "champagne.jpeg"
   <ContentWrapper>
     <p>Special Offers</p>
     <div class="flex flex-wrap place-content-around">
-        <Product :fileName="parkingImage" :dirName="imagesDir"/>
-        <Product :fileName="champagneImage" :dirName="imagesDir"/>
-        <Product :fileName="champagneImage" :dirName="imagesDir"/>
-        <Product :fileName="champagneImage" :dirName="imagesDir"/>
-        <Product :fileName="champagneImage" :dirName="imagesDir"/>
-        <Product :fileName="champagneImage" :dirName="imagesDir"/>
-        <Product :fileName="champagneImage" :dirName="imagesDir"/>
+        <Product product-name="Product Name" product-description="Enjoy this wonderful special offer on our behalf" :file-name="parkingImage" :dir-name="imagesDir"/>
+        <Product product-name="Product Name" product-description="Enjoy this wonderful special offer on our behalf" :file-name="champagneImage" :dir-name="imagesDir"/>
+        <Product product-name="Product Name" product-description="Enjoy this wonderful special offer on our behalf" :file-name="parkingImage" :dir-name="imagesDir"/>
+        <Product product-name="Product Name" product-description="Enjoy this wonderful special offer on our behalf" :file-name="champagneImage" :dir-name="imagesDir"/>        
     </div>
   </ContentWrapper>
 </template>
