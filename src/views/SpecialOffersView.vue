@@ -12,12 +12,21 @@ const champagneImage = "champagne.jpeg"
   <Navbar />
   <ContentWrapper>
     <p>Special Offers</p>
-    <Product :fileName="parkingImage" :dirName="imagesDir"/>
-    <Product :fileName="champagneImage" :dirName="imagesDir"/>
+    <div class="flex flex-wrap place-content-around">
+        <Product :fileName="parkingImage" :dirName="imagesDir"/>
+        <Product :fileName="champagneImage" :dirName="imagesDir"/>
+        <Product :fileName="champagneImage" :dirName="imagesDir"/>
+        <Product :fileName="champagneImage" :dirName="imagesDir"/>
+        <Product :fileName="champagneImage" :dirName="imagesDir"/>
+        <Product :fileName="champagneImage" :dirName="imagesDir"/>
+        <Product :fileName="champagneImage" :dirName="imagesDir"/>
+    </div>
   </ContentWrapper>
 </template>
 
 <style scoped>
+
+
 p {
   padding: 50px 0 50px 0;
 }
