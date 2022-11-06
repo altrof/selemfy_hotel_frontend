@@ -14,7 +14,8 @@ const { count, doubleCount } = storeToRefs(useCounterStore());
     Double count: {{ doubleCount }}
   </div>
   <div class="buttons">
-
+    <button @click="decrement">-</button>
+    <button @click="increment">+</button>
   </div>
 </template>
 

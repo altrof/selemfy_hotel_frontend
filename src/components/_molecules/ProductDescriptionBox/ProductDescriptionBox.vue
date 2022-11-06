@@ -1,5 +1,4 @@
 <script setup>
-import Basket from '@/components/_molecules/Basket/Basket.vue';
 
 const props = defineProps({
     fileName: String,
