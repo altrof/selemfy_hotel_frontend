@@ -1,5 +1,6 @@
 <script setup>
 import Basket from '@/components/_molecules/Basket/Basket.vue';
+import ProductDescriptionBox from '@/components/_molecules/ProductDescriptionBox/ProductDescriptionBox.vue';
 
 const props = defineProps({
     fileName: String,
@@ -8,19 +9,11 @@ const props = defineProps({
     productDescription: String
 })
 
-function getImageUrl(fileName, dirName) {
-  return new URL(`/src/assets/img/${dirName}/${fileName}`, import.meta.url)
-
-}
 </script>
 
 <template>
     <div class="w-1/3 p-10 border-4 border-gray-200 rounded-lg m-2" >
-        <div>
-            <h1>{{productName}}</h1>
-            <img class="rounded-lg border-2 border-gray-600" :src="getImageUrl(fileName, dirName)" alt="Champagne">
-            <p class="italic">{{productDescription}}</p>
-        </div>
+        <ProductDescriptionBox :name="productName" :description="productDescription" :file-name="fileName" :dir-name="dirName"/>
         <Basket />
     </div>
 </template>

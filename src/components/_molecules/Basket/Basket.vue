@@ -12,9 +12,9 @@ function changeBasketCount(changeBy) {
 </script>
 
 <template>        
-    <div class="border-t-2 border-gray-400 ">
+    <div class="mt-5 border-t-2 border-gray-400 ">
         <p>Currently in basket: {{basketCount}}</p>
-        <div class="flex flex-wrap place-content-around">
+        <div class="mt-3 flex flex-wrap place-content-around">
             <BaseButton @click-handler="changeBasketCount(1)" textContent="+"/>
             <BaseButton @click-handler="changeBasketCount(-1)" textContent="-"/>
         </div>
