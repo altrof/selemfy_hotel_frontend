@@ -1,8 +1,7 @@
 <script setup>
-import Navbar from '@/components/_organisms/Navbar/Navbar.vue';
-import ContentWrapper from '@/components/_molecules/ContentWrapper/ContentWrapper.vue'
+import Navbar from "@/components/_organisms/Navbar/Navbar.vue";
+import ContentWrapper from "@/components/_molecules/ContentWrapper/ContentWrapper.vue";
 import LoremIpsum from "@/components/_atoms/LoremIpsum/LoremIpsum.vue";
-
 </script>
 
 <template>

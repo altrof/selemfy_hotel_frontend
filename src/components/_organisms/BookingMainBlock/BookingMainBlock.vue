@@ -1,5 +1,5 @@
 <script setup>
-import BookingForm from '@/components/_molecules/BookingForm/BookingForm.vue';
+import BookingForm from "@/components/_molecules/BookingForm/BookingForm.vue";
 </script>
 
 <template>
@@ -16,13 +16,11 @@ import BookingForm from '@/components/_molecules/BookingForm/BookingForm.vue';
 </template>
 
 <style scoped>
-
 .main-block {
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: -1;
-
 }
 
 .booking-form {

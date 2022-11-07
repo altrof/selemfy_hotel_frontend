@@ -1,5 +1,5 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { RouterView } from "vue-router";
 </script>
 
 <template>
@@ -12,7 +12,7 @@ import { RouterView } from 'vue-router'
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap");
 
 * {
   padding: 0;
