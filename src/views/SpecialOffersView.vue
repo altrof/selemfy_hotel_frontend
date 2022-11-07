@@ -3,6 +3,10 @@ import Navbar from '@/components/_organisms/Navbar/Navbar.vue';
 import Product from '@/components/_organisms/Product/Product.vue';
 import ContentWrapper from '@/components/_molecules/ContentWrapper/ContentWrapper.vue'
 
+/*
+Products are currently hard-coded, but perhaps 
+we should request the same information from the database?
+*/
 const products = [
       {name: 'Parking', image: "parking.webp", price: 10}, 
       {name: 'Champagne', image: "champagne.jpeg", price: 15}, 
@@ -15,7 +19,7 @@ const products = [
 const imagesDir = "service-imgs"
 </script>
 
-<template>
+<template >
   <Navbar />
   <ContentWrapper>
     <p>Special Offers</p>
@@ -26,8 +30,6 @@ const imagesDir = "service-imgs"
 </template>
 
 <style scoped>
-
-
 p {
   padding: 50px 0 50px 0;
 }
