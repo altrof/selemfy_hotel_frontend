@@ -2,7 +2,7 @@
 import Basket from '@/components/_molecules/Basket/Basket.vue';
 import ProductDescriptionBox from '@/components/_molecules/ProductDescriptionBox/ProductDescriptionBox.vue';
 
-const props = defineProps({
+defineProps({
     fileName: String,
     dirName: String,
     productName: String,
