@@ -4,7 +4,8 @@ const props = defineProps({
     fileName: String,
     dirName: String,
     name: String,
-    description: String
+    description: String,
+    price: Number
 })
 
 function getImageUrl(fileName, dirName) {
@@ -18,5 +19,6 @@ function getImageUrl(fileName, dirName) {
         <h1>{{name}}</h1>
         <img class="my-3 rounded-lg border-2 border-gray-600" :src="getImageUrl(fileName, dirName)" alt="Champagne">
         <p class="italic">{{description}}</p>
+        <p>Our price for you: {{price}}€ </p>
     </div>
 </template>
