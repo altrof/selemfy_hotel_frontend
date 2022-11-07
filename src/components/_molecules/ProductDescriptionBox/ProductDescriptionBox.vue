@@ -17,7 +17,7 @@ function getImageUrl(fileName, dirName) {
 <template>
     <div>
         <h1>{{name}}</h1>
-        <img class="my-3 rounded-lg border-2 border-gray-600" :src="getImageUrl(fileName, dirName)" alt="Champagne">
+        <img class="my-3 rounded-lg border-2 border-gray-600" :src="getImageUrl(fileName, dirName)" :alt="name">
         <p class="italic">{{description}}</p>
         <p>Our price for you: {{price}}€ </p>
     </div>
