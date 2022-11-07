@@ -1,5 +1,6 @@
 <script setup>
-import IconUserCircle from "@/components/icons/IconUserCircle.vue";
+import IconUserCircle from '@/components/icons/IconUserCircle.vue'
+
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import IconUserCircle from "@/components/icons/IconUserCircle.vue";
 </template>
 
 <style lang="scss" scoped>
+
 .login {
   display: flex;
   align-items: center;
@@ -25,9 +27,9 @@ import IconUserCircle from "@/components/icons/IconUserCircle.vue";
   text-decoration: none;
   border: 1px solid black;
 
-  &:hover {
-    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
-  }
+&:hover {
+   box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+ }
 }
 .icon {
   padding-left: 5px;

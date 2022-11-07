@@ -1,3 +1,3 @@
-import Component from "./Navbar.vue";
+import Component from './Navbar.vue';
 
 export default Component;

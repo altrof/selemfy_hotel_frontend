@@ -1,41 +1,42 @@
 import MyProfileButton from "@/components/_atoms/MyProfileButton/MyProfileButton.vue";
-import { render, screen } from "@testing-library/vue";
+import {render, screen} from "@testing-library/vue";
 
-describe("MyProfileButton.vue", () => {
-  function getMyProfileButton() {
-    return screen.getByTestId("myprofile-button");
-  }
+describe('MyProfileButton.vue', () => {
 
-  function getIconUserCircle() {
-    return screen.getByTestId("user-icon-circle");
-  }
+    function getMyProfileButton() {
+        return screen.getByTestId('myprofile-button');
+    }
 
-  it("renders properly", () => {
-    render(MyProfileButton);
+    function getIconUserCircle() {
+        return screen.getByTestId('user-icon-circle');
+    }
 
-    expect(getMyProfileButton());
-    expect(getMyProfileButton()).toBeInTheDocument();
-  });
+    it('renders properly', () => {
+        render(MyProfileButton)
 
-  it("has class login", () => {
-    render(MyProfileButton);
+        expect(getMyProfileButton());
+        expect(getMyProfileButton()).toBeInTheDocument();
+    })
 
-    expect(getMyProfileButton()).toHaveClass("login");
-  });
+    it('has class login', () => {
+        render(MyProfileButton)
 
-  it("has icon - IconUserCircle", () => {
-    render(MyProfileButton);
+        expect(getMyProfileButton()).toHaveClass('login');
+    })
 
-    expect(getIconUserCircle());
-    expect(getIconUserCircle()).toBeInTheDocument();
-    expect(getIconUserCircle()).toHaveClass("icon");
+    it('has icon - IconUserCircle', () => {
+        render(MyProfileButton)
 
-    expect(getMyProfileButton()).toContainElement(getIconUserCircle());
-  });
+        expect(getIconUserCircle());
+        expect(getIconUserCircle()).toBeInTheDocument();
+        expect(getIconUserCircle()).toHaveClass('icon');
 
-  it("has test - MY PROFILE", () => {
-    render(MyProfileButton);
+        expect(getMyProfileButton()).toContainElement(getIconUserCircle());
+    })
 
-    expect(getMyProfileButton()).toHaveTextContent("MY PROFILE");
-  });
-});
+    it('has test - MY PROFILE', () => {
+        render(MyProfileButton)
+
+        expect(getMyProfileButton()).toHaveTextContent('MY PROFILE');
+    })
+})

@@ -1,7 +1,7 @@
 <script setup>
-import { RouterLink } from "vue-router";
+import { RouterLink } from 'vue-router'
 
-import { ref, onMounted } from "vue";
+import { ref, onMounted} from 'vue'
 import MyProfileNav from "@/components/_molecules/MyProfileNav/MyProfileNav.vue";
 
 const scrolledNav = ref(null);
@@ -11,18 +11,18 @@ const windowWidth = ref(null);
 
 const toggleMobileNav = () => {
   mobileNav.value = !mobileNav.value;
-};
+}
 
 const checkScreen = () => {
   windowWidth.value = window.innerWidth;
-  if (windowWidth.value <= 950) {
+  if(windowWidth.value <= 950) {
     mobile.value = true;
     return;
   }
   mobile.value = false;
   mobileNav.value = false;
   return;
-};
+}
 
 const updateScroll = () => {
   const scrollPosition = window.scrollY;
@@ -33,100 +33,49 @@ const updateScroll = () => {
 
   scrolledNav.value = false;
   return;
-};
+}
 
 onMounted(() => {
-  window.addEventListener("resize", checkScreen);
+  window.addEventListener('resize', checkScreen)
   checkScreen();
 });
 
 onMounted(() => {
-  window.addEventListener("scroll", updateScroll);
-});
+  window.addEventListener('scroll', updateScroll)
+})
 </script>
 
 <template>
   <header :class="{ 'scrolled-nav': scrolledNav }">
     <nav>
       <div class="branding">
-        <img src="@/assets/img/selmefy-logo.png" alt="Selmefy" />
+         <img src="@/assets/img/selmefy-logo.png" alt="Selmefy" />
       </div>
       <ul v-show="!mobile" class="navigation">
-        <li>
-          <RouterLink class="link" active-class="underlined" to="/"
-            >Home</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink class="link" active-class="underlined" to="/rooms"
-            >Rooms</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink
-            class="link"
-            active-class="underlined"
-            to="/special-offers"
-            >Special Offers</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink class="link" active-class="underlined" to="/loyalty"
-            >Loyalty</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink class="link" active-class="underlined" to="/about-us"
-            >About Us</RouterLink
-          >
-        </li>
+        <li><RouterLink class="link" active-class="underlined" to="/">Home</RouterLink></li>
+        <li><RouterLink class="link" active-class="underlined" to="/rooms">Rooms</RouterLink></li>
+        <li><RouterLink class="link" active-class="underlined" to="/special-offers">Special Offers</RouterLink></li>
+        <li><RouterLink class="link" active-class="underlined" to="/loyalty">Loyalty</RouterLink></li>
+        <li><RouterLink class="link" active-class="underlined" to="/about-us">About Us</RouterLink></li>
       </ul>
       <div v-show="!mobile">
         <MyProfileNav />
       </div>
-      <div class="icon">
-        <i
-          @click="toggleMobileNav"
-          v-show="mobile"
-          class="far fa-bars"
-          :class="{ 'icon-active': mobileNav }"
-        ></i>
+      <div class="icon" >
+        <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class="{'icon-active': mobileNav}"></i>
       </div>
     </nav>
   </header>
   <div class="dropdown-menu">
     <transition name="mobile-nav">
       <ul v-show="mobileNav" class="dropdown-nav">
-        <li>
-          <RouterLink class="link" active-class="underlined" to="/"
-            >Home</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink class="link" active-class="underlined" to="/rooms"
-            >Rooms</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink
-            class="link"
-            active-class="underlined"
-            to="/special-offers"
-            >Special Offers</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink class="link" active-class="underlined" to="/loyalty"
-            >Loyalty</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink class="link" active-class="underlined" to="/about-us"
-            >About Us</RouterLink
-          >
-        </li>
+        <li><RouterLink class="link" active-class="underlined" to="/">Home</RouterLink></li>
+        <li><RouterLink class="link" active-class="underlined" to="/rooms">Rooms</RouterLink></li>
+        <li><RouterLink class="link" active-class="underlined" to="/special-offers">Special Offers</RouterLink></li>
+        <li><RouterLink class="link" active-class="underlined" to="/loyalty">Loyalty</RouterLink></li>
+        <li><RouterLink class="link" active-class="underlined" to="/about-us">About Us</RouterLink></li>
         <div class="my-profile-btn">
-          <MyProfileNav />
+          <MyProfileNav  />
         </div>
       </ul>
     </transition>
@@ -147,17 +96,17 @@ header {
   z-index: 99;
   width: 100%;
   position: fixed;
-  transition: 0.5s ease all;
+  transition: .5s ease all;
   color: #fff;
 
   nav {
     display: flex;
     flex-direction: row;
     padding: 25px 0;
-    transition: 0.5s ease all;
+    transition: .5s ease all;
     width: 90%;
     margin: 0 auto;
-    @media (min-width: 1140px) {
+    @media(min-width: 1140px) {
       max-width: 1140px;
     }
 
@@ -177,7 +126,7 @@ header {
 
     .link {
       font-size: 14px;
-      transition: 0.5s ease all;
+      transition: .5s ease all;
       padding-bottom: 4px;
       border-bottom: 2px solid transparent;
 
@@ -192,7 +141,7 @@ header {
 
       img {
         height: 4rem;
-        transition: 0.5s ease all;
+        transition: .5s ease all;
       }
     }
 
@@ -202,6 +151,7 @@ header {
       flex: 1;
       justify-content: center;
     }
+
 
     .icon {
       color: black;
@@ -215,7 +165,7 @@ header {
       i {
         cursor: pointer;
         font-size: 24px;
-        transition: 0.8s ease all;
+        transition: .8s ease all;
       }
     }
 
@@ -224,7 +174,7 @@ header {
     }
 
     .underlined {
-      border-bottom: 2px solid black !important;
+      border-bottom: 2px solid black!important;
     }
   }
 }
@@ -245,7 +195,7 @@ li {
 
 .link {
   font-size: 14px;
-  transition: 0.5s ease all;
+  transition: .5s ease all;
   padding-bottom: 4px;
   border-bottom: 2px solid transparent;
 
@@ -254,10 +204,11 @@ li {
   }
 }
 
+
 .dropdown-menu {
   width: 100%;
   position: fixed;
-  transition: 0.5s ease all;
+  transition: .5s ease all;
   color: #fff;
   z-index: 10;
 
@@ -297,14 +248,13 @@ li {
   }
 
   .underlined {
-    border-bottom: 2px solid #f2f2f2 !important;
+    border-bottom: 2px solid #f2f2f2!important;
   }
 }
 
 .scrolled-nav {
   background-color: #dedede;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 99;
 
   nav {

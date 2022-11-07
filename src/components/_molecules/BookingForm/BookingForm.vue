@@ -1,7 +1,11 @@
-<script></script>
+<script>
+
+</script>
 
 <template>
-  <div data-testid="booking-form" class="booking-form">BOOKING FORM</div>
+  <div data-testid="booking-form" class="booking-form">
+    BOOKING FORM
+  </div>
 </template>
 
 <style scoped>
@@ -9,4 +13,5 @@
   background-color: white;
   border: 1px solid black;
 }
+
 </style>

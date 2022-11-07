@@ -1,31 +1,32 @@
-import ContentWrapper from "@/components/_molecules/ContentWrapper/ContentWrapper.vue";
-import { render, screen } from "@testing-library/vue";
+import ContentWrapper from '@/components/_molecules/ContentWrapper/ContentWrapper.vue'
+import {render, screen} from "@testing-library/vue";
 
-describe("ContentWrapper.vue", () => {
-  function getContentWrapper() {
-    return screen.getByTestId("content-wrapper");
-  }
+describe('ContentWrapper.vue', () => {
 
-  it("renders properly", () => {
-    render(ContentWrapper);
+    function getContentWrapper() {
+        return screen.getByTestId('content-wrapper');
+    }
 
-    expect(getContentWrapper());
-    expect(getContentWrapper()).toBeInTheDocument();
-  });
+    it('renders properly', () => {
+        render(ContentWrapper);
 
-  it("has content what passed via slot", () => {
-    const slotText = "TEST";
+        expect(getContentWrapper());
+        expect(getContentWrapper()).toBeInTheDocument();
+    })
 
-    render(ContentWrapper, {
-      slots: {
-        default: `<p data-testid="slot">${slotText}</p>`,
-      },
-    });
+    it('has content what passed via slot', () => {
+        const slotText = 'TEST';
 
-    const slotElement = screen.getByTestId("slot");
+        render(ContentWrapper, {
+            slots: {
+                default: `<p data-testid="slot">${slotText}</p>`
+            }
+        })
 
-    expect(getContentWrapper());
-    expect(getContentWrapper()).toHaveTextContent(slotText);
-    expect(getContentWrapper()).toContainElement(slotElement);
-  });
-});
+        const slotElement = screen.getByTestId('slot');
+
+        expect(getContentWrapper());
+        expect(getContentWrapper()).toHaveTextContent(slotText);
+        expect(getContentWrapper()).toContainElement(slotElement);
+    })
+})

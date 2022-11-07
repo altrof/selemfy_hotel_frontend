@@ -1,5 +1,6 @@
-describe("HelloWorld", () => {
-  it("renders properly", () => {
+
+describe('HelloWorld', () => {
+  it('renders properly', () => {
     expect(true).toBeTruthy();
-  });
-});
+  })
+})

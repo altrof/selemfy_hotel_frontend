@@ -1,6 +1,6 @@
 <script setup>
 import { useFieldTextStore } from "@/stores/fieldText";
-import { storeToRefs } from "pinia";
+import { storeToRefs } from 'pinia';
 
 const { showInput } = useFieldTextStore();
 const { text } = storeToRefs(useFieldTextStore());

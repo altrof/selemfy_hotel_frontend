@@ -1,59 +1,62 @@
-import { render, screen } from "@testing-library/vue";
-import ModalWindow from "@/components/_molecules/ModalWindow/ModalWindow.vue";
-import { setActivePinia, createPinia } from "pinia";
-import { createTestingPinia } from "@pinia/testing";
+import {render, screen} from "@testing-library/vue";
+import ModalWindow from '@/components/_molecules/ModalWindow/ModalWindow.vue'
+import { setActivePinia, createPinia } from 'pinia'
+import { createTestingPinia } from '@pinia/testing'
 import { useModalWindowStore } from "@/stores/modalWindow";
 
-describe("ModalWindow.vue", () => {
-  beforeEach(() => {
-    setActivePinia(createPinia());
-  });
 
-  function getModalWindow() {
-    return screen.getByTestId("modal-window");
-  }
+describe('ModalWindow.vue', () => {
 
-  function getDialogPanel() {
-    return screen.getByTestId("dialog-panel");
-  }
+    beforeEach(() => {
+        setActivePinia(createPinia());
+    })
 
-  const global = {
-    plugins: [
-      createTestingPinia({
-        initialState: {
-          modalWindow: {
-            isOpen: true,
-          },
-        },
-      }),
-    ],
-  };
+    function getModalWindow() {
+        return screen.getByTestId('modal-window');
+    }
 
-  it('is present, when ref "isOpen" is true', async () => {
-    await render(ModalWindow, {
-      global,
-    });
+    function getDialogPanel() {
+        return screen.getByTestId('dialog-panel');
+    }
 
-    const modalWindowStore = useModalWindowStore();
+    const global = {
+        plugins: [
+            createTestingPinia({
+                initialState: {
+                    modalWindow: {
+                        isOpen: true
+                    },
+                },
+            })],
+    }
 
-    expect(modalWindowStore.isOpen).toBeTruthy();
-    expect(getModalWindow()).toBeInTheDocument();
-  });
 
-  it("has the text passed from slot", async () => {
-    const testSlotText = "TEST SLOT";
+    it('is present, when ref "isOpen" is true', async () => {
+        await render(ModalWindow, {
+            global
+        })
 
-    await render(ModalWindow, {
-      global,
-      slots: {
-        default: `<p>${testSlotText}</p>`,
-      },
-    });
+        const modalWindowStore = useModalWindowStore();
 
-    expect(getModalWindow()).toBeInTheDocument();
+        expect(modalWindowStore.isOpen).toBeTruthy();
+        expect(getModalWindow()).toBeInTheDocument();
+    })
 
-    expect(getDialogPanel()).toBeInTheDocument();
-    expect(getDialogPanel()).toContainHTML(`<p>${testSlotText}</p>`);
-    expect(getDialogPanel()).toHaveTextContent(testSlotText);
-  });
-});
+    it('has the text passed from slot', async () => {
+        const testSlotText = 'TEST SLOT'
+
+        await render(ModalWindow, {
+            global,
+            slots: {
+                default: `<p>${testSlotText}</p>`
+            },
+
+        })
+
+        expect(getModalWindow()).toBeInTheDocument();
+
+        expect(getDialogPanel()).toBeInTheDocument();
+        expect(getDialogPanel()).toContainHTML(`<p>${testSlotText}</p>`);
+        expect(getDialogPanel()).toHaveTextContent(testSlotText);
+    })
+})

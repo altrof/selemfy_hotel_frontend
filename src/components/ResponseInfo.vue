@@ -1,8 +1,8 @@
 <script setup>
-defineProps({
-  responseData: Object,
-  apiUrl: String,
-});
+  defineProps({
+      responseData: Object,
+      apiUrl: String
+  })
 </script>
 
 <template>

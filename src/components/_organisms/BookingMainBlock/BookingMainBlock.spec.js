@@ -1,14 +1,15 @@
 import BookingMainBlock from "@/components/_organisms/BookingMainBlock/index";
-import { render, screen } from "@testing-library/vue";
+import {render, screen} from "@testing-library/vue";
 
-describe("BookingMainBlock", () => {
-  function getBookingMainBlock() {
-    return screen.getByTestId("main-block");
-  }
+describe('BookingMainBlock', () => {
 
-  it("renders properly", () => {
-    render(BookingMainBlock);
+    function getBookingMainBlock() {
+        return screen.getByTestId('main-block');
+    }
 
-    expect(getBookingMainBlock()).toHaveClass("main-block");
-  });
-});
+    it('renders properly', () => {
+        render(BookingMainBlock)
+
+        expect(getBookingMainBlock()).toHaveClass('main-block');
+    })
+})
