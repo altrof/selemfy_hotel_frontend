@@ -3,6 +3,7 @@ import Navbar from '@/components/_organisms/Navbar/Navbar.vue';
 import Product from '@/components/_organisms/Product/Product.vue';
 import ContentWrapper from '@/components/_molecules/ContentWrapper/ContentWrapper.vue'
 
+
 /*
 Products are currently hard-coded, but perhaps 
 we should request the same information from the database?

@@ -1,5 +1,5 @@
 <script setup>
-import {useBasketStore} from "@/stores/basket";
+import { useBasketStore } from "@/stores/basket";
 import { storeToRefs } from 'pinia';
 
 const { changeBasket } = useBasketStore();
