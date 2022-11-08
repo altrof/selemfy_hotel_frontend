@@ -4,13 +4,11 @@ import { useMobileStore } from "@/stores/mobile";
 import { storeToRefs } from 'pinia';
 
 import Basket from '@/components/_molecules/Basket/Basket.vue';
-import ProductDescriptionBox from '@/components/_molecules/ProductDescriptionBox/ProductDescriptionBox.vue';
-
+import DescriptionBox from '@/components/_atoms/DescriptionBox/DescriptionBox.vue';
+import ImageBox from '@/components/_atoms/ImageBox/ImageBox.vue';
 
 const { mobile } = storeToRefs(useMobileStore())
-
 const { checkScreen, updateScroll } = useMobileStore();
-
 
 onMounted(() => {
   window.addEventListener('resize', checkScreen)
@@ -33,22 +31,26 @@ defineProps({
 
 <template>
     <div v-show="!mobile" class="w-1/2 p-10 border-4 border-gray-200 rounded-lg m-2" >
-        <ProductDescriptionBox 
+        <ImageBox 
             :name="productName" 
-            :description="productDescription" 
-            :price="productPrice" 
             :file-name="fileName" 
-            :dir-name="dirName"/>
+            :dir-name="dirName"
+            />
+        <DescriptionBox 
+            :description="productDescription" 
+            :price="productPrice" />
         <Basket :product-name="productName" />
     </div>
 
     <div v-show="mobile" class="w-1/3 p-10 border-4 border-gray-200 rounded-lg m-2" >
-        <ProductDescriptionBox 
+        <ImageBox 
             :name="productName" 
-            :description="productDescription" 
-            :price="productPrice" 
             :file-name="fileName" 
-            :dir-name="dirName"/>
+            :dir-name="dirName"
+            />
+        <DescriptionBox 
+            :description="productDescription" 
+            :price="productPrice" />
         <Basket :product-name="productName" />
     </div>
 </template>
