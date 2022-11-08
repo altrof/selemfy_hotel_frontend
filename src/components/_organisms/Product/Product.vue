@@ -43,7 +43,7 @@ defineProps({
             </div>
     </div>
 
-    <div v-show="mobile" class="w-1/3 p-10 border-4 border-gray-200 rounded-lg m-2" >
+    <div v-show="mobile" class="w-3/4 p-10 border-4 border-gray-200 rounded-lg m-2" >
         <ImageBox 
             :name="productName" 
             :file-name="fileName" 
