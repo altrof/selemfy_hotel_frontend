@@ -1,17 +1,24 @@
 <script setup>
 import BookingForm from '@/components/_molecules/BookingForm/BookingForm.vue';
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide} from 'vue3-carousel'
+import {onMounted, ref} from "vue";
 const carouselSlides = ["src/assets/img/slider-imgs/hero-1.jpg",
                         "src/assets/img/slider-imgs/hero-2.jpg",
                         "src/assets/img/slider-imgs/hero-3.jpg"];
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide} from 'vue3-carousel'
+const myCarousel = ref(null)
+onMounted(() => {
+  setTimeout(() => {
+    myCarousel.value.restartCarousel();
+  }, 50);
+});
 </script>
 
 <template>
   <div data-testid="main-block" class="main-block">
     <BookingForm class="booking-form" />
       <div>
-        <carousel :autoplay="10000" :itemsToShow="1" :transition="700" :wrapAround="true" :pauseAutoplayOnHover="false">
+        <carousel ref="myCarousel" :autoplay="7500" :itemsToShow="1" :transition="700" :wrapAround="true" :pauseAutoplayOnHover="false">
           <slide v-for="slide in carouselSlides" :key="slide">
             <img :src="slide" alt="" />
           </slide>
