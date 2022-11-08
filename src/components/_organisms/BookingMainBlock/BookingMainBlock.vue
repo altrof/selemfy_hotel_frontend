@@ -3,10 +3,12 @@ import BookingForm from '@/components/_molecules/BookingForm/BookingForm.vue';
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide} from 'vue3-carousel'
 import {onMounted, ref} from "vue";
+
 const carouselSlides = ["src/assets/img/slider-imgs/hero-1.jpg",
                         "src/assets/img/slider-imgs/hero-2.jpg",
                         "src/assets/img/slider-imgs/hero-3.jpg"];
 const myCarousel = ref(null)
+
 onMounted(() => {
   setTimeout(() => {
     myCarousel.value.restartCarousel();
@@ -18,11 +20,18 @@ onMounted(() => {
   <div data-testid="main-block" class="main-block">
     <BookingForm class="booking-form" />
       <div>
-        <carousel ref="myCarousel" :autoplay="7500" :itemsToShow="1" :transition="700" :wrapAround="true" :pauseAutoplayOnHover="false">
-          <slide v-for="slide in carouselSlides" :key="slide">
+        <Carousel
+            ref="myCarousel"
+            :autoplay="7500"
+            :itemsToShow="1"
+            :transition="700"
+            :wrapAround="true"
+            :pauseAutoplayOnHover="false"
+        >
+          <Slide v-for="slide in carouselSlides" :key="slide">
             <img :src="slide" alt="" />
-          </slide>
-        </carousel>
+          </Slide>
+        </Carousel>
       </div>
   </div>
 </template>
