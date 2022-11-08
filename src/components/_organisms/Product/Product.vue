@@ -1,9 +1,11 @@
 <script setup>
-import Basket from '@/components/_molecules/Basket/Basket.vue';
-import ProductDescriptionBox from '@/components/_molecules/ProductDescriptionBox/ProductDescriptionBox.vue';
 import { onMounted} from 'vue'
 import { useMobileStore } from "@/stores/mobile";
 import { storeToRefs } from 'pinia';
+
+import Basket from '@/components/_molecules/Basket/Basket.vue';
+import ProductDescriptionBox from '@/components/_molecules/ProductDescriptionBox/ProductDescriptionBox.vue';
+
 
 const { mobile } = storeToRefs(useMobileStore())
 
