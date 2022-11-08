@@ -24,7 +24,13 @@ const imagesDir = "service-imgs"
   <ContentWrapper>
     <p>Special Offers</p>
     <div class="flex flex-wrap place-content-around" >
-        <Product v-for="(product) in products" :key="product" :product-name="product.name" product-description="Enjoy this wonderful special offer on our behalf" :productPrice="product.price" :file-name="product.image" :dir-name="imagesDir"/>
+        <Product v-for="(product) in products" 
+          :key="product" 
+          :product-name="product.name" 
+          product-description="Enjoy this wonderful special offer on our behalf" 
+          :productPrice="product.price" 
+          :file-name="product.image" 
+          :dir-name="imagesDir"/>
     </div>
   </ContentWrapper>
 </template>

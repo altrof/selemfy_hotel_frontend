@@ -6,12 +6,15 @@ const { changeBasket } = useBasketStore();
 const { basketState } = storeToRefs(useBasketStore());
 
 import BaseButton from '@/components/_atoms/BaseButton/BaseButton.vue';
+import { onMounted } from 'vue';
 
 const props = defineProps({
     productName: String
 })
 
-changeBasket(props.productName, 0);
+onMounted(() => {
+    changeBasket(props.productName, 0);
+})
 
 </script>
 
