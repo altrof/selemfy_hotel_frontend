@@ -11,17 +11,16 @@ import { Carousel, Slide} from 'vue3-carousel'
   <div data-testid="main-block" class="main-block">
     <BookingForm class="booking-form" />
       <div>
-        <carousel :autoplay="5000" :itemsToShow="1" :transition="700" :wrapAround="true" :pauseAutoplayOnHover="false">
+        <carousel :autoplay="10000" :itemsToShow="1" :transition="700" :wrapAround="true" :pauseAutoplayOnHover="false">
           <slide v-for="slide in carouselSlides" :key="slide">
             <img :src="slide" alt="" />
           </slide>
         </carousel>
       </div>
-    <!-- ToDo: Create own slider (or you can use external library, such as VueSlider)-->
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 .main-block {
   display: flex;
   justify-content: center;
