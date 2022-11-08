@@ -30,16 +30,17 @@ defineProps({
 </script>
 
 <template>
-    <div v-show="!mobile" class="w-1/2 p-10 border-4 border-gray-200 rounded-lg m-2" >
-        <ImageBox 
-            :name="productName" 
-            :file-name="fileName" 
-            :dir-name="dirName"
-            />
-        <DescriptionBox 
-            :description="productDescription" 
-            :price="productPrice" />
-        <Basket :product-name="productName" />
+    <div v-show="!mobile" class="p-10 border-4 border-gray-200 rounded-lg m-2" >
+            <ImageBox class="w-1/2 float-left" 
+                :name="productName" 
+                :file-name="fileName" 
+                :dir-name="dirName" />
+            <div class="w-1/2 float-right pt-10 pl-5">
+                <DescriptionBox 
+                :description="productDescription" 
+                :price="productPrice" />
+                <Basket :product-name="productName" />
+            </div>
     </div>
 
     <div v-show="mobile" class="w-1/3 p-10 border-4 border-gray-200 rounded-lg m-2" >

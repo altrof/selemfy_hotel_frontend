@@ -22,8 +22,8 @@ onMounted(() => {
     <div data-testid="basket" class="mt-5 border-t-2 border-gray-400">
         <p data-testid="basket-status">Currently in basket: {{basketState[productName]}}</p>
         <div class="mt-3 flex flex-wrap place-content-around">
-            <BaseButton data-testid="plus-button" @click-handler="changeBasket(productName, 1)" textContent="+"/>
             <BaseButton data-testid="minus-button" @click-handler="changeBasket(productName, -1)" textContent="-"/>
+            <BaseButton data-testid="plus-button" @click-handler="changeBasket(productName, 1)" textContent="+"/>
         </div>
     </div>
 </template>
