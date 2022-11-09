@@ -30,25 +30,15 @@ describe('Basket', () => {
         expect(getBasket()).toHaveClass('mt-5 border-t-2 border-gray-400');
     })
 
-    /**
-     * This test is currently broken 
-     * as Basket component now uses onMounted() hook 
-     * which probably needs to be mocked.
-     * Further reading on this matter:
-     * https://stackoverflow.com/questions/50278708/vue-test-utils-how-to-test-logic-within-mounted-lifecycle-hook-with-vuex
-     * https://medium.com/@sebastiencorreia/testing-vue-js-lifecycle-hook-43c1227815bd
-     */
-    it('is initialized with 0 elements in basket', () => {
-        const wrapper = mount(Basket, {
+
+    it('is initialized with 0 elements in basket', async () => {
+        await render(Basket, {
             props: {
                 productName: "testElement"
             }
         });
 
-        const basketStatusMessage = wrapper.get('[data-testid="basket-status"]');
-
-        // Actual text should be: "Currently in basket: 0"
-        expect(basketStatusMessage.text()).toContain("Currently in basket:");
+        expect(getBasketStatus()).toHaveTextContent("Currently in basket: 0");
     })
 
     it('increases number of elements in basket when increment button clicked', async () => {
@@ -65,7 +55,7 @@ describe('Basket', () => {
     })
 
     it('clicking plus sign button increases number of element in basket', async () => {
-        render(Basket, {
+        await render(Basket, {
             props: {
                 productName: "testElement"
             }
@@ -78,7 +68,7 @@ describe('Basket', () => {
     })
 
     it('clicking minus sign button decreases number of element in basket', async () => {
-        render(Basket, {
+        await render(Basket, {
             props: {
                 productName: "testElement"
             }
@@ -97,7 +87,7 @@ describe('Basket', () => {
     })
 
     it('clicking minus sign button does not decrease number of elements in basket below zero', async () => {
-        render(Basket, {
+        await render(Basket, {
             props: {
                 productName: "testElement"
             }
