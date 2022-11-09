@@ -4,6 +4,7 @@ import ContentWrapper from '@/components/_molecules/ContentWrapper/ContentWrappe
 import LoremIpsum from "@/components/_atoms/LoremIpsum/LoremIpsum.vue";
 import RoomsMainBlock from "@/components/_organisms/RoomsMainBlock/RoomsMainBlock.vue";
 import SingelRoom from "@/components/_organisms/RoomsMainBlock/SingelRoom.vue";
+import DeluxRoom from "@/components/_organisms/RoomsMainBlock/DeluxRoom.vue";
 
 const text = "TEST";
 </script>
@@ -16,6 +17,7 @@ const text = "TEST";
   <RoomsMainBlock class="main-block" />
   <ContentWrapper>
     <SingelRoom />
+    <DeluxRoom />
     <LoremIpsum />
   </ContentWrapper>
 </template>

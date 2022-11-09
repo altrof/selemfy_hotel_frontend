@@ -35,7 +35,7 @@
     </div>
 
   </div>
-  <div class="text-center pb-16">
+  <div class="text-center pb-5">
     <router-link class="rounded-md text-xl px-16 py-3 book-now" to="/" tag="button">BOOK NOW</router-link>
 
   </div>
@@ -66,9 +66,9 @@ hr.new1 {
   list-style: none;
   text-decoration: none;
   border: 2px solid saddlebrown;
-&:hover {
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
-}
+  &:hover {
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+  }
 }
 
 </style>
