@@ -1,20 +1,27 @@
 <script setup>
 import Navbar from "@/components/_organisms/Navbar/Navbar.vue";
-import ContentWrapper from '@/components/_molecules/ContentWrapper/ContentWrapper.vue'
+import ContentWrapper from '@/components/_molecules/ContentWrapper/ContentWrapper.vue';
 import LoremIpsum from "@/components/_atoms/LoremIpsum/LoremIpsum.vue";
+import RoomsMainBlock from "@/components/_organisms/RoomsMainBlock/RoomsMainBlock.vue";
+import SingelRoom from "@/components/_organisms/RoomsMainBlock/SingelRoom.vue";
 
+const text = "TEST";
 </script>
 
 <template>
-  <Navbar />
+  <slot>
+    <Navbar />
+  </slot>
+
+  <RoomsMainBlock class="main-block" />
   <ContentWrapper>
-    <p>Rooms</p>
+    <SingelRoom />
     <LoremIpsum />
   </ContentWrapper>
 </template>
 
 <style scoped>
-p {
-  padding: 50px 0 50px 0;
+.main-block {
+  padding-top: 100px;
 }
 </style>
