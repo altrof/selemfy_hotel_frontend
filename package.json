@@ -16,6 +16,7 @@
     "axios": "^1.1.3",
     "pinia": "^2.0.21",
     "vue": "^3.2.38",
+    "vue-easy-lightbox": "^1.10.0",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {
