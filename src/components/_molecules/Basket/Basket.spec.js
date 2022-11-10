@@ -1,6 +1,5 @@
 import Basket from '@/components/_molecules/Basket/Basket.vue'
 import {screen, render, fireEvent} from '@testing-library/vue';
-import { mount } from '@vue/test-utils'
 import { setActivePinia, createPinia } from 'pinia'
 
 describe('Basket', () => {
