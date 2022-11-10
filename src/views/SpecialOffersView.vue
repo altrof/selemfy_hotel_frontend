@@ -14,7 +14,6 @@ const products = [
       {name: 'Shuttle', image: "shuttle.png", price: 5},
       {name: 'Massage', image: "massage.jpg", price: 50},
       {name: 'Restaurant', image: "restaurant.webp", price: 25},
-      {name: 'Late check-out', image: "checkout.jpg", price: 10},
       {name: 'Wake up call', image: "wake-up-call.webp", price: 5}
       ]
 const imagesDir = "service-imgs"
