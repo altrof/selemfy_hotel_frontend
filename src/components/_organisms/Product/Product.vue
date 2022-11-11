@@ -38,8 +38,8 @@ defineProps({
             <div class="w-1/2 float-right pt-10 pl-5">
                 <DescriptionBox 
                 :description="productDescription" 
-                :price="productPrice" />
-                <Basket :product-name="productName" />
+                :price="productPrice" class="description-box"/>
+                <Basket :product-name="productName" class="align-text-bottom"/>
             </div>
     </div>
 
@@ -55,3 +55,9 @@ defineProps({
         <Basket :product-name="productName" />
     </div>
 </template>
+
+<style scoped>
+    .description-box {
+        min-height: 16em;
+    }
+</style>
