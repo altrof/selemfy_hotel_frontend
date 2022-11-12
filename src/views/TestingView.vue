@@ -6,7 +6,6 @@ import RegistrationView from '@/components/_molecules/PersonRegistration/PersonR
 
 <template>
     <ContentWrapper>
-        <p>I am test view</p>
         <RegistrationView />
     </ContentWrapper>
 </template>
