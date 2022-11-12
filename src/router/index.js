@@ -9,6 +9,7 @@ import RoomsDataView from '@/views/DataView/RoomsDataView.vue'
 import RoomsTableView from '@/views/DataView/RoomsTableView.vue'
 import PersonTableView from '@/views/DataView/PersonTableView.vue'
 import DataMainView from '@/views/DataView/DataMainView.vue'
+import TestingView from '@/views/TestingView.vue'
 import Examples from '@/components/Examples.vue'
 
 const router = createRouter({
@@ -71,6 +72,12 @@ const router = createRouter({
       name: 'Rooms Table',
       // lazy load
       component: () => RoomsTableView
+    },
+    {
+      path: '/testing-view',
+      name: 'Testing View',
+      // lazy load
+      component: () => TestingView
     }
   ]
 })
