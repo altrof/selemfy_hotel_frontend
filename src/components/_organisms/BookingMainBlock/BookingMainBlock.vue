@@ -1,7 +1,7 @@
 <script setup>
 import BookingForm from '@/components/_molecules/BookingForm/BookingForm.vue';
 import 'vue3-carousel/dist/carousel.css'
-//import { Carousel, Slide} from 'vue3-carousel'
+import { Carousel, Slide} from 'vue3-carousel'
 import {onMounted, ref} from "vue";
 
 const carouselSlides = ["src/assets/img/slider-imgs/hero-1.jpg",

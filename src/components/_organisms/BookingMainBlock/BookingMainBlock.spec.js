@@ -1,11 +1,4 @@
-
-describe('HelloWorld', () => {
-    it('renders properly', () => {
-      expect(true).toBeTruthy();
-    })
-  })
-
-/*import BookingMainBlock from "@/components/_organisms/BookingMainBlock/index";
+import BookingMainBlock from "@/components/_organisms/BookingMainBlock/index";
 import {render, screen} from "@testing-library/vue";
 
 describe('BookingMainBlock', () => {
@@ -19,4 +12,4 @@ describe('BookingMainBlock', () => {
 
         expect(getBookingMainBlock()).toHaveClass('main-block');
     })
-})*/
+})
