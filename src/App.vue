@@ -3,13 +3,17 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
+  <div>
+    TEST
+  </div>
+<!--
   <div class="app">
     <RouterView />
-  </div>
+  </div> -->
 </template>
 
 <style>
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap');
@@ -32,5 +36,5 @@ import { RouterView } from 'vue-router'
   padding: 100px 20px 10px 10px;
   max-width: 1140px;
   margin: 0 auto;
-}
+}*/
 </style>
