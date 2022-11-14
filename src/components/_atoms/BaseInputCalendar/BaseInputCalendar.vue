@@ -7,6 +7,10 @@ const props = defineProps({
   modelValue: {
     type: String,
     default: "",
+  },
+  inputType: {
+    type: String,
+    default: "text"
   }
 })
 </script>
