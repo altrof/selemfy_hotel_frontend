@@ -1,17 +1,12 @@
 <script setup>
-import { ref } from 'vue'
 import 'vue-hotel-datepicker/dist/vueHotelDatepicker.css';
 import BaseInputCalendar from "@/components/_atoms/BaseInputCalendar/BaseInputCalendar.vue";
-import  {useAmountStore} from "@/stores/amount";
+import BaseButton from "../../_atoms/BaseButton/BaseButton";
+import {storeToRefs} from "pinia";
+import {useBookingStore} from "../../../stores/booking";
 
-const amountCounter = useAmountStore()
-
-// const checkIn = ref('YYYY/MM/DD')
-// const checkOut = ref('YYYY/MM/DD')
-// const adults = ref( 1 )
-// const children = ref(0)
-const rooms = ref(' Regular ', 'King', 'Suite', 'Any')
-
+const booking = useBookingStore()
+const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
 
 </script>
 <template>
@@ -38,19 +33,14 @@ const rooms = ref(' Regular ', 'King', 'Suite', 'Any')
       </div>
       <div class="selector">
         <button
-            @click="amountCounter.decreaseAmountAdults()"
+            @click="booking.decreaseAmountAdults()"
             class="button">
           -
         </button>
         <div id="button-placeholder">
-          {{amountCounter.amountAdults}}
-
+          {{booking.amountAdults}}
         </div>
-        <button
-            @click="amountCounter.increaseAmountAdults()"
-            class="button">
-          +
-        </button>
+        <BaseButton data-testid="plus-button" @click-handler="booking.increaseAmountAdults()" textContent="+"/>
       </div>
       <div class="amount">
         Children
@@ -58,33 +48,32 @@ const rooms = ref(' Regular ', 'King', 'Suite', 'Any')
 
       <div class="selector">
       <button
-          @click="amountCounter.decreaseAmountChildren()"
+          @click="booking.decreaseAmountChildren()"
           class="button">
           -
       </button>
       <div id="button-placeholder">
-        {{amountCounter.amountChildren}}
+        {{booking.amountChildren}}
 
       </div>
     <button
-        @click="amountCounter.increaseAmountChildren()"
+        @click="booking.increaseAmountChildren()"
         class="button">
         +
     </button>
       </div>
       Room type
       <div class="rooms">
-        <select v-model="rooms">
+        <select v-model="roomType">
           <option value="economy">Economy</option>
           <option value="regular">Regular</option>
           <option value="deluxe">Deluxe</option>
           <option value="king-size">King Size</option>
           <option value="any" selected>Any</option>
-          :selected="Any"
         </select>
       </div>
     </div>
-    <button> Check availability</button>
+    <button @click="booking.logComponents()"> Check availability </button>
   </div>
 
 </template>

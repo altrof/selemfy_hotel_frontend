@@ -12,7 +12,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div data-testid="base-input-calendar" class="identity-input mb-4">
+  <div data-testid="base-input" class="identity-input mb-4">
     <label
         v-if="label"
         class="block text-gray-700 text-sm font-bold mb-2"
@@ -25,7 +25,6 @@ const props = defineProps({
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         v-bind="$attrs"
-        :type="inputType"
     />
     <span class="text-xs text-red-700" id="emailHelp"></span>
   </div>

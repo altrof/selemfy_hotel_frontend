@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia'
 
-//bookingstore?
-
-export const useAmountStore = defineStore({
+export const useBookingStore = defineStore({
   id: 'amount',
+
   state: () => ({
     amountAdults: 1,
     amountChildren: 0,
+    checkIn: "",
+    checkOut: "",
+    roomType: "Any",
   }),
   actions: {
     increaseAmountAdults() {
@@ -26,13 +28,16 @@ export const useAmountStore = defineStore({
       } else {
         this.amountChildren--
       }
+    },
+    logComponents() {
+      alert("This is data: \n" +
+          "Checkin: " + this.checkIn + "\n" +
+          "Checkout: " + this.checkOut + "\n" +
+          "Adults: " + this.amountAdults + "\n" +
+          "Children: " + this.amountChildren + "\n" +
+          "Room type: "+ this.roomType);
     }
   },
-  getters: {
-    oddOrEven: (state) => {
-      if (state.count % 2 === 0) return 'even'
-      return 'odd'
-    }
-  }
-
 })
+
+//bookingstore?
