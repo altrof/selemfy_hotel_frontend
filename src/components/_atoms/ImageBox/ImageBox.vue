@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({
+defineProps({
   fileName: String,
   dirName: String,
   name: String,

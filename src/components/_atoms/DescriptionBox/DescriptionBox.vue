@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps({
+defineProps({
   description: String,
   price: Number,
 });
