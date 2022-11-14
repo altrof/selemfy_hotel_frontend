@@ -1,9 +1,8 @@
 <script setup>
 import 'vue-hotel-datepicker/dist/vueHotelDatepicker.css';
 import BaseInputCalendar from "@/components/_atoms/BaseInputCalendar/BaseInputCalendar.vue";
-import BaseButton from "../../_atoms/BaseButton/BaseButton";
 import {storeToRefs} from "pinia";
-import {useBookingStore} from "../../../stores/booking";
+import {useBookingStore} from "../../../stores/booking.js";
 
 const booking = useBookingStore()
 const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
@@ -40,7 +39,11 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
         <div id="button-placeholder">
           {{booking.amountAdults}}
         </div>
-        <BaseButton data-testid="plus-button" @click-handler="booking.increaseAmountAdults()" textContent="+"/>
+        <button
+            @click="booking.increaseAmountAdults()"
+            class="button">
+          -
+        </button>
       </div>
       <div class="amount">
         Children
@@ -54,7 +57,6 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
       </button>
       <div id="button-placeholder">
         {{booking.amountChildren}}
-
       </div>
     <button
         @click="booking.increaseAmountChildren()"
@@ -73,7 +75,12 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
         </select>
       </div>
     </div>
-    <button @click="booking.logComponents()"> Check availability </button>
+    <div class="right">
+    <button
+        @click="booking.logComponents()"
+        class="booking-button">
+        Check availability </button>
+    </div>
   </div>
 
 </template>
@@ -84,7 +91,7 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
   border: 1px solid black;
 }
 .dates {
-  margin: 20px;
+  margin:0 20px 0 20px;
 }
 .button {
   border:2px solid silver;
@@ -94,8 +101,18 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
   display:inline-block;
   user-select: none;
 }
+.booking-button {
+  border:2px solid silver;
+  border-radius:5px;
+  background-color: #FFF;
+  display:inline-block;
+  user-select: none;
+  margin:0 20px 0 20px;
+  width: 50%;
+  text-align: center;
+}
 .rooms {
-  margin: 20px;
+  margin:0 20px 0 20px;
   alignment: bottom;
 }
 
@@ -131,7 +148,6 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
 }
 .amount {
   alignment: center;
-
 }
 
 
