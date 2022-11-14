@@ -1,10 +1,8 @@
 <script setup>
 import Table from "@/components/_atoms/Table/Table.vue";
-import DataMainView from '@/views/DataView/DataMainView.vue'
+import DataMainView from "@/views/DataView/DataMainView.vue";
 import { usePersonstore } from "@/stores/person";
-import { storeToRefs } from 'pinia';
-
-
+import { storeToRefs } from "pinia";
 
 const { responseData } = storeToRefs(usePersonstore());
 </script>

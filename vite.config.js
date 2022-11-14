@@ -1,8 +1,8 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import vueJsx from "@vitejs/plugin-vue-jsx";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,13 +10,13 @@ export default defineConfig({
   resolve: {
     extensions: [".js", ".vue", ".json"],
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
   },
   server: {
     proxy: {
       "/api": {
-        target: 'http://localhost:8080/api',
+        target: "http://localhost:8080/api",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
@@ -24,9 +24,7 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    environment: 'jsdom',
-    setupFiles: [
-        './config/vitest.setup.js'
-    ]
+    environment: "jsdom",
+    setupFiles: ["./config/vitest.setup.js"],
   },
-})
+});

@@ -3,14 +3,13 @@ import { ref } from "vue";
 import PersonsAPI from "../services/modules/PersonAPI";
 
 export const usePersonstore = defineStore("Persons", () => {
-    const responseData = ref(null);
+  const responseData = ref(null);
 
-    PersonsAPI.getAllPersons()
-        .then(response => {
-            responseData.value = response;
-        })
+  PersonsAPI.getAllPersons().then((response) => {
+    responseData.value = response;
+  });
 
-    return {
-        responseData
-    }
-})
+  return {
+    responseData,
+  };
+});
