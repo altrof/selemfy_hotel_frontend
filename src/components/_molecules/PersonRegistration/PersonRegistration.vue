@@ -1,6 +1,11 @@
 <script setup>
 import BaseInput from '@/components/_atoms/BaseInput/BaseInput.vue'
 import BaseButton from '@/components/_atoms/BaseButton/BaseButton.vue'
+import { usePersonstore } from "@/stores/person";
+import { storeToRefs } from 'pinia';
+
+const { addPersonToBooking } = usePersonstore();
+
 </script>
 
 <template>
@@ -9,6 +14,6 @@ import BaseButton from '@/components/_atoms/BaseButton/BaseButton.vue'
         <BaseInput label="Last Name" placeholder="Smith" autocomplete="on"/>
         <BaseInput label="Identiy Code" placeholder="61107121760" autocomplete="on"/>
         <BaseInput abel="Date of Birth" type="date" autocomplete="on"/>
-        <BaseButton class="float-right" textContent="Add"/>
+        <BaseButton class="float-right" @click-handler="addPersonToBooking('123','John', 'Smith', 'fawdwa')" textContent="Add"/>
     </div>
 </template>
