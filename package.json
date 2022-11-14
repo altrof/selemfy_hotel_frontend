@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=./",
     "preview": "vite preview --port 4173",
     "test:unit": "vitest run --environment jsdom",
+    "test:coverage": "npm run test:unit -- --coverage",
     "test:e2e": "start-server-and-test preview http://localhost:4173/ 'cypress open --e2e'",
     "test:e2e:ci": "start-server-and-test preview http://localhost:4173/ 'cypress run --e2e'",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
@@ -17,7 +18,9 @@
     "pinia": "^2.0.21",
     "vue": "^3.2.38",
     "vue-hotel-datepicker": "^4.5.1",
-    "vue-router": "^4.1.5"
+    "vue-router": "^4.1.5",
+    "vue-slider-component": "^4.1.0-beta.6",
+    "vue3-carousel": "^0.2.5"
   },
   "devDependencies": {
     "@pinia/testing": "^0.0.14",
@@ -26,6 +29,7 @@
     "@testing-library/vue": "^6.6.1",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vitejs/plugin-vue-jsx": "^2.0.1",
+    "@vitest/coverage-c8": "^0.24.5",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/test-utils": "^2.0.2",
     "autoprefixer": "^10.4.13",
