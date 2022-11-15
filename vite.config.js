@@ -8,6 +8,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 export default defineConfig({
   plugins: [vue(), vueJsx()],
   resolve: {
+    extensions: [".js", ".vue", ".json"],
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
@@ -20,5 +21,12 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
-  }
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: [
+        './config/vitest.setup.js'
+    ]
+  },
 })

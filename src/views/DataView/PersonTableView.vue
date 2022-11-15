@@ -1,12 +1,12 @@
 <script setup>
-import Table from "@/components/Table.vue";
+import Table from "@/components/_atoms/Table/Table.vue";
 import DataMainView from '@/views/DataView/DataMainView.vue'
 import { usePersonstore } from "@/stores/person";
 import { storeToRefs } from 'pinia';
 
 
 
-const { responseData, apiUrl } = storeToRefs(usePersonstore());
+const { responseData } = storeToRefs(usePersonstore());
 </script>
 
 <template>

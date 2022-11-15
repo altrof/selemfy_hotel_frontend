@@ -1,5 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import MainHotelView from '@/views/MainHotelView.vue'
+import RoomsView from '@/views/RoomsView.vue'
+import SpecialOffersView from '@/views/SpecialOffersView.vue'
+import LoyaltyView from '@/views/LoyaltyView.vue'
+import AboutUsView from '@/views/AboutUsView.vue'
 import BackendTestHealthDataView from '@/views/DataView/BackendTestHealthDataView.vue'
 import RoomsDataView from '@/views/DataView/RoomsDataView.vue'
 import RoomsTableView from '@/views/DataView/RoomsTableView.vue'
@@ -14,6 +18,26 @@ const router = createRouter({
       path: '/',
       name: 'hotel',
       component: MainHotelView
+    },
+    {
+      path: '/rooms',
+      name: 'rooms',
+      component: RoomsView
+    },
+    {
+      path: '/special-offers',
+      name: 'special-offers',
+      component: SpecialOffersView
+    },
+    {
+      path: '/loyalty',
+      name: 'loyalty',
+      component: LoyaltyView
+    },
+    {
+      path: '/about-us',
+      name: 'about-us',
+      component: AboutUsView
     },
     {
       path: '/data',
