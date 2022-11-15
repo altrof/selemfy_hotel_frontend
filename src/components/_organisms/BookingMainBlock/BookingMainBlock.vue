@@ -4,9 +4,9 @@ import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide } from 'vue3-carousel'
 import {onMounted, ref} from "vue";
 
-const carouselSlides = ["src/assets/img/slider-imgs/hero-1.jpg",
-                        "src/assets/img/slider-imgs/hero-2.jpg",
-                        "src/assets/img/slider-imgs/hero-3.jpg"];
+const carouselSlides = ["/src/assets/img/slider-imgs/hero-1.jpg",
+                        "/src/assets/img/slider-imgs/hero-2.jpg",
+                        "/src/assets/img/slider-imgs/hero-3.jpg"];
 const myCarousel = ref(null)
 
 onMounted(() => {

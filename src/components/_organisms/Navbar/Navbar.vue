@@ -1,5 +1,5 @@
 <script setup>
-import { useMobileStore } from "@/stores/mobile.js";
+import { useMobileStore } from "@/stores/mobile";
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import RoomsAPI from "@/services/modules/RoomsAPI.js";
+import RoomsAPI from "@/services/modules/RoomsAPI";
 
 export const useRoomsStore = defineStore("Rooms", () => {
     const responseData = ref(null);

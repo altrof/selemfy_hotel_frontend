@@ -6,7 +6,7 @@ import {
   DialogPanel,
 } from '@headlessui/vue'
 
-import { useModalWindowStore } from "@/stores/modalWindow.js";
+import { useModalWindowStore } from "@/stores/modalWindow";
 import { storeToRefs } from 'pinia';
 
 const { isOpen } = storeToRefs(useModalWindowStore());
