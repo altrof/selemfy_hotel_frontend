@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted} from 'vue'
+import { onMounted, ref } from 'vue'
 import { useMobileStore } from "@/stores/mobile";
 import { storeToRefs } from 'pinia';
 
@@ -27,6 +27,14 @@ defineProps({
     productPrice: Number
 })
 
+const images = ref([
+  "src/assets/img/service-imgs/parking.jpeg",
+  "src/assets/img/service-imgs/champagne.jpeg",
+  "src/assets/img/service-imgs/shuttle.jpeg",
+  "src/assets/img/service-imgs/massage.jpeg",
+  "src/assets/img/service-imgs/restaurant.jpeg",
+  "src/assets/img/service-imgs/wake-up-call.jpeg",
+])
 </script>
 
 <template>
@@ -47,7 +55,6 @@ defineProps({
         <ImageBox 
             :name="productName" 
             :file-name="fileName" 
-            :dir-name="dirName"
             />
         <DescriptionBox 
             :description="productDescription" 
