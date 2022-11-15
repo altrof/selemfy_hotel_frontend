@@ -1,7 +1,7 @@
 <script setup>
 import Table from "@/components/_atoms/Table/Table.vue";
 import DataMainView from '@/views/DataView/DataMainView.vue'
-import { usePersonstore } from "@/stores/person";
+import { usePersonstore } from "@/stores/person.js";
 import { storeToRefs } from 'pinia';
 
 

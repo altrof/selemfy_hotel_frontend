@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import TestHealthAPI from "@/services/modules/BackendTestHealthAPI";
+import TestHealthAPI from "@/services/modules/BackendTestHealthAPI.js";
 
 export const useBackendTestHealthStore = defineStore("BackendTestHealth", () => {
     const responseData = ref(null);

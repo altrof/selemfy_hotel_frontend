@@ -1,6 +1,6 @@
 <script setup>
 import Table from "@/components/_atoms/Table/Table.vue";
-import { useRoomsStore } from "@/stores/rooms";
+import { useRoomsStore } from "@/stores/rooms.js";
 import { storeToRefs } from 'pinia';
 import DataMainView from "@/views/DataView/DataMainView.vue";
 

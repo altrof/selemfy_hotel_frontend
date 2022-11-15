@@ -1,6 +1,6 @@
 <script setup>
 import ResponseInfo from "@/components/ResponseInfo.vue";
-import { useRoomsStore } from "@/stores/rooms";
+import { useRoomsStore } from "@/stores/rooms.js";
 import { storeToRefs } from 'pinia';
 import DataMainView from "@/views/DataView/DataMainView.vue";
 

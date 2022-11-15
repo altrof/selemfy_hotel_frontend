@@ -3,8 +3,8 @@ import { DialogTitle } from '@headlessui/vue'
 import ModalWindow from "@/components/_molecules/ModalWindow/ModalWindow.vue";
 import IconClose from "@/components/icons/IconClose.vue";
 import BaseInput from "@/components/_atoms/BaseInput/BaseInput.vue";
-import { useModalWindowStore } from "@/stores/modalWindow";
-import { useLoginStore } from "@/stores/login";
+import { useModalWindowStore } from "@/stores/modalWindow.js";
+import { useLoginStore } from "@/stores/login.js";
 import { storeToRefs } from 'pinia'
 
 const { closeModal } = useModalWindowStore();

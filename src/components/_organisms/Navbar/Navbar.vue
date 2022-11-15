@@ -1,7 +1,7 @@
 <script setup>
-import { useMobileStore } from "@/stores/mobile";
+import { useMobileStore } from "@/stores/mobile.js";
 import { storeToRefs } from 'pinia';
-import { ref, onMounted} from 'vue';
+import { onMounted } from 'vue';
 
 import { RouterLink } from 'vue-router'
 import MyProfileNav from "@/components/_molecules/MyProfileNav/MyProfileNav.vue";

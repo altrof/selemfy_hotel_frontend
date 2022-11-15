@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted} from 'vue'
-import { useMobileStore } from "@/stores/mobile";
+import { useMobileStore } from "@/stores/mobile.js";
 import { storeToRefs } from 'pinia';
 
 import Basket from '@/components/_molecules/Basket/Basket.vue';

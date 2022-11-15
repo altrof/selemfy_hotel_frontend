@@ -1,7 +1,7 @@
 <script setup>
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import MyProfileButton from "@/components/_atoms/MyProfileButton/MyProfileButton.vue";
-import { useModalWindowStore } from "@/stores/modalWindow";
+import { useModalWindowStore } from "@/stores/modalWindow.js";
 import LoginWindow from "@/components/_organisms/LoginWindow/LoginWindow.vue";
 
 const loggedIn = false;

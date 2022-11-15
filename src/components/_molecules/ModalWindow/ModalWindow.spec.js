@@ -2,7 +2,7 @@ import {render, screen} from "@testing-library/vue";
 import ModalWindow from '@/components/_molecules/ModalWindow/ModalWindow.vue'
 import { setActivePinia, createPinia } from 'pinia'
 import { createTestingPinia } from '@pinia/testing'
-import { useModalWindowStore } from "@/stores/modalWindow";
+import { useModalWindowStore } from "@/stores/modalWindow.js";
 
 
 describe('ModalWindow.vue', () => {
