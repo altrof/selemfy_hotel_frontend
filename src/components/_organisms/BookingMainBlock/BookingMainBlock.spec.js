@@ -1,4 +1,4 @@
-import BookingMainBlock from "@/components/_organisms/BookingMainBlock/index";
+import BookingMainBlock from "@/components/_organisms/BookingMainBlock/BookingMainBlock.vue";
 import {render, screen} from "@testing-library/vue";
 
 describe('BookingMainBlock', () => {

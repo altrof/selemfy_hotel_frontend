@@ -1,39 +1,13 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { useMobileStore } from "@/stores/mobile";
+import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
 
-import { ref, onMounted} from 'vue'
+import { RouterLink } from 'vue-router'
 import MyProfileNav from "@/components/_molecules/MyProfileNav/MyProfileNav.vue";
 
-const scrolledNav = ref(null);
-const mobileNav = ref(null);
-const mobile = ref(null);
-const windowWidth = ref(null);
-
-const toggleMobileNav = () => {
-  mobileNav.value = !mobileNav.value;
-}
-
-const checkScreen = () => {
-  windowWidth.value = window.innerWidth;
-  if(windowWidth.value <= 950) {
-    mobile.value = true;
-    return;
-  }
-  mobile.value = false;
-  mobileNav.value = false;
-  return;
-}
-
-const updateScroll = () => {
-  const scrollPosition = window.scrollY;
-  if (scrollPosition > 0) {
-    scrolledNav.value = true;
-    return;
-  }
-
-  scrolledNav.value = false;
-  return;
-}
+const { mobile, scrolledNav, mobileNav, windowWidth } = storeToRefs(useMobileStore())
+const { checkScreen, toggleMobileNav, updateScroll } = useMobileStore();
 
 onMounted(() => {
   window.addEventListener('resize', checkScreen)

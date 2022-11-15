@@ -15,6 +15,7 @@ import DataMainView from "@/views/DataView/DataMainView.vue";
         <IconTooling />
       </template>
       <template #heading>Counter with Pinia</template>
+
       <CounterWithPinia />
     </WelcomeItem>
 

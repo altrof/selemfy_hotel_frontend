@@ -64,12 +64,12 @@ function switchBetweenImages (str) {
 
 <template>
   <div v-for="room in responseData">
-    <hr class="new1 pb-10">
-    <h1 class="font">{{ room.roomType }}</h1>
-    <div class="pb-10" >
+    <div class="row pb-10" >
       {{switchBetweenImages(room.roomType)}}
-      <div class="container">
+      <div class="column">
         <img class="img-cat" :src="imgsRef[0]" alt="Room" style="width:100%" @click="() => showImg(0)">
+      </div>
+      <div class="column">
         <img class="img-cat" :src="imgsRef[3]" alt="Room" style="width:100%" @click="() => showImg(3)">
       </div>
 
@@ -81,12 +81,14 @@ function switchBetweenImages (str) {
       ></vue-easy-lightbox>
     </div>
 
-    <div class="containerHead pb-16">
-      <div class="item">
-        <p>Our luxurious {{ room.roomType.toLowerCase() }} suite is the pinnacle of an amalgamation between traditional hospitality and modern amenities.
-          If you were to spend a day doing absolutely nothing, taking in the majestic seascape outdoors, this suite would let you do just that</p>
+    <div class="grid-container pb-16">
+
+      <div class="grid-child purple">
+        <p>sadasdasdasdsdsadasdasdsadasdasasasasa
+          sasasasasasasasasasasasasasasasasasasasasasasasasasasasasas</p>
       </div>
-      <div class="item">
+
+      <div class="grid-child green">
         <p>
           <strong>Size:</strong>
           &nbsp;{{ room.size }} m2&nbsp;
@@ -106,11 +108,29 @@ function switchBetweenImages (str) {
     <div class="text-center pb-16">
       <router-link class="rounded-md text-xl px-16 py-3 book-now" to="/" tag="button">BOOK NOW</router-link>
     </div>
+
+    <hr class="new1 pb-10">
+
     <div ></div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+  padding: 5px;
+}
 
 hr.new1 {
   border-top: 1px solid black;
@@ -133,36 +153,5 @@ hr.new1 {
 .img-cat {
   width: 200px;
   margin-right: 20px;
-}
-
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-}
-
-.container {
-  display: flex;
-  align-content: stretch;
-  justify-content: center;
-  max-height: 700px;
-  max-width: 800px;
-}
-
-.containerHead {
-  display: flex;
-  gap: 110px;
-}
-
-.item {
-  flex-basis: 100%;
-}
-
-.font {
-  font-family: "Monotype Corsiva", serif;
-  font-size: 100px;
-  color: #d9d9d9;
-  text-shadow: 1px  1px 1px black;
-  text-align: center;
 }
 </style>
