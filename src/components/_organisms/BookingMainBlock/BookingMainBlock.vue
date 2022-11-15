@@ -3,15 +3,11 @@ import BookingForm from '@/components/_molecules/BookingForm/BookingForm.vue';
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide } from 'vue3-carousel'
 import {onMounted, ref} from "vue";
-import carouselImages from '@/assets/img/slider-imgs/hero-3.jpg'
+import hero1 from "@/assets/img/slider-imgs/hero-1.jpg";
+import hero2 from "@/assets/img/slider-imgs/hero-2.jpg";
+import hero3 from "@/assets/img/slider-imgs/hero-3.jpg";
 
-console.log(carouselImages)
-
-const carouselSlides = [
-    "/src/assets/img/slider-imgs/hero-1.jpg",
-    "/src/assets/img/slider-imgs/hero-2.jpg",
-    "/src/assets/img/slider-imgs/hero-3.jpg"
-];
+const carouselSlides = [hero1, hero2, hero3];
 const myCarousel = ref(null)
 
 onMounted(() => {
