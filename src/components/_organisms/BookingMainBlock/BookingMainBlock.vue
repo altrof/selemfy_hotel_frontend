@@ -28,7 +28,7 @@ onMounted(() => {
             :pauseAutoplayOnHover="false"
         >
           <Slide v-for="fileName in imagesFileNames" :key="fileName">
-            <img :src="$image(dirName, fileName)" alt="" />
+            <img :src="$image(fileName, dirName)" alt="" />
           </Slide>
         </Carousel>
       </div>
