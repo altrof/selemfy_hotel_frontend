@@ -3,11 +3,9 @@ import BookingForm from '@/components/_molecules/BookingForm/BookingForm.vue';
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide } from 'vue3-carousel'
 import {onMounted, ref} from "vue";
-import hero1 from "@/assets/img/slider-imgs/hero-1.jpg";
-import hero2 from "@/assets/img/slider-imgs/hero-2.jpg";
-import hero3 from "@/assets/img/slider-imgs/hero-3.jpg";
 
-const carouselSlides = [hero1, hero2, hero3];
+const imagesFileNames = ["hero-1.jpg", "hero-2.jpg", "hero-3.jpg"];
+const dirName = "slider-imgs";
 const myCarousel = ref(null)
 
 onMounted(() => {
@@ -29,8 +27,8 @@ onMounted(() => {
             :wrapAround="true"
             :pauseAutoplayOnHover="false"
         >
-          <Slide v-for="slide in carouselSlides" :key="slide">
-            <img :src="slide" alt="" />
+          <Slide v-for="fileName in imagesFileNames" :key="fileName">
+            <img :src="$image(dirName, fileName)" alt="" />
           </Slide>
         </Carousel>
       </div>
