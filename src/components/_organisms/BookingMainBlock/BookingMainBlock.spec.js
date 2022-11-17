@@ -1,4 +1,4 @@
-import BookingMainBlock from "@/components/_organisms/BookingMainBlock/index";
+import BookingMainBlock from "@/components/_organisms/BookingMainBlock/BookingMainBlock.vue";
 import {render, screen} from "@testing-library/vue";
 
 describe('BookingMainBlock', () => {
@@ -8,8 +8,18 @@ describe('BookingMainBlock', () => {
     }
 
     it('renders properly', () => {
-        render(BookingMainBlock)
+        render(BookingMainBlock, {
+          global: {
+              mocks: {
+                  $image: ((fileName, dirName) => {
+                        return new URL(`/src/assets/img/${dirName}/${fileName}`, import.meta.url)
+                    })
+                  }
+              }
+          }  
+        )
 
         expect(getBookingMainBlock()).toHaveClass('main-block');
     })
 })
+
