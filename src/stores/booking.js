@@ -29,6 +29,7 @@ export const useBookingStore = defineStore({
         this.amountChildren--
       }
     },
+
     logComponents() {
       alert("This is data: \n" +
           "Checkin: " + this.checkIn + "\n" +

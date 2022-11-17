@@ -42,14 +42,12 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   z-index: -1;
-
 }
 
 .booking-form {
   position: absolute;
   display: flex;
-  padding: 10px;
-  width: 70%;
+  padding: 20px;
   justify-content: center;
   z-index: 1;
 }

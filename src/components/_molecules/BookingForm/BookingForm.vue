@@ -6,11 +6,13 @@ import {useBookingStore} from "../../../stores/booking.js";
 
 const booking = useBookingStore()
 const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
+const bookingText = 'Check\n' + 'availability';
+
 
 </script>
 <template>
-  <div>
-    <div class="dates">
+  <div class="main">
+    <div class="booking-dates">
     <BaseInputCalendar
         v-model="checkIn"
         placeholder="Nights"
@@ -26,10 +28,10 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
         label="Check out"
     />
     </div>
-    <div class="middle">
-      <div class="amount">
-        Adults
-      </div>
+    <div class="booking-items">
+      <div class="booking-items-amount">
+      <div class="adults">
+        <h1>Adults</h1>
       <div class="selector">
         <button
             @click="booking.decreaseAmountAdults()"
@@ -42,13 +44,12 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
         <button
             @click="booking.increaseAmountAdults()"
             class="button">
-          -
+          +
         </button>
       </div>
-      <div class="amount">
-        Children
       </div>
-
+      <div class="children">
+        <h1>Children</h1>
       <div class="selector">
       <button
           @click="booking.decreaseAmountChildren()"
@@ -64,22 +65,29 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
         +
     </button>
       </div>
-      Room type
+      </div>
+      </div>
       <div class="rooms">
-        <select v-model="roomType">
-          <option value="economy">Economy</option>
-          <option value="regular">Regular</option>
-          <option value="deluxe">Deluxe</option>
-          <option value="king-size">King Size</option>
-          <option value="any" selected>Any</option>
-        </select>
+        <h1>Room Type</h1>
+        <div class="room-items">
+          <select v-model="roomType">
+            <option value="economy">Economy</option>
+            <option value="regular">Regular</option>
+            <option value="deluxe">Deluxe</option>
+            <option value="king-size">King Size</option>
+            <option value="any" selected>Any</option>
+          </select>
+      </div>
       </div>
     </div>
-    <div class="right">
-    <button
-        @click="booking.logComponents()"
-        class="booking-button">
-        Check availability </button>
+    <div class="booking-availability">
+      <div class="booking-button-placeholder">
+      <button
+          @click="booking.logComponents()"
+          class="booking-button">
+          {{bookingText}}
+      </button>
+      </div>
     </div>
   </div>
 
@@ -89,44 +97,53 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
 .booking-form {
   background-color: white;
   border: 1px solid black;
+  flex-wrap: wrap;
 }
-.dates {
+.main {
+}
+.booking-dates {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin:0 20px 0 20px;
+
+}
+.booking-items{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
   margin:0 20px 0 20px;
 }
+
 .button {
   border:2px solid silver;
   border-radius:5px;
   background-color: #FFF;
-  margin:0 10px 0 10px;
+  margin: 10px  10px;
+  justify-content: space-between;
   display:inline-block;
   user-select: none;
-}
-.booking-button {
-  border:2px solid silver;
-  border-radius:5px;
-  background-color: #FFF;
-  display:inline-block;
-  user-select: none;
-  margin:0 20px 0 20px;
-  width: 50%;
-  text-align: center;
 }
 .rooms {
   margin:0 20px 0 20px;
-  alignment: bottom;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
 }
-
 .selector {
-  border:1px solid silver;
+  border:2px solid silver;
   border-radius:5px;
   background-color: #FFF;
   margin:0 5px 0 5px;
   display:inline-block;
   user-select: none;
-  alignment: center;
+  align-content: center;
 }
 .selector div {
   display:inline-block;
+  align-content: center;
+  align-items: center;
 }
 .selector #button-placeholder input {
   width:50px;
@@ -134,6 +151,7 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
   font-size:15px;
   padding:3px;
   border:none;
+  align-items: center;
 }
 .selector .button {
   padding:3px 10px 3px 10px;
@@ -146,9 +164,49 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
 .selector .button:active {
   background-color:#c5c5c5;
 }
-.amount {
-  alignment: center;
+
+.booking-items-amount {
+  display: flex;
+  align-items: center;
+}
+.room-items {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  border-radius:5px;
 }
 
+
+.booking-availability {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  margin:0 20px 0 20px;
+}
+.booking-button-placeholder{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+}
+.booking-button {
+  border:2px solid silver;
+  border-radius:5px;
+  background-color: #FFF;
+  display:flex;
+  user-select: none;
+  margin:0 20px 0 20px;
+  text-align: center;
+  align-content: center;
+  padding: 10px;
+  white-space: normal;
+  word-break: break-word;
+}
+.booking-button:hover {
+  background-color:#DDD;
+}
+.booking-button:active {
+  background-color:#c5c5c5;
+}
 
 </style>
