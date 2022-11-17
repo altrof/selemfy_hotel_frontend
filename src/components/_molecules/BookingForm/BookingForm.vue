@@ -4,7 +4,7 @@ import BaseInputCalendar from "@/components/_atoms/BaseInputCalendar/BaseInputCa
 import {storeToRefs} from "pinia";
 import {useBookingStore} from "../../../stores/booking.js";
 
-const booking = useBookingStore()
+const booking = useBookingStore();
 const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
 const bookingText = 'Check\n' + 'availability';
 
