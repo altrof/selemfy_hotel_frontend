@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted} from 'vue'
+import { onMounted } from 'vue'
 import { useMobileStore } from "@/stores/mobile";
 import { storeToRefs } from 'pinia';
 
@@ -46,7 +46,7 @@ defineProps({
     <div v-show="mobile" class="w-3/4 p-10 border-4 border-gray-200 rounded-lg m-2" >
         <ImageBox 
             :name="productName" 
-            :file-name="fileName" 
+            :file-name="fileName"
             :dir-name="dirName"
             />
         <DescriptionBox 
