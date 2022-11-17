@@ -1,22 +1,41 @@
 <script setup>
 import BookingForm from '@/components/_molecules/BookingForm/BookingForm.vue';
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Slide } from 'vue3-carousel'
+import {onMounted, ref} from "vue";
+
+const imagesFileNames = ["hero-1.jpg", "hero-2.jpg", "hero-3.jpg"];
+const dirName = "slider-imgs";
+const myCarousel = ref(null)
+
+onMounted(() => {
+  setTimeout(() => {
+    myCarousel.value.restartCarousel();
+  }, 50);
+});
 </script>
 
 <template>
   <div data-testid="main-block" class="main-block">
     <BookingForm class="booking-form" />
-
-    <!-- ToDo: Create own slider (or you can use external library, such as VueSlider)-->
-    <div>
-      <!-- <img src="@/assets/img/slider-imgs/hero-1.jpg" /> -->
-      <img src="@/assets/img/slider-imgs/hero-2.jpg" />
-      <!-- <img src="@/assets/img/slider-imgs/hero-3.jpg" /> -->
-    </div>
+      <div>
+        <Carousel
+            ref="myCarousel"
+            :autoplay="7500"
+            :itemsToShow="1"
+            :transition="700"
+            :wrapAround="true"
+            :pauseAutoplayOnHover="false"
+        >
+          <Slide v-for="fileName in imagesFileNames" :key="fileName">
+            <img :src="$image(fileName, dirName)" alt="" />
+          </Slide>
+        </Carousel>
+      </div>
   </div>
 </template>
 
 <style scoped>
-
 .main-block {
   display: flex;
   justify-content: center;
@@ -31,5 +50,7 @@ import BookingForm from '@/components/_molecules/BookingForm/BookingForm.vue';
   padding: 10px;
   width: 70%;
   justify-content: center;
+  z-index: 1;
 }
+
 </style>
