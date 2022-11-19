@@ -4,8 +4,6 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-
-
 const useImage = ((fileName, dirName) => {
     return new URL(`/src/assets/img/${dirName}/${fileName}`, import.meta.url)
   
