@@ -1,7 +1,12 @@
 import BookingMainBlock from "@/components/_organisms/BookingMainBlock/BookingMainBlock.vue";
 import {render, screen} from "@testing-library/vue";
+import { createPinia, setActivePinia } from "pinia";
 
 describe('BookingMainBlock', () => {
+
+    beforeEach(() => {
+      setActivePinia(createPinia());
+    })
 
     function getBookingMainBlock() {
         return screen.getByTestId('main-block');
