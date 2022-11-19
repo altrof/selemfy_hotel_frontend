@@ -2,92 +2,144 @@
 import 'vue-hotel-datepicker/dist/vueHotelDatepicker.css';
 import BaseInputCalendar from "@/components/_atoms/BaseInputCalendar/BaseInputCalendar.vue";
 import {storeToRefs} from "pinia";
-import {useBookingStore} from "../../../stores/booking.js";
+import {useBookingStore} from "@/stores/booking.js"
+import ButtonWithLoader from "@/components/_atoms/ButtonWithLoader/ButtonWithLoader.vue";
+import IncrementDecrementField from "@/components/_atoms/IncrementDecrementField/IncrementDecrementField.vue";
+import BaseSelector from "@/components/_atoms/BaseSelector/BaseSelector.vue";
+import { onMounted, ref } from "vue";
 
-const booking = useBookingStore()
-const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
+const {
+  increaseAmountAdults,
+  decreaseAmountAdults,
+  increaseAmountChildren,
+  decreaseAmountChildren,
+  checkScreen,
+  checkRoomAvailability } = useBookingStore()
 
+const {
+  checkIn, checkOut,
+  amountChildren,
+  amountAdults,
+  bookingFormMob } = storeToRefs(useBookingStore());
+
+const roomTypeOptions = ['Any', 'Economy', 'Regular', 'Deluxe', 'Family']
+const selectedRoomTypeOption = ref('Any');
+
+
+onMounted(() => {
+  window.addEventListener('resize', checkScreen)
+  checkScreen();
+});
 </script>
+
 <template>
-  <div>
+  <div v-if="!bookingFormMob" data-testid="booking-form" class="flex inline p-0">
     <div class="dates">
-    <BaseInputCalendar
+      <BaseInputCalendar
+          v-model="checkIn"
+          placeholder="Nights"
+          autocomplete="on"
+          input-type="date"
+          label="Check in"
+      />
+      <BaseInputCalendar
+          v-model="checkOut"
+          placeholder="Nights"
+          autocomplete="on"
+          input-type="date"
+          label="Check out"
+      />
+    </div>
+    <div class="pl-3">
+      <IncrementDecrementField
+        class="w-32"
+        button-style="bg-sky-900 hover:bg-sky-700 text-white"
+        label-text="Adults"
+        :amount="amountAdults"
+        @increase="increaseAmountAdults()"
+        @decrease="decreaseAmountAdults()"
+      />
+      <IncrementDecrementField
+        class="pt-6"
+        button-style="bg-sky-900 hover:bg-sky-700 text-white"
+        label-text="Children"
+        :amount="amountChildren"
+        @increase="increaseAmountChildren()"
+        @decrease="decreaseAmountChildren()"
+      />
+  </div>
+    <div class="h-full pl-10">
+      <BaseSelector
+        label-text="Room"
+        button-style="bg-sky-900 hover:bg-sky-700 text-white"
+        :options="roomTypeOptions"
+        :selected-option="selectedRoomTypeOption"
+      />
+      <ButtonWithLoader
+          class="w-40 h-24 mt-2"
+          button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
+          @click="checkRoomAvailability()"
+          button-text="Check availability"
+      />
+    </div>
+  </div>
+  <div v-else data-testid="booking-form" class="flex-col w-72 items-center">
+    <div class="dates">
+      <BaseInputCalendar
+        class="w-52"
         v-model="checkIn"
         placeholder="Nights"
         autocomplete="on"
         input-type="date"
         label="Check in"
-    />
-    <BaseInputCalendar
+      />
+      <BaseInputCalendar
+        class="w-52"
         v-model="checkOut"
         placeholder="Nights"
         autocomplete="on"
         input-type="date"
         label="Check out"
-    />
+      />
     </div>
-    <div class="middle">
-      <div class="amount">
-        Adults
-      </div>
-      <div class="selector">
-        <button
-            @click="booking.decreaseAmountAdults()"
-            class="button">
-          -
-        </button>
-        <div id="button-placeholder">
-          {{booking.amountAdults}}
-        </div>
-        <button
-            @click="booking.increaseAmountAdults()"
-            class="button">
-          -
-        </button>
-      </div>
-      <div class="amount">
-        Children
-      </div>
-
-      <div class="selector">
-      <button
-          @click="booking.decreaseAmountChildren()"
-          class="button">
-          -
-      </button>
-      <div id="button-placeholder">
-        {{booking.amountChildren}}
-      </div>
-    <button
-        @click="booking.increaseAmountChildren()"
-        class="button">
-        +
-    </button>
-      </div>
-      Room type
-      <div class="rooms">
-        <select v-model="roomType">
-          <option value="economy">Economy</option>
-          <option value="regular">Regular</option>
-          <option value="deluxe">Deluxe</option>
-          <option value="king-size">King Size</option>
-          <option value="any" selected>Any</option>
-        </select>
-      </div>
+    <div>
+      <IncrementDecrementField
+        label-text="Adults"
+        class="w-52"
+        button-style="bg-sky-900 hover:bg-sky-700 text-white"
+        :amount="amountAdults"
+        @increase="increaseAmountAdults()"
+        @decrease="decreaseAmountAdults()"
+      />
+      <IncrementDecrementField
+        class="pt-6 w-52"
+        button-style="bg-sky-900 hover:bg-sky-700 text-white"
+        label-text="Children"
+        :amount="amountChildren"
+        @increase="increaseAmountChildren()"
+        @decrease="decreaseAmountChildren()"
+      />
     </div>
-    <div class="right">
-    <button
-        @click="booking.logComponents()"
-        class="booking-button">
-        Check availability </button>
+    <div class="h-full">
+      <BaseSelector
+        class="pt-4 w-52"
+        label-text="Room"
+        :options="roomTypeOptions"
+        :selected-option="selectedRoomTypeOption"
+      />
+      <ButtonWithLoader
+        class="w-52 h-24 mt-2 mb-6"
+        button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
+        @click="checkRoomAvailability()"
+        button-text="Check availability"
+      />
     </div>
   </div>
-
 </template>
 
 <style lang="scss" scoped>
 .booking-form {
-  background-color: white;
+  background-color: rgb(255, 255, 255, 0.85);
   border: 1px solid black;
 }
 .dates {
@@ -100,16 +152,6 @@ const { checkIn, checkOut, roomType } = storeToRefs(useBookingStore());
   margin:0 10px 0 10px;
   display:inline-block;
   user-select: none;
-}
-.booking-button {
-  border:2px solid silver;
-  border-radius:5px;
-  background-color: #FFF;
-  display:inline-block;
-  user-select: none;
-  margin:0 20px 0 20px;
-  width: 50%;
-  text-align: center;
 }
 .rooms {
   margin:0 20px 0 20px;

@@ -1,43 +1,87 @@
-import { defineStore } from 'pinia'
+import { defineStore } from 'pinia';
+import { ref } from "vue";
+import { useButtonLoaderStore } from "@/stores/buttonLoader.js";
 
-export const useBookingStore = defineStore({
-  id: 'amount',
+export const useBookingStore = defineStore("bookingForm", () => {
+  const amountAdults = ref(1);
+  const amountChildren = ref(0);
+  const checkIn = ref(null);
+  const checkOut = ref(null);
 
-  state: () => ({
-    amountAdults: 1,
-    amountChildren: 0,
-    checkIn: "",
-    checkOut: "",
-    roomType: "Any",
-  }),
-  actions: {
-    increaseAmountAdults() {
-      this.amountAdults++
-    },
-    increaseAmountChildren() {
-      this.amountChildren++
-    },
-    decreaseAmountAdults() {
-      if (this.amountAdults === 0) {
-      } else {
-        this.amountAdults--
-      }
-    },
-    decreaseAmountChildren() {
-      if (this.amountChildren === 0) {
-      } else {
-        this.amountChildren--
-      }
-    },
-    logComponents() {
-      alert("This is data: \n" +
-          "Checkin: " + this.checkIn + "\n" +
-          "Checkout: " + this.checkOut + "\n" +
-          "Adults: " + this.amountAdults + "\n" +
-          "Children: " + this.amountChildren + "\n" +
-          "Room type: "+ this.roomType);
+  const bookingFormMob = ref(null);
+  const windowWidth = ref(null);
+  const scrolledNav = ref(null);
+
+  function checkScreen() {
+    windowWidth.value = window.innerWidth;
+    if(windowWidth.value <= 750) {
+      bookingFormMob.value = true;
+      return;
     }
-  },
-})
+    bookingFormMob.value = false;
+    return;
+  }
 
-//bookingstore?
+  const updateScroll = () => {
+    const scrollPosition = window.scrollY;
+    if (scrollPosition > 0) {
+      scrolledNav.value = true;
+      return;
+    }
+
+    scrolledNav.value = false;
+    return;
+  }
+
+  const buttonLoader = useButtonLoaderStore();
+
+  const increaseAmountAdults = () => {
+    amountAdults.value++;
+  }
+
+  const increaseAmountChildren = () => {
+    amountChildren.value++;
+  }
+
+  const decreaseAmountAdults = () => {
+    if (amountAdults.value > 1) {
+      amountAdults.value--;
+    }
+  }
+
+  const decreaseAmountChildren = () => {
+    if (amountChildren.value > 0) {
+      amountChildren.value--;
+    }
+  }
+
+  const checkRoomAvailability = async () => {
+    await buttonLoader.setIsLoading(true);
+    setTimeout( () => {
+          alert("This is data: \n" +
+              "Checkin: " + checkIn.value + "\n" +
+              "Checkout: " + checkOut.value + "\n" +
+              "Adults: " + amountAdults.value + "\n" +
+              "Children: " + amountChildren.value + "\n" +
+              "Room type: "+ roomType.value);
+          buttonLoader.setIsLoading(false);
+        }, 2000)
+
+  }
+
+  return {
+    amountAdults,
+    amountChildren,
+    checkIn,
+    checkOut,
+    bookingFormMob,
+    checkScreen,
+    increaseAmountAdults,
+    increaseAmountChildren,
+    decreaseAmountAdults,
+    decreaseAmountChildren,
+    checkRoomAvailability,
+    updateScroll
+  }
+
+})
