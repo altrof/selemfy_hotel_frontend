@@ -3,10 +3,6 @@ import { render, screen } from "@testing-library/vue";
 import { createPinia, setActivePinia } from "pinia";
 
 describe("BookingMainBlock", () => {
-  function getBookingMainBlock() {
-    return screen.getByTestId("main-block");
-  }
-
   beforeEach(() => {
     setActivePinia(createPinia());
   });
