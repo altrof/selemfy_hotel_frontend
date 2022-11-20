@@ -3,9 +3,7 @@ import { screen, render } from "@testing-library/vue";
 import { setActivePinia, createPinia } from "pinia";
 import { createTestingPinia } from "@pinia/testing";
 
-it("has text - BOOKING FORM", () => {
-  render(BookingForm);
-
+describe("BookingForm", () => {
   beforeEach(() => {
     setActivePinia(createPinia());
   });
