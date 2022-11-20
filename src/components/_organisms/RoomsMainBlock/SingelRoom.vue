@@ -4,7 +4,7 @@ import VueEasyLightbox, { useEasyLightbox } from "vue-easy-lightbox";
 import { useRoomsStore } from "@/stores/rooms";
 import { storeToRefs } from "pinia";
 
-const { onHide, changeIndex, visibleRef, indexRef, imgsRef } = useEasyLightbox({
+const { visibleRef, indexRef, imgsRef } = useEasyLightbox({
   imgs: [],
   initIndex: 0,
 });
