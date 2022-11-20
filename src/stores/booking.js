@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 import { ref } from "vue";
 import { useButtonLoaderStore } from "@/stores/buttonLoader.js";
 
@@ -14,7 +14,7 @@ export const useBookingStore = defineStore("bookingForm", () => {
 
   function checkScreen() {
     windowWidth.value = window.innerWidth;
-    if(windowWidth.value <= 750) {
+    if (windowWidth.value <= 750) {
       bookingFormMob.value = true;
       return;
     }
@@ -31,43 +31,53 @@ export const useBookingStore = defineStore("bookingForm", () => {
 
     scrolledNav.value = false;
     return;
-  }
+  };
 
   const buttonLoader = useButtonLoaderStore();
 
   const increaseAmountAdults = () => {
     amountAdults.value++;
-  }
+  };
 
   const increaseAmountChildren = () => {
     amountChildren.value++;
-  }
+  };
 
   const decreaseAmountAdults = () => {
     if (amountAdults.value > 1) {
       amountAdults.value--;
     }
-  }
+  };
 
   const decreaseAmountChildren = () => {
     if (amountChildren.value > 0) {
       amountChildren.value--;
     }
-  }
+  };
 
   const checkRoomAvailability = async () => {
     await buttonLoader.setIsLoading(true);
-    setTimeout( () => {
-          alert("This is data: \n" +
-              "Checkin: " + checkIn.value + "\n" +
-              "Checkout: " + checkOut.value + "\n" +
-              "Adults: " + amountAdults.value + "\n" +
-              "Children: " + amountChildren.value + "\n" +
-              "Room type: "+ roomType.value);
-          buttonLoader.setIsLoading(false);
-        }, 2000)
-
-  }
+    setTimeout(() => {
+      alert(
+        "This is data: \n" +
+          "Checkin: " +
+          checkIn.value +
+          "\n" +
+          "Checkout: " +
+          checkOut.value +
+          "\n" +
+          "Adults: " +
+          amountAdults.value +
+          "\n" +
+          "Children: " +
+          amountChildren.value +
+          "\n" +
+          "Room type: " +
+          roomType.value
+      );
+      buttonLoader.setIsLoading(false);
+    }, 2000);
+  };
 
   return {
     amountAdults,
@@ -81,7 +91,6 @@ export const useBookingStore = defineStore("bookingForm", () => {
     decreaseAmountAdults,
     decreaseAmountChildren,
     checkRoomAvailability,
-    updateScroll
-  }
-
-})
+    updateScroll,
+  };
+});

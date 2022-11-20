@@ -6,9 +6,9 @@ defineProps({
     type: Number,
     default: 0,
   },
-})
+});
 
-defineEmits(['increase', 'decrease'])
+defineEmits(["increase", "decrease"]);
 </script>
 
 <template>
@@ -20,17 +20,18 @@ defineEmits(['increase', 'decrease'])
       <button
         @click="$emit('decrease')"
         class="pl-4 pr-4 w-fit bg-blue-400 hover:bg-blue-600 hover:text-white"
-        :class="buttonStyle">
+        :class="buttonStyle"
+      >
         -
       </button>
-        <p class="flex w-full justify-center items-center">{{ amount }}</p>
+      <p class="flex w-full justify-center items-center">{{ amount }}</p>
       <button
         @click="$emit('increase')"
         class="pr-3.5 pl-3.5 w-fit bg-blue-400 hover:bg-blue-600 hover:text-white"
-        :class="buttonStyle">
+        :class="buttonStyle"
+      >
         +
       </button>
     </div>
   </div>
 </template>
-
