@@ -6,7 +6,6 @@ import BookingMainBlock from "@/components/_organisms/BookingMainBlock/BookingMa
 import ContentWrapper from '@/components/_molecules/ContentWrapper/ContentWrapper.vue';
 
 
-const text = "TEST";
 </script>
 
 <template>
@@ -14,7 +13,9 @@ const text = "TEST";
     <Navbar />
   </slot>
 
-  <BookingMainBlock class="main-block" />
+  <div class="pt-28">
+    <BookingMainBlock class="main-block" />
+  </div>
   <ContentWrapper>
     <LoremIpsum />
     <LoremIpsum />
@@ -24,8 +25,11 @@ const text = "TEST";
   <RouterView />
 </template>
 
-<style>
+<style lang="scss">
 .main-block {
-  padding-top: 100px;
+  @media (max-width: 750px) {
+    display: flex;
+    height: 80vh;
+  }
 }
 </style>
