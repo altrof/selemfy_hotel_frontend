@@ -1,14 +1,33 @@
-import BookingMainBlock from "@/components/_organisms/BookingMainBlock/index";
-import { render, screen } from "@testing-library/vue";
+import BookingMainBlock from "@/components/_organisms/BookingMainBlock/BookingMainBlock.vue";
+import {render, screen} from "@testing-library/vue";
+import { createPinia, setActivePinia } from "pinia";
 
 describe("BookingMainBlock", () => {
   function getBookingMainBlock() {
     return screen.getByTestId("main-block");
   }
 
-  it("renders properly", () => {
-    render(BookingMainBlock);
+    beforeEach(() => {
+      setActivePinia(createPinia());
+    })
 
-    expect(getBookingMainBlock()).toHaveClass("main-block");
-  });
-});
+    function getBookingMainBlock() {
+        return screen.getByTestId('main-block');
+    }
+
+    it('renders properly', () => {
+        render(BookingMainBlock, {
+          global: {
+              mocks: {
+                  $image: ((fileName, dirName) => {
+                        return new URL(`/src/assets/img/${dirName}/${fileName}`, import.meta.url)
+                    })
+                  }
+              }
+          }  
+        )
+
+        expect(getBookingMainBlock()).toHaveClass('main-block');
+    })
+})
+
