@@ -1,11 +1,10 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import RoomSelectionView from "@/views/RoomSelectionView";
 </script>
 
 <template>
   <div class="app">
-    <RoomSelectionView /> <!-- <Routerview /> -->
+    <RouterView />
   </div>
 </template>
 
