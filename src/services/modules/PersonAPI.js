@@ -1,8 +1,7 @@
-import api from '../api'
+import api from "../api";
 
 export default {
-    getAllPersons() {
-        return api()
-            .get('/api/person')
-    }
-}
+  getAllPersons() {
+    return api().get("/api/person");
+  },
+};
