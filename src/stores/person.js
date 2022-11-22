@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import PersonsAPI from "../services/modules/PersonAPI";
 
+<<<<<<< HEAD
 class Person {
     constructor(idCode, firstName, lastName, dateOfBirth) {
         this.idCode = idCode;
@@ -15,12 +16,16 @@ export const usePersonstore = defineStore("person", () => {
 
     const responseData = ref(null);
     const peopleInBooking = ref({})
+=======
+export const usePersonstore = defineStore("Persons", () => {
+  const responseData = ref(null);
+>>>>>>> dev
 
-    PersonsAPI.getAllPersons()
-        .then(response => {
-            responseData.value = response;
-        })
+  PersonsAPI.getAllPersons().then((response) => {
+    responseData.value = response;
+  });
 
+<<<<<<< HEAD
     function addPersonToBooking(idCode, firstName, lastName, dateOfBirth) {
         const currentPerson = new Person(idCode, firstName, lastName, dateOfBirth)
         peopleInBooking.value[idCode] = currentPerson
@@ -35,3 +40,9 @@ export const usePersonstore = defineStore("person", () => {
 
     return {responseData, peopleInBooking, addPersonToBooking}
 })
+=======
+  return {
+    responseData,
+  };
+});
+>>>>>>> dev

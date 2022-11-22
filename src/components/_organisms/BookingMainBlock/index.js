@@ -1,3 +1,3 @@
-import Component from './BookingMainBlock.vue';
+import Component from "./BookingMainBlock.vue";
 
 export default Component;
