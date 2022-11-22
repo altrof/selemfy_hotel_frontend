@@ -11,7 +11,6 @@ const { isLoading } = storeToRefs(useButtonLoaderStore());
 </script>
 
 <template>
-  <div>
     <button
       class="inline-block bg-blue-600 disabled:cursor-not-allowed border-gray-900 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out w-full content-center justify-center items-center disabled:opacity-40"
       :class="buttonStyle"
@@ -47,7 +46,6 @@ const { isLoading } = storeToRefs(useButtonLoaderStore());
         </svg>
       </div>
     </button>
-  </div>
 </template>
 
 <style scoped></style>
