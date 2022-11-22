@@ -6,9 +6,10 @@ import { RouterLink } from 'vue-router'
 import {onMounted, ref} from 'vue';
 
 const isRoomsAvailable = ref(false);
-const roomOffers = ref(['Economy', 'Regular', 'Deluxe', 'Family']);
+const roomOffers = ref(['Economy', 'Regular', 'Deluxe', 'Family']); // will change based on what rooms are compatible
 
 const roomsAreAvailable = () => {
+  /*future check if any rooms are available*/
   isRoomsAvailable.value = true;
 }
 
@@ -48,10 +49,4 @@ onMounted(() => {
 
 
 <style scoped>
-.bottomright {
-  position: absolute;
-  bottom: 8px;
-  right: 16px;
-  font-size: 18px;
-}
 </style>
