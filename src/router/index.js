@@ -10,6 +10,7 @@ import RoomsTableView from "@/views/DataView/RoomsTableView.vue";
 import PersonTableView from "@/views/DataView/PersonTableView.vue";
 import DataMainView from "@/views/DataView/DataMainView.vue";
 import Examples from "@/components/Examples.vue";
+import RoomSelectionView from "@/views/RoomSelectionView.vue"
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -71,6 +72,12 @@ const router = createRouter({
       name: "Rooms Table",
       // lazy load
       component: () => RoomsTableView,
+    },
+    {
+      path: "/room-selection",
+      name: "room-selection",
+      // lazy load
+      component: () => RoomSelectionView,
     },
   ],
 });
