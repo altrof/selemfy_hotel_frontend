@@ -75,8 +75,7 @@ onMounted(() => {
 .booking-form {
   position: absolute;
   display: flex;
-  padding: 20px 20px 5px 5px;
-  justify-content: center;
+  padding: 20px 20px 14px 5px;
   z-index: 1;
 }
 </style>
