@@ -39,7 +39,7 @@ const rules = computed(() => ({
   },
   password: {
     required: helpers.withMessage('Password is required', required),
-    min: minLength(6)
+    min: helpers.withMessage('Password minimum length is 6', minLength(6))
   },
   confirmPassword: {
     required: helpers.withMessage('Please confirm password', required),
