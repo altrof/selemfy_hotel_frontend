@@ -12,7 +12,12 @@ export const useRoomsStore = defineStore("Rooms", () => {
     //         apiUrl.value = response.config.baseURL + response.config.url;
     //     })
 
-    responseData.value = RoomsAPI.getAllRooms()
+    responseData.value = [
+        { roomType: 'REGULAR', roomSize: 20},
+        { roomType: 'DELUX', roomSize: 35},
+        { roomType: 'ECONOMY', roomSize: 16},
+        { roomType: 'KING', roomSize: 46},
+    ]
 
     return {
         responseData,
