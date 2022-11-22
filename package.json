@@ -20,6 +20,7 @@
     "notiwind": "^1.2.6",
     "pinia": "^2.0.21",
     "vue": "^3.2.38",
+    "vue-easy-lightbox": "^1.10.0",
     "vue-hotel-datepicker": "^4.5.1",
     "vue-router": "^4.1.5",
     "vue-select": "^4.0.0-beta.6",
