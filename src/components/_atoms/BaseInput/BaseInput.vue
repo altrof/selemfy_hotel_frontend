@@ -22,7 +22,6 @@ defineProps({
       @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
     />
-    <span class="text-xs text-red-700" id="emailHelp"></span>
   </div>
 </template>
 

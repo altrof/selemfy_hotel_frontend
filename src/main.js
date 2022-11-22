@@ -3,6 +3,8 @@ import { createPinia } from "pinia";
 
 import App from "./App.vue";
 import router from "./router";
+import 'vue-select/dist/vue-select.css';
+import vSelect from "vue-select";
 
 const app = createApp(App);
 const useImage = (fileName, dirName) => {
@@ -13,4 +15,6 @@ app.config.globalProperties.$image = useImage;
 
 app.use(createPinia());
 app.use(router);
+app.component("v-select", vSelect);
+
 app.mount("#app");

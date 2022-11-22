@@ -33,7 +33,7 @@ onMounted(() => {
   <div
     v-if="!bookingFormMob"
     data-testid="booking-form"
-    class="flex inline p-0"
+    class="flex inline"
   >
     <div class="dates">
       <BaseInputCalendar
@@ -61,7 +61,7 @@ onMounted(() => {
         @decrease="decreaseAmountAdults()"
       />
       <IncrementDecrementField
-        class="pt-6"
+        class="pt-3"
         button-style="bg-sky-900 hover:bg-sky-700 text-white"
         label-text="Children"
         :amount="amountChildren"
@@ -77,14 +77,16 @@ onMounted(() => {
         :selected-option="selectedRoomTypeOption"
       />
       <ButtonWithLoader
-        class="w-40 h-24 mt-2"
+        class="w-40 h-20 mt-3"
         button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
         @click="checkRoomAvailability()"
         button-text="Check availability"
       />
     </div>
   </div>
-  <div v-else data-testid="booking-form" class="flex-col w-72 items-center">
+
+  <!--  If screen width <= 750 -->
+  <div v-else data-testid="booking-form" class="flex-col w-72 place-items-center">
     <div class="dates">
       <BaseInputCalendar
         class="w-52"
@@ -123,13 +125,13 @@ onMounted(() => {
     </div>
     <div class="h-full">
       <BaseSelector
-        class="pt-4 w-52"
+        class="pt-4 pb-4 w-52"
         label-text="Room"
         :options="roomTypeOptions"
         :selected-option="selectedRoomTypeOption"
       />
       <ButtonWithLoader
-        class="w-52 h-24 mt-2 mb-6"
+        class="w-52 h-24 mt-2 mb-2"
         button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
         @click="checkRoomAvailability()"
         button-text="Check availability"
@@ -146,50 +148,5 @@ onMounted(() => {
 .dates {
   margin: 0 20px 0 20px;
 }
-.button {
-  border: 2px solid silver;
-  border-radius: 5px;
-  background-color: #fff;
-  margin: 0 10px 0 10px;
-  display: inline-block;
-  user-select: none;
-}
-.rooms {
-  margin: 0 20px 0 20px;
-  alignment: bottom;
-}
 
-.selector {
-  border: 1px solid silver;
-  border-radius: 5px;
-  background-color: #fff;
-  margin: 0 5px 0 5px;
-  display: inline-block;
-  user-select: none;
-  alignment: center;
-}
-.selector div {
-  display: inline-block;
-}
-.selector #button-placeholder input {
-  width: 50px;
-  text-align: center;
-  font-size: 15px;
-  padding: 3px;
-  border: none;
-}
-.selector .button {
-  padding: 3px 10px 3px 10px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-.selector .button:hover {
-  background-color: #ddd;
-}
-.selector .button:active {
-  background-color: #c5c5c5;
-}
-.amount {
-  alignment: center;
-}
 </style>
