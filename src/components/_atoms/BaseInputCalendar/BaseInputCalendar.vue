@@ -22,7 +22,7 @@ defineProps({
       {{ label }}
     </label>
     <input
-      class="flex relative px-6 shadow appearance-none borderrounded  py-2  text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+      class="flex relative px-6 shadow appearance-none borderrounded py-2 text-gray-700 mb-1.5 leading-tight focus:outline-none focus:shadow-outline"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
