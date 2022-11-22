@@ -1,27 +1,33 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/_atoms/HelloWorld/HelloWorld.vue'
+import { RouterLink, RouterView } from "vue-router";
+import HelloWorld from "@/components/_atoms/HelloWorld/HelloWorld.vue";
 </script>
 
 <template>
   <slot>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+    <header>
+      <img
+        alt="Vue logo"
+        class="logo"
+        src="@/assets/logo.svg"
+        width="125"
+        height="125"
+      />
 
-    <div class="wrapper">
-      <HelloWorld msg="Data, Examples and etc." />
+      <div class="wrapper">
+        <HelloWorld msg="Data, Examples and etc." />
 
-      <nav>
-        <RouterLink to="/">Home Hotel</RouterLink>
-        <RouterLink to="/data">Home Data</RouterLink>
-        <RouterLink to="/data/examples">Examples</RouterLink>
-        <RouterLink to="/data/rooms">Rooms</RouterLink>
-        <RouterLink to="/data/backend-health">Backend Health</RouterLink>
-        <RouterLink to="/data/rooms-table">Rooms Table</RouterLink>
-        <RouterLink to="/data/person-table">Person Table</RouterLink>
-      </nav>
-    </div>
-  </header>
+        <nav>
+          <RouterLink to="/">Home Hotel</RouterLink>
+          <RouterLink to="/data">Home Data</RouterLink>
+          <RouterLink to="/data/examples">Examples</RouterLink>
+          <RouterLink to="/data/rooms">Rooms</RouterLink>
+          <RouterLink to="/data/backend-health">Backend Health</RouterLink>
+          <RouterLink to="/data/rooms-table">Rooms Table</RouterLink>
+          <RouterLink to="/data/person-table">Person Table</RouterLink>
+        </nav>
+      </div>
+    </header>
   </slot>
 
   <RouterView />
