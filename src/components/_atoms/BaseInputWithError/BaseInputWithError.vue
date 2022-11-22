@@ -8,6 +8,7 @@ defineProps({
     type: String,
     default: "",
   },
+  errorMsg: String
 });
 </script>
 
@@ -17,12 +18,13 @@ defineProps({
       {{ label }}
     </label>
     <input
-      class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+      class="relative shadow appearance-none borderrounded  w-full text-gray-700 mb-1 leading-tight focus:outline-none focus:shadow-outline"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
+      :class="{ 'border border-red-500' : errorMsg }"
     />
+    <span class="flex absolute text-xs text-red-500 " id="errorMsg">{{ errorMsg }}</span>
   </div>
 </template>
 
-<style scoped></style>
