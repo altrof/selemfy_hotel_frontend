@@ -6,11 +6,21 @@ import BaseInput from "@/components/_atoms/BaseInput/BaseInput.vue";
 import { useModalWindowStore } from "@/stores/modalWindow";
 import { useLoginStore } from "@/stores/login";
 import { storeToRefs } from "pinia";
+import { computed, onMounted } from "vue";
 
 const { closeModal } = useModalWindowStore();
 const { logInToAccount } = useLoginStore();
 
-const { email, password } = storeToRefs(useLoginStore());
+const { username, password } = storeToRefs(useLoginStore());
+
+const isDisabled = computed(() => !(username.value && password.value));
+onMounted(() => {
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Enter" && !isDisabled.value) {
+      signIn();
+    }
+  });
+});
 </script>
 
 <template>
