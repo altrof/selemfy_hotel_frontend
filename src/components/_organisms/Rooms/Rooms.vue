@@ -1,6 +1,8 @@
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import VueEasyLightbox, { useEasyLightbox } from "vue-easy-lightbox";
+
+const $image = inject('$image')
 
 const props = defineProps({
   rooms: Array,
@@ -11,35 +13,36 @@ const props = defineProps({
 const imgUrl = ref(null);
 
 const regularRoomImages = [
-  "src/assets/img/rooms-images/regular-room-images/regular-room-1.jpg",
-  "src/assets/img/rooms-images/regular-room-images/regular-room-2.jpg",
-  "src/assets/img/rooms-images/regular-room-images/regular-room-3.jpg",
-  "src/assets/img/rooms-images/regular-room-images/regular-room-4.jpg",
-  "src/assets/img/rooms-images/regular-room-images/regular-room-5.jpg",
+  $image('regular-room-1.jpg', 'rooms-images/regular-room-images').href,
+  $image('regular-room-2.jpg', 'rooms-images/regular-room-images').href,
+  $image('regular-room-3.jpg', 'rooms-images/regular-room-images').href,
+  $image('regular-room-4.jpg', 'rooms-images/regular-room-images').href,
+  $image('regular-room-5.jpg', 'rooms-images/regular-room-images').href,
+
 ];
 
 const deluxeRoomImages = [
-  "src/assets/img/rooms-images/delux-room-images/delux-room-1.jpg",
-  "src/assets/img/rooms-images/delux-room-images/delux-room-2.jpg",
-  "src/assets/img/rooms-images/delux-room-images/delux-room-3.jpg",
-  "src/assets/img/rooms-images/delux-room-images/delux-room-4.jpg",
-  "src/assets/img/rooms-images/delux-room-images/delux-room-5.jpg",
+  $image('deluxe-room-1.jpg', 'rooms-images/deluxe-room-images').href,
+  $image('deluxe-room-2.jpg', 'rooms-images/deluxe-room-images').href,
+  $image('deluxe-room-3.jpg', 'rooms-images/deluxe-room-images').href,
+  $image('deluxe-room-4.jpg', 'rooms-images/deluxe-room-images').href,
+  $image('deluxe-room-5.jpg', 'rooms-images/deluxe-room-images').href,
 ];
 
 const economyRoomImages = [
-  "src/assets/img/rooms-images/economy-room-images/economy-room-1.jpg",
-  "src/assets/img/rooms-images/economy-room-images/economy-room-2.jpg",
-  "src/assets/img/rooms-images/economy-room-images/economy-room-3.jpg",
-  "src/assets/img/rooms-images/economy-room-images/economy-room-4.jpg",
-  "src/assets/img/rooms-images/economy-room-images/economy-room-4.jpg",
+  $image('economy-room-1.jpg', 'rooms-images/economy-room-images').href,
+  $image('economy-room-2.jpg', 'rooms-images/economy-room-images').href,
+  $image('economy-room-3.jpg', 'rooms-images/economy-room-images').href,
+  $image('economy-room-4.jpg', 'rooms-images/economy-room-images').href,
+  $image('economy-room-4.jpg', 'rooms-images/economy-room-images').href,
 ];
 
 const kingRoomImages = [
-  "src/assets/img/rooms-images/king-room-images/king-room-1.jpg",
-  "src/assets/img/rooms-images/king-room-images/king-room-2.jpg",
-  "src/assets/img/rooms-images/king-room-images/king-room-3.jpg",
-  "src/assets/img/rooms-images/king-room-images/king-room-4.jpg",
-  "src/assets/img/rooms-images/king-room-images/king-room-5.jpg",
+  $image('king-room-1.jpg', 'rooms-images/king-room-images').href,
+  $image('king-room-2.jpg', 'rooms-images/king-room-images').href,
+  $image('king-room-3.jpg', 'rooms-images/king-room-images').href,
+  $image('king-room-4.jpg', 'rooms-images/king-room-images').href,
+  $image('king-room-5.jpg', 'rooms-images/king-room-images').href,
 ];
 
 const imgArr = ref([]);

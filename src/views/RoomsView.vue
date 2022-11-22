@@ -7,7 +7,7 @@ import { storeToRefs } from "pinia";
 
 const { responseData } = storeToRefs(useRoomsStore());
 
-const roomTypes = ['REGULAR', 'DELUX', 'ECONOMY', 'KING']
+const roomTypes = ['REGULAR', 'DELUXE', 'ECONOMY', 'KING']
 </script>
 
 <template>

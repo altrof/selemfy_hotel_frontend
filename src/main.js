@@ -17,6 +17,8 @@ app.config.globalProperties.$image = useImage;
 app.use(createPinia())
 app.use(router)
 app.use(VueEasyLightbox)
+
+app.provide('$image', useImage)
 app.component("v-select", vSelect);
 
 app.mount("#app");
