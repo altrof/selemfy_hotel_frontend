@@ -1,18 +1,14 @@
 <script setup>
-import {useCounterStore} from "@/stores/counter";
-import { storeToRefs } from 'pinia';
+import { useCounterStore } from "@/stores/counter";
+import { storeToRefs } from "pinia";
 
 const { increment, decrement } = useCounterStore();
 const { count, doubleCount } = storeToRefs(useCounterStore());
 </script>
 
 <template>
-  <div class="count">
-    Count: {{ count }}
-  </div>
-  <div class="doubleCount">
-    Double count: {{ doubleCount }}
-  </div>
+  <div class="count">Count: {{ count }}</div>
+  <div class="doubleCount">Double count: {{ doubleCount }}</div>
   <div class="buttons">
     <button @click="decrement">-</button>
     <button @click="increment">+</button>
