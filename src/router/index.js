@@ -4,12 +4,7 @@ import RoomsView from "@/views/RoomsView.vue";
 import SpecialOffersView from "@/views/SpecialOffersView.vue";
 import LoyaltyView from "@/views/LoyaltyView.vue";
 import AboutUsView from "@/views/AboutUsView.vue";
-import BackendTestHealthDataView from "@/views/DataView/BackendTestHealthDataView.vue";
-import RoomsDataView from "@/views/DataView/RoomsDataView.vue";
-import RoomsTableView from "@/views/DataView/RoomsTableView.vue";
-import PersonTableView from "@/views/DataView/PersonTableView.vue";
-import DataMainView from "@/views/DataView/DataMainView.vue";
-import Examples from "@/components/Examples.vue";
+import RegistrationView from '@/views/RegistrationView.vue'
 import RoomSelectionView from "@/views/RoomSelectionView.vue"
 
 const router = createRouter({
@@ -41,44 +36,16 @@ const router = createRouter({
       component: AboutUsView,
     },
     {
-      path: "/data",
-      name: "main",
-      component: DataMainView,
-    },
-    {
-      path: "/data/examples",
-      name: "examples",
-      component: Examples,
-    },
-    {
-      path: "/data/rooms",
-      name: "Rooms",
-      // lazy load
-      component: () => RoomsDataView,
-    },
-    {
-      path: "/data/backend-health",
-      name: "Backend Health",
-      // lazy load
-      component: () => BackendTestHealthDataView,
-    },
-    {
-      path: "/data/person-table",
-      name: "person-table",
-      component: PersonTableView,
-    },
-    {
-      path: "/data/rooms-table",
-      name: "Rooms Table",
-      // lazy load
-      component: () => RoomsTableView,
+      path: "/signup",
+      name: "signup",
+      component: RegistrationView
     },
     {
       path: "/room-selection",
       name: "room-selection",
       // lazy load
       component: () => RoomSelectionView,
-    },
+    }
   ],
 });
 
