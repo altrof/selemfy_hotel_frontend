@@ -4,8 +4,8 @@ import RoomsView from "@/views/RoomsView.vue";
 import SpecialOffersView from "@/views/SpecialOffersView.vue";
 import LoyaltyView from "@/views/LoyaltyView.vue";
 import AboutUsView from "@/views/AboutUsView.vue";
-import RegistrationView from '@/views/RegistrationView.vue'
 import RoomSelectionView from "@/views/RoomSelectionView.vue"
+import RegistrationView from '@/views/RegistrationView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,14 +36,14 @@ const router = createRouter({
       component: AboutUsView,
     },
     {
-      path: "/signup",
-      name: "signup",
-      component: RegistrationView
-    },
-    {
       path: "/room-selection",
       name: "room-selection",
       component: () => RoomSelectionView,
+    },
+    {
+      path: "/signup",
+      name: "signup",
+      component: RegistrationView
     }
   ],
 });
