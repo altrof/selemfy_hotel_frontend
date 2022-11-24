@@ -43,7 +43,6 @@ const router = createRouter({
     {
       path: "/room-selection",
       name: "room-selection",
-      // lazy load
       component: () => RoomSelectionView,
     }
   ],
