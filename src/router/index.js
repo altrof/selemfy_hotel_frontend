@@ -36,7 +36,7 @@ const router = createRouter({
       component: AboutUsView,
     },
     {
-      path: "/room-selection",
+      path: "/room-selection", //for testing
       name: "room-selection",
       component: () => RoomSelectionView,
     },
