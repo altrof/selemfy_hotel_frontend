@@ -4,6 +4,7 @@ import RoomsView from "@/views/RoomsView.vue";
 import SpecialOffersView from "@/views/SpecialOffersView.vue";
 import LoyaltyView from "@/views/LoyaltyView.vue";
 import AboutUsView from "@/views/AboutUsView.vue";
+import RoomSelectionView from "@/views/RoomSelectionView.vue"
 import RegistrationView from '@/views/RegistrationView.vue'
 
 const router = createRouter({
@@ -33,6 +34,11 @@ const router = createRouter({
       path: "/about-us",
       name: "about-us",
       component: AboutUsView,
+    },
+    {
+      path: "/room-selection", //for testing
+      name: "room-selection",
+      component: () => RoomSelectionView,
     },
     {
       path: "/signup",
