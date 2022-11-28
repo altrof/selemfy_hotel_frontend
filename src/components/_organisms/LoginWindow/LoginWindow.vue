@@ -7,6 +7,7 @@ import { useModalWindowStore } from "@/stores/modalWindow";
 import { useLoginStore } from "@/stores/login";
 import { storeToRefs } from "pinia";
 import { computed, onMounted } from "vue";
+import ButtonWithLoader from "@/components/_atoms/ButtonWithLoader/ButtonWithLoader.vue";
 
 const { closeModal } = useModalWindowStore();
 const { logInToAccount } = useLoginStore();
@@ -17,7 +18,7 @@ const isDisabled = computed(() => !(username.value && password.value));
 onMounted(() => {
   document.addEventListener("keydown", (event) => {
     if (event.code === "Enter" && !isDisabled.value) {
-      signIn();
+      logInToAccount();
     }
   });
 });
@@ -30,7 +31,7 @@ onMounted(() => {
     </DialogTitle>
     <div class="mt-2">
       <BaseInput
-        v-model="email"
+        v-model="username"
         label="Email"
         placeholder="Email"
         autocomplete="on"
@@ -48,13 +49,12 @@ onMounted(() => {
     </div>
 
     <div class="mt-4 flex items-center justify-between">
-      <button
-        type="button"
-        class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+
+      <ButtonWithLoader
+        class="w-24 h-10"
+        buttonText="Log in"
         @click="logInToAccount"
-      >
-        Log in
-      </button>
+      />
 
       <a
         class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"

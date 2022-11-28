@@ -5,7 +5,8 @@ import SpecialOffersView from "@/views/SpecialOffersView.vue";
 import LoyaltyView from "@/views/LoyaltyView.vue";
 import AboutUsView from "@/views/AboutUsView.vue";
 import RoomSelectionView from "@/views/RoomSelectionView.vue"
-import RegistrationView from '@/views/RegistrationView.vue'
+import RegistrationView from '@/views/RegistrationView.vue';
+import EmailConfirmation from '@/views/EmailConfirmation.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
       path: "/signup",
       name: "signup",
       component: RegistrationView
+    },
+    {
+      path: "/confirm",
+      name: "confirm",
+      component: EmailConfirmation
     }
   ],
 });
