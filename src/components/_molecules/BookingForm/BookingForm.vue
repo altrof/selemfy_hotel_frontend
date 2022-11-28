@@ -27,7 +27,7 @@ const { availableRoomsData } = storeToRefs(useRoomsStore());
 const { checkIn, checkOut, amountChildren, amountAdults, bookingFormMob } =
   storeToRefs(useBookingStore());
 
-const roomTypeOptions = ["Any", "Economy", "Regular", "Deluxe", "Family"];
+const roomTypeOptions = ["Any", "ECONOMY", "REGULAR", "DELUXE", "KING_SIZE"];
 const selectedRoomTypeOption = ref("Any");
 
 onMounted(() => {
@@ -77,6 +77,7 @@ onMounted(() => {
       />
     </div>
     <div class="h-full pl-10">
+      <!-- Need to modify BaseSelector to capture clicks?-->
       <BaseSelector
         label-text="Room"
         button-style="bg-sky-900 hover:bg-sky-700 text-white"
@@ -86,7 +87,7 @@ onMounted(() => {
       <ButtonWithLoader
         class="w-40 h-20 mt-3"
         button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
-        @click="checkRoomAvailability(checkIn, checkOut)"
+        @click="checkRoomAvailability(checkIn, checkOut, amountAdults, amountChildren, selectedRoomTypeOption)"
         button-text="Check availability"
       />
     </div>
@@ -131,6 +132,7 @@ onMounted(() => {
       />
     </div>
     <div class="h-full">
+      <!-- Need to modify BaseSelector to capture clicks?-->
       <BaseSelector
         class="pt-4 pb-4 w-52"
         label-text="Room"

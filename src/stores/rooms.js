@@ -11,9 +11,9 @@ export const useRoomsStore = defineStore("Rooms", () => {
         as is conceptually more appropriate to check for availabilities
         in the rooms store.  
     */
-    async function checkRoomAvailability(startDate, endDate) {
+    async function checkRoomAvailability(startDate, endDate, adult, children, roomType) {
         if (startDate !== null && endDate !== null) {
-            getAvailableRooms(startDate, endDate)
+            getAvailableRooms(startDate, endDate, adult, children, roomType)
             .then(response => {
                 availableRoomsData.value = response;
                 apiUrl.value = response.config.baseURL + response.config.url;
