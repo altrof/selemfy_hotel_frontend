@@ -20,6 +20,7 @@ export const usePersonstore = defineStore("person", () => {
     responseData.value = response;
   });
 
+
     function addPersonToBooking(idCode, firstName, lastName, dateOfBirth) {
         const currentPerson = new Person(idCode, firstName, lastName, dateOfBirth)
         peopleInBooking.value[idCode] = currentPerson
