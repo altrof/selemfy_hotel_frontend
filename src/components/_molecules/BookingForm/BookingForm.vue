@@ -16,10 +16,13 @@ const {
   increaseAmountChildren,
   decreaseAmountChildren,
   checkScreen,
-  checkRoomAvailability,
 } = useBookingStore();
 
-const { responseData } = storeToRefs(useRoomsStore());
+const {
+  checkRoomAvailability
+} = useRoomsStore();
+
+const { availableRoomsData } = storeToRefs(useRoomsStore());
 
 const { checkIn, checkOut, amountChildren, amountAdults, bookingFormMob } =
   storeToRefs(useBookingStore());
@@ -28,7 +31,6 @@ const roomTypeOptions = ["Any", "Economy", "Regular", "Deluxe", "Family"];
 const selectedRoomTypeOption = ref("Any");
 
 onMounted(() => {
-  console.log(responseData)
   window.addEventListener("resize", checkScreen);
   checkScreen();
 });
@@ -84,7 +86,7 @@ onMounted(() => {
       <ButtonWithLoader
         class="w-40 h-20 mt-3"
         button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
-        @click="checkRoomAvailability()"
+        @click="checkRoomAvailability(checkIn, checkOut)"
         button-text="Check availability"
       />
     </div>
@@ -138,7 +140,7 @@ onMounted(() => {
       <ButtonWithLoader
         class="w-52 h-24 mt-2 mb-2"
         button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
-        @click="checkRoomAvailability()"
+        @click="checkRoomAvailability(checkIn, checkOut)"
         button-text="Check availability"
       />
     </div>
