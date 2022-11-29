@@ -3,9 +3,17 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import MyProfileButton from "@/components/_atoms/MyProfileButton/MyProfileButton.vue";
 import { useModalWindowStore } from "@/stores/modalWindow";
 import LoginWindow from "@/components/_organisms/LoginWindow/LoginWindow.vue";
+import { onMounted, ref } from "vue";
 
-const loggedIn = false;
+const loggedIn = ref(false);
 const { openModal } = useModalWindowStore();
+
+onMounted(() => localStorage.getItem('userData') ? loggedIn.value = true : loggedIn.value = false)
+const logout = () => {
+  localStorage.removeItem('userData');
+  location.reload();
+}
+
 </script>
 
 <template>
@@ -65,7 +73,7 @@ const { openModal } = useModalWindowStore();
         leave-to-class="transform opacity-0 scale-95"
       >
         <MenuItems
-          class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          class="absolute right-0 z-10 mt-2 w-40 origin-top-right bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none border"
         >
           <div class="py-1">
             <MenuItem v-slot="{ active }">
@@ -78,24 +86,14 @@ const { openModal } = useModalWindowStore();
                 >Account settings</a
               >
             </MenuItem>
-            <MenuItem v-slot="{ active }">
+            <MenuItem v-slot="{ active }" @click="logout">
               <a
-                href="#"
+                href=""
                 :class="[
                   active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
                   'block px-4 py-2 text-sm',
                 ]"
-                >Support</a
-              >
-            </MenuItem>
-            <MenuItem v-slot="{ active }">
-              <a
-                href="#"
-                :class="[
-                  active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                  'block px-4 py-2 text-sm',
-                ]"
-                >License</a
+                >Log out</a
               >
             </MenuItem>
           </div>

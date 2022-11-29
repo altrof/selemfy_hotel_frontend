@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import AuthAPI from "@/services/modules/AuthAPI.js";
 
 export const useRegisterStore = defineStore("registerStore", () => {
   const username = ref();
@@ -14,7 +15,10 @@ export const useRegisterStore = defineStore("registerStore", () => {
   const phoneNumber = ref(null);
   const policyAgreement = ref(false);
 
-  const registerAccount = () => {
+  const responseData = ref(null);
+
+  const registerAccount = async () => {
+
     const requestBody = {
       username: username.value,
       password: password.value,
@@ -25,15 +29,13 @@ export const useRegisterStore = defineStore("registerStore", () => {
       identityCode: identityCode.value,
       dateOfBirth: dateOfBirth.value,
       phoneNumber: phoneNumber.value,
-      policyAgreement: policyAgreement.value,
-    };
+    }
 
-    // AuthAPI.registerAccount with requestBody
+    await AuthAPI.register(requestBody)
+      .then(response => responseData.value = response.data)
 
-    console.log(requestBody);
-
-    return { status: 200 };
-  };
+    return responseData.value;
+  }
 
   return {
     username,
