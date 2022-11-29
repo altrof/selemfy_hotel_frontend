@@ -2,7 +2,7 @@
 import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue"
 import ContentWrapper from '@/components/_molecules/ContentWrapper/ContentWrapper.vue'
 import { RouterLink } from 'vue-router'
-import Rooms from "@/components/_organisms/Rooms/Rooms.vue";
+import RoomMolecule from "@/components/_molecules/RoomMolecule/RoomMolecule.vue";
 import {onMounted, ref} from 'vue';
 import { useRoomsStore } from "@/stores/rooms";
 import { storeToRefs } from "pinia";
@@ -19,6 +19,14 @@ const roomsAreAvailable = () => {
   isRoomsAvailable.value = true;
 }
 
+const roomsViewDataStatic = [
+        { roomType: 'REGULAR', roomSize: 20},
+        { roomType: 'DELUXE', roomSize: 35},
+        { roomType: 'ECONOMY', roomSize: 16},
+        { roomType: 'KING', roomSize: 46},
+    ]
+
+
 onMounted(() => {
   roomsAreAvailable();
 
@@ -32,15 +40,15 @@ onMounted(() => {
     <p class="flex place-content-around" v-else>No rooms available for this date</p>
     </div>
 
-      <Rooms
-        :rooms="roomTypes"
-        :rooms-data="roomsViewData"
-      />
+
 
     <div class="flex flex-wrap place-content-around"
          v-for="roomOffer in roomOffers">
-      <h1 class="p-10 border-4 border-gray-200 rounded-lg m-2">{{roomOffer}}</h1>
       <!-- <RoomSelection :data="roomOffer" /> -->
+        <RoomMolecule class="p-10 border-4 border-gray-200 rounded-lg m-2"
+        room='REGULAR'
+        :room-data="roomsViewDataStatic[0]"
+      />
     </div>
     <div class="float-right">
       <RouterLink to="/">
