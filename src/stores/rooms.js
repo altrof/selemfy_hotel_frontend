@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { getAvailableRooms } from "@/services/modules/RoomsAPI";
+import router from "@/router/index.js"
 
 export const useRoomsStore = defineStore("Rooms", () => {
     const roomsViewData = ref(null);
@@ -18,6 +19,8 @@ export const useRoomsStore = defineStore("Rooms", () => {
             .then(response => {
                 availableRoomsData.value = response;
                 apiUrl.value = response.config.baseURL + response.config.url;
+                console.log(availableRoomsData.value)
+                router.push("/booking")
             })
         }
     }

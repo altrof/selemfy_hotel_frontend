@@ -85,14 +85,12 @@ onMounted(() => {
         :options="roomTypeOptions"
         :selected-option="selectedRoomTypeOption"
       />
-      <RouterLink to="/booking">
         <ButtonWithLoader
           class="w-40 h-20 mt-3"
           button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
           @click="checkRoomAvailability(checkIn, checkOut, amountAdults, amountChildren, selectedRoomTypeOption)"
           button-text="Check availability"
         />
-      </RouterLink>
 
     </div>
 

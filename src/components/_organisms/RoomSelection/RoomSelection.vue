@@ -10,7 +10,7 @@ import { storeToRefs } from "pinia";
 const isRoomsAvailable = ref(false);
 const roomOffers = ref(['Economy', 'Regular', 'Deluxe', 'Family']); // will change based on what rooms are compatible
 
-const { roomsViewData } = storeToRefs(useRoomsStore());
+const { roomsViewData, availableRoomsData } = storeToRefs(useRoomsStore());
 
 const roomTypes = ['REGULAR', 'DELUXE', 'ECONOMY', 'KING']
 
@@ -57,7 +57,7 @@ const kingRoomImages = [
 const images = {
   'REGULAR': regularRoomImages,
   'DELUXE': deluxeRoomImages,
-  'KING': kingRoomImages,
+  'KING_SIZE': kingRoomImages,
   'ECONOMY': economyRoomImages
 }
 
@@ -69,32 +69,37 @@ const roomsViewDataStatic = [
     ]
 
 onMounted(() => {
+  if (availableRoomsData.value !== null) {
+    console.log(availableRoomsData.value['data'][0]);
+  }
   roomsAreAvailable();
-
 })
 </script>
 
 <template>
-    <div>
     <p v-if="isRoomsAvailable">Please  choose your room type:</p>
-    <p class="flex place-content-around" v-else>No rooms available for this date</p>
+    <p class="flex place-content-around" 
+    v-else>No rooms available for this date</p>
+    <div v-if="availableRoomsData === null || availableRoomsData === undefined" >
+      <h1>ERROR: Booking was not requested </h1>
     </div>
-
+    <div v-else>
     <div class="flex flex-wrap place-content-around"
-         v-for="(roomType, arrayIndex) in roomTypes">
+         v-for="(room, arrayIndex) in availableRoomsData['data']">
       <!-- <RoomSelection :data="roomOffer" /> -->
         <RoomMolecule class="p-10 border-4 
                             border-gray-200 
                             rounded-lg m-2 room"
-        :room="roomType"
-        :room-data="roomsViewData[arrayIndex]"
-        :images="images[roomType]"
+        :room="room['roomType']"
+        :room-data="room"
+        :images="images[room['roomType']]"
       />
     </div>
     <div class="float-right">
       <RouterLink to="/">
         <BaseButton text-content="cancel"></BaseButton>
       </RouterLink>
+    </div>
     </div>
 </template>
 
