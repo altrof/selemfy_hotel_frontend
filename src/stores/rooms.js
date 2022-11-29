@@ -25,7 +25,6 @@ export const useRoomsStore = defineStore("Rooms", () => {
         (response) => {
           availableRoomsData.value = response;
           apiUrl.value = response.config.baseURL + response.config.url;
-          console.log(availableRoomsData.value);
           router.push("/booking");
         }
       );

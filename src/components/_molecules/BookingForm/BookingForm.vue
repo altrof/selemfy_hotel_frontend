@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted, ref } from "vue";
 import "vue-hotel-datepicker/dist/vueHotelDatepicker.css";
 import BaseInputCalendar from "@/components/_atoms/BaseInputCalendar/BaseInputCalendar.vue";
 import { storeToRefs } from "pinia";
@@ -7,7 +8,6 @@ import { useRoomsStore } from "@/stores/rooms.js";
 import ButtonWithLoader from "@/components/_atoms/ButtonWithLoader/ButtonWithLoader.vue";
 import IncrementDecrementField from "@/components/_atoms/IncrementDecrementField/IncrementDecrementField.vue";
 import BaseSelector from "@/components/_atoms/BaseSelector/BaseSelector.vue";
-import { onMounted, ref } from "vue";
 import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
 
 const {

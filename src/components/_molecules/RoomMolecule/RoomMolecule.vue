@@ -1,6 +1,10 @@
 <script setup>
 import { ref, inject } from "vue";
 import VueEasyLightbox, { useEasyLightbox } from "vue-easy-lightbox";
+import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
+import { useBookingStore } from "@/stores/booking.js";
+import { storeToRefs } from "pinia";
+
 
 const $image = inject("$image");
 
@@ -18,18 +22,24 @@ const roomsViewData = [
   { roomType: "KING", roomSize: 46 },
 ];
 const imgUrl = ref(null);
-
 const imgArr = ref([]);
 
 const { visibleRef, indexRef, imgsRef } = useEasyLightbox({
   imgs: [props.images],
 });
 
+const { roomIsChosen } = useBookingStore();
+const { isRoomChosen } = storeToRefs(useBookingStore());
+
 const showImg = (roomImgId) => {
   indexRef.value = roomImgId;
   imgArr.value = imgsRef.value[0];
   visibleRef.value = true;
 };
+
+function boo() {
+  console.log(isRoomChosen)
+}
 </script>
 
 <template>
@@ -84,7 +94,11 @@ const showImg = (roomImgId) => {
           &nbsp;{{ roomData.numberOfBeds }} &nbsp;
         </p>
         <p>
-          <strong>Rooms feature:</strong>
+          <strong>Floor:</strong>
+          &nbsp;{{ roomData.floorId }} &nbsp;
+        </p>
+        <p>
+          <strong>Rooms features:</strong>
           &nbsp;
           <span class="fa"></span>
           &nbsp;
@@ -97,12 +111,12 @@ const showImg = (roomImgId) => {
     </div>
 
     <div class="text-center pb-16">
-      <router-link
+      <BaseButton
+        textContent="BOOK NOW"
         class="rounded-md text-xl px-16 py-3 book-now"
-        to="/"
-        tag="button"
-        >BOOK NOW</router-link
-      >
+        @click-handler="roomIsChosen"
+        >
+        </BaseButton>
     </div>
   </div>
 </template>
