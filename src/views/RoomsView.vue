@@ -5,7 +5,7 @@ import Rooms from "@/components/_organisms/Rooms/Rooms.vue";
 import { useRoomsStore } from "@/stores/rooms";
 import { storeToRefs } from "pinia";
 
-const { responseData } = storeToRefs(useRoomsStore());
+const { roomsViewData } = storeToRefs(useRoomsStore());
 
 const roomTypes = ['REGULAR', 'DELUXE', 'ECONOMY', 'KING']
 </script>
@@ -26,7 +26,7 @@ const roomTypes = ['REGULAR', 'DELUXE', 'ECONOMY', 'KING']
     <div>
       <Rooms
         :rooms="roomTypes"
-        :rooms-data="responseData"
+        :rooms-data="roomsViewData"
       />
     </div>
   </ContentWrapper>
