@@ -14,12 +14,6 @@ import ContentWrapper from "@/components/_molecules/ContentWrapper/ContentWrappe
   <div class="pt-28">
     <BookingMainBlock class="main-block" />
   </div>
-  <ContentWrapper>
-    <LoremIpsum />
-    <LoremIpsum />
-    <LoremIpsum />
-  </ContentWrapper>
-
   <RouterView />
 </template>
 
