@@ -32,8 +32,8 @@ onMounted(() => {
     <div class="mt-2">
       <BaseInput
         v-model="username"
-        label="Email"
-        placeholder="Email"
+        label="Username"
+        placeholder="username"
         autocomplete="on"
       />
     </div>
