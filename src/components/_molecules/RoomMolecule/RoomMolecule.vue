@@ -81,7 +81,11 @@ const showImg = (roomImgId) => {
         <div class="item">
           <p>
             <strong>Size:</strong>
-            &nbsp;{{ roomData.roomSize }} m2&nbsp;
+            &nbsp;{{ roomData.size }} m2&nbsp;
+          </p>
+          <p>
+            <strong>Beds:</strong>
+            &nbsp;{{ roomData.numberOfBeds }} &nbsp;
           </p>
           <p>
             <strong>Rooms feature:</strong>
