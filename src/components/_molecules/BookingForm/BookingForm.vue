@@ -8,6 +8,7 @@ import ButtonWithLoader from "@/components/_atoms/ButtonWithLoader/ButtonWithLoa
 import IncrementDecrementField from "@/components/_atoms/IncrementDecrementField/IncrementDecrementField.vue";
 import BaseSelector from "@/components/_atoms/BaseSelector/BaseSelector.vue";
 import { onMounted, ref } from "vue";
+import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue"
 
 
 const {
@@ -84,13 +85,17 @@ onMounted(() => {
         :options="roomTypeOptions"
         :selected-option="selectedRoomTypeOption"
       />
-      <ButtonWithLoader
-        class="w-40 h-20 mt-3"
-        button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
-        @click="checkRoomAvailability(checkIn, checkOut, amountAdults, amountChildren, selectedRoomTypeOption)"
-        button-text="Check availability"
-      />
+      <RouterLink to="/booking">
+        <ButtonWithLoader
+          class="w-40 h-20 mt-3"
+          button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
+          @click="checkRoomAvailability(checkIn, checkOut, amountAdults, amountChildren, selectedRoomTypeOption)"
+          button-text="Check availability"
+        />
+      </RouterLink>
+
     </div>
+
   </div>
 
   <!--  If screen width <= 750 -->
