@@ -8,6 +8,7 @@ const props = defineProps({
   room: String,
   roomData: Object,
   styleImgsBlock: String,
+  images: Array
 });
 
 
@@ -19,27 +20,17 @@ const roomsViewData = [
     ]
 const imgUrl = ref(null);
 
-const regularRoomImages = [
-  $image('regular-room-1.jpg', 'rooms-images/regular-room-images').href,
-  $image('regular-room-2.jpg', 'rooms-images/regular-room-images').href,
-  $image('regular-room-3.jpg', 'rooms-images/regular-room-images').href,
-  $image('regular-room-4.jpg', 'rooms-images/regular-room-images').href,
-  $image('regular-room-5.jpg', 'rooms-images/regular-room-images').href,
-
-];
-
-
 const imgArr = ref([]);
 
 const { visibleRef, indexRef, imgsRef } = useEasyLightbox({
   imgs: [
-    regularRoomImages
+    props.images
   ],
 });
 
-const showImg = (arrayId, roomImgId) => {
+const showImg = (roomImgId) => {
   indexRef.value = roomImgId;
-  imgArr.value = imgsRef.value[arrayId];
+  imgArr.value = imgsRef.value[0];
   visibleRef.value = true;
 };
 
@@ -57,7 +48,7 @@ const getRoomInfo = (roomType) => {
           <img
             class="object-cover w-fit h-full cursor-pointer"
             :src="imgsRef[0][0]"
-            @click="() => showImg(arrayTypeId, 0)"
+            @click="() => showImg(0)"
             alt="room"
           >
           <div class="grid grid-cols-2 grid-rows-2 gap-2">
@@ -66,7 +57,7 @@ const getRoomInfo = (roomType) => {
                 class="object-cover w-full h-64 cursor-pointer"
                 :src="roomImg"
                 alt="Room"
-                @click="() => showImg(arrayTypeId, roomImgId+1)"
+                @click="() => showImg(roomImgId+1)"
               />
             </div>
           </div>
