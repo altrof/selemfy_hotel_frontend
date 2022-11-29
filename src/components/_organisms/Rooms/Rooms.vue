@@ -2,6 +2,11 @@
 import { ref, inject } from "vue";
 import VueEasyLightbox, { useEasyLightbox } from "vue-easy-lightbox";
 
+/*
+TODO: this entire component is too big and complex
+I suggest we refactor this into smaller pieces 
+using RoomMolecule component.
+*/
 const $image = inject('$image')
 
 const props = defineProps({
@@ -18,7 +23,6 @@ const regularRoomImages = [
   $image('regular-room-3.jpg', 'rooms-images/regular-room-images').href,
   $image('regular-room-4.jpg', 'rooms-images/regular-room-images').href,
   $image('regular-room-5.jpg', 'rooms-images/regular-room-images').href,
-
 ];
 
 const deluxeRoomImages = [

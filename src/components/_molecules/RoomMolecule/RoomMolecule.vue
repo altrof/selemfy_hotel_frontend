@@ -34,9 +34,6 @@ const showImg = (roomImgId) => {
   visibleRef.value = true;
 };
 
-const getRoomInfo = (roomType) => {
-  return props.roomData.filter(roomInfoObj => roomInfoObj.roomType === roomType)
-}
 </script>
 
 <template>
