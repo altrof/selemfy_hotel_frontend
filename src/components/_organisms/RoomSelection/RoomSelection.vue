@@ -45,7 +45,9 @@ onMounted(() => {
     <div class="flex flex-wrap place-content-around"
          v-for="roomOffer in roomOffers">
       <!-- <RoomSelection :data="roomOffer" /> -->
-        <RoomMolecule class="p-10 border-4 border-gray-200 rounded-lg m-2"
+        <RoomMolecule class="p-10 border-4 
+                            border-gray-200 
+                            rounded-lg m-2 room"
         room='REGULAR'
         :room-data="roomsViewDataStatic[0]"
       />
@@ -59,4 +61,7 @@ onMounted(() => {
 
 
 <style scoped>
+  .room {
+    width: 50vw;
+  }
 </style>

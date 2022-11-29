@@ -168,7 +168,7 @@ hr.new1 {
 
 .font {
   font-family: "Monotype Corsiva", serif;
-  font-size: 100px;
+  font-size: 4vw;
   color: #d9d9d9;
   text-shadow: 1px 1px 1px black;
   text-align: center;
