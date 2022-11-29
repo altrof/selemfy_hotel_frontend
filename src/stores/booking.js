@@ -2,13 +2,15 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { useButtonLoaderStore } from "@/stores/buttonLoader.js";
 import router from "@/router/index.js";
+import { addBooking } from "@/services/modules/BookingAPI";
+
 
 export const useBookingStore = defineStore("bookingForm", () => {
   const amountAdults = ref(1);
   const amountChildren = ref(0);
   const checkIn = ref(null);
   const checkOut = ref(null);
-  const isRoomChosen = ref(false);
+  const chosenRoom = ref(null);
 
   const bookingFormMob = ref(null);
   const windowWidth = ref(null);
@@ -24,11 +26,15 @@ export const useBookingStore = defineStore("bookingForm", () => {
     return;
   }
 
-  function roomIsChosen() {
-    isRoomChosen.value = true;
+  async function submitBooking() {
+    addBooking();
+  }
+  
+
+  function roomIsChosen(chosenRoomData) {
+    chosenRoom.value = chosenRoomData;
     router.push("/booking/register")
   }
-
 
   const updateScroll = () => {
     const scrollPosition = window.scrollY;
@@ -93,9 +99,10 @@ export const useBookingStore = defineStore("bookingForm", () => {
     checkIn,
     checkOut,
     bookingFormMob,
-    isRoomChosen,
+    chosenRoom,
     roomIsChosen,
     checkScreen,
+    submitBooking,
     increaseAmountAdults,
     increaseAmountChildren,
     decreaseAmountAdults,

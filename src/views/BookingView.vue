@@ -4,8 +4,7 @@ import ContentWrapper from "@/components/_molecules/ContentWrapper/ContentWrappe
 import RoomSelection from "@/components/_organisms/RoomSelection/RoomSelection.vue";
 
 import { useBookingStore } from "@/stores/booking.js";
-const { isRoomChosen } = useBookingStore();
-
+const { chosenRoom } = useBookingStore();
 
 </script> 
 
@@ -13,13 +12,18 @@ const { isRoomChosen } = useBookingStore();
   <Navbar />
   <ContentWrapper>
     <p>I am booking view</p>
-    <div v-if="isRoomChosen === false">
+    <!--
+    <div v-if="chosenRoom === null">
+        </div>
+    -->
+
       <RoomSelection />
-    </div>
-    <!--TODO: does not toggle on value change-->
-    <div v-else>
+
+    <!--TODO: does not toggle on value change
+    <div v-else> 
       <p>Room has been chosen</p>
-    </div>
+    </div> -->
+
   </ContentWrapper>
   
 </template>

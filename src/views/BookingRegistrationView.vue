@@ -7,10 +7,14 @@ import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
 import { useBookingStore } from "@/stores/booking.js";
 import { onMounted } from "vue";
 
-const { isRoomChosen, amountAdults, amountChildren } = useBookingStore();
+const { chosenRoom, amountAdults, amountChildren, submitBooking } = useBookingStore();
+/*
+function submitBooking() {
+  console.log(`Submit booking for ${chosenRoom.id}`)
+}*/
 
 onMounted(() => {
-    console.log(isRoomChosen)
+    console.log(chosenRoom)
     console.log(amountAdults)
     console.log(amountChildren)
 });
@@ -23,6 +27,9 @@ onMounted(() => {
     <div v-for="n in amountAdults + amountChildren">
         <PersonRegistration />
     </div>
+    <BaseButton
+      textContent="Submit"
+      @click-handler="submitBooking()" />
   </ContentWrapper>
 </template>
 

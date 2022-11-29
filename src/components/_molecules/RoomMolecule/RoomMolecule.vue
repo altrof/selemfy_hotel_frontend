@@ -29,7 +29,7 @@ const { visibleRef, indexRef, imgsRef } = useEasyLightbox({
 });
 
 const { roomIsChosen } = useBookingStore();
-const { isRoomChosen } = storeToRefs(useBookingStore());
+const { chosenRoom } = storeToRefs(useBookingStore());
 
 const showImg = (roomImgId) => {
   indexRef.value = roomImgId;
@@ -37,9 +37,7 @@ const showImg = (roomImgId) => {
   visibleRef.value = true;
 };
 
-function boo() {
-  console.log(isRoomChosen)
-}
+
 </script>
 
 <template>
@@ -114,9 +112,7 @@ function boo() {
       <BaseButton
         textContent="BOOK NOW"
         class="rounded-md text-xl px-16 py-3 book-now"
-        @click-handler="roomIsChosen"
-        >
-        </BaseButton>
+        @click-handler="roomIsChosen(roomData)" />
     </div>
   </div>
 </template>
