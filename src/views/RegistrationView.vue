@@ -9,8 +9,11 @@ import "vue3-tel-input/dist/vue3-tel-input.css";
 import countryAPI from "@/services/countryAPI.js";
 import { VueTelInput } from "vue3-tel-input";
 import { useVuelidate } from "@vuelidate/core";
+import { notify } from "notiwind";
 import { required, email, minLength, sameAs, helpers } from "@vuelidate/validators";
 import BaseInputWithError from "@/components/_atoms/BaseInputWithError/BaseInputWithError.vue";
+import TopNotification from "@/components/_atoms/TopNotification/TopNotification.vue";
+import BottomNotification from "@/components/_atoms/BottomNotification/BottomNotification.vue";
 
 defineEmits(["focusOut"]);
 
@@ -114,9 +117,17 @@ const signupButton = async () => {
     return false;
   }
 
-  const response = registerStore.registerAccount();
-  if (response.status === 200) {
+  const backendRegisterAccResponse = await registerStore.registerAccount();
+  if (backendRegisterAccResponse.statusCodeValue === 200) {
     registrationFormState.value = 'confirm'
+  } else {
+    await notify(
+      {
+        group: "bottom",
+        title: "Server Error",
+        text: backendRegisterAccResponse.body
+      }, 5000
+    )
   }
 };
 
@@ -137,6 +148,8 @@ onMounted(() => {
       class="flex justify-center items-center p-0 m-0 w-full max-w-2xl"
       v-if="registrationFormState === 'registration'"
     >
+      <TopNotification />
+      <BottomNotification />
       <div>
         <p class="flex justify-center items-center text-xl pb-4 pt-10">
           Account info

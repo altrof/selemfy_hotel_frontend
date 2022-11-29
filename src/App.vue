@@ -1,10 +1,14 @@
 <script setup>
 import { RouterView } from "vue-router";
+import BottomNotification from "@/components/_atoms/BottomNotification/BottomNotification.vue";
 </script>
 
 <template>
   <div class="app">
     <RouterView />
+    <div class="absolute z-50">
+      <BottomNotification />
+    </div>
   </div>
 </template>
 
