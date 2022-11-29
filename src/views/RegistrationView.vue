@@ -9,7 +9,13 @@ import "vue3-tel-input/dist/vue3-tel-input.css";
 import countryAPI from "@/services/countryAPI.js";
 import { VueTelInput } from "vue3-tel-input";
 import { useVuelidate } from "@vuelidate/core";
-import { required, email, minLength, sameAs, helpers } from "@vuelidate/validators";
+import {
+  required,
+  email,
+  minLength,
+  sameAs,
+  helpers,
+} from "@vuelidate/validators";
 import BaseInputWithError from "@/components/_atoms/BaseInputWithError/BaseInputWithError.vue";
 
 defineEmits(["focusOut"]);
@@ -29,47 +35,53 @@ const validateAge = (birthDayStr) => {
   }
 
   return age > 18;
-}
+};
 
 const rules = computed(() => ({
   username: {
-    required: helpers.withMessage('Username is required', required),
-    min: helpers.withMessage('Username minimum length is 6', minLength(6))
+    required: helpers.withMessage("Username is required", required),
+    min: helpers.withMessage("Username minimum length is 6", minLength(6)),
     // add new validation isAlreadyTaken
   },
   password: {
-    required: helpers.withMessage('Password is required', required),
-    min: helpers.withMessage('Password minimum length is 6', minLength(6))
+    required: helpers.withMessage("Password is required", required),
+    min: helpers.withMessage("Password minimum length is 6", minLength(6)),
   },
   confirmPassword: {
-    required: helpers.withMessage('Please confirm password', required),
-    sameAs: helpers.withMessage('Passwords do not match', sameAs(registerStore.password))
+    required: helpers.withMessage("Please confirm password", required),
+    sameAs: helpers.withMessage(
+      "Passwords do not match",
+      sameAs(registerStore.password)
+    ),
   },
   email: {
-    email: helpers.withMessage('Invalid email', email),
-    required: helpers.withMessage('Email is required', required),
+    email: helpers.withMessage("Invalid email", email),
+    required: helpers.withMessage("Email is required", required),
     // add new validation isAlreadyTaken
   },
   firstName: {
-    required: helpers.withMessage('Firstname is required', required)
+    required: helpers.withMessage("Firstname is required", required),
   },
   lastName: {
-    required: helpers.withMessage('Lastname is required', required)
+    required: helpers.withMessage("Lastname is required", required),
   },
   country: {
     nameWithFlag: {
-      required: helpers.withMessage('Country is required', required)
-    }
+      required: helpers.withMessage("Country is required", required),
+    },
   },
   identityCode: {
-    required: helpers.withMessage('Identity code is required', required)
+    required: helpers.withMessage("Identity code is required", required),
   },
   dateOfBirth: {
-    required: helpers.withMessage('Date of birth is required', required),
-    validateAge: helpers.withMessage('Age must be greater / equal to 18', validateAge)
+    required: helpers.withMessage("Date of birth is required", required),
+    validateAge: helpers.withMessage(
+      "Age must be greater / equal to 18",
+      validateAge
+    ),
   },
   phoneNumber: {
-    required: helpers.withMessage('Phone number is required', required)
+    required: helpers.withMessage("Phone number is required", required),
   },
   policyAgreement: { sameAs: sameAs(true) },
 }));
@@ -116,14 +128,14 @@ const signupButton = async () => {
 
   const response = registerStore.registerAccount();
   if (response.status === 200) {
-    registrationFormState.value = 'confirm'
+    registrationFormState.value = "confirm";
   }
 };
 
 onMounted(() => {
   document.addEventListener("keydown", (event) => {
     if (event.code === "Enter") {
-      signupButton()
+      signupButton();
     }
   });
 });
@@ -314,14 +326,20 @@ onMounted(() => {
       v-else
       class="flex h-screen w-screen justify-center place-items-center"
     >
-
-      <div class="border border-black shadow-green-600/10 shadow-md p-10 bg-white">
-        <p class="pb-14"> &#127881; Congratulations!</p>
-        <p class="pb-4"> Your account <b>{{ registerStore.username }}</b> is successfully created! &#9989;</p>
-        <p>Please check your email <b>{{ registerStore.email }}</b> for confirmation link!</p>
+      <div
+        class="border border-black shadow-green-600/10 shadow-md p-10 bg-white"
+      >
+        <p class="pb-14">&#127881; Congratulations!</p>
+        <p class="pb-4">
+          Your account <b>{{ registerStore.username }}</b> is successfully
+          created! &#9989;
+        </p>
+        <p>
+          Please check your email <b>{{ registerStore.email }}</b> for
+          confirmation link!
+        </p>
         <p>Link will be expires in <b>15 minutes</b>. &#128338;</p>
       </div>
-
     </ContentWrapper>
   </Transition>
 </template>
@@ -343,5 +361,4 @@ onMounted(() => {
   opacity: 0;
   transform: translateX(-500px);
 }
-
 </style>

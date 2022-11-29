@@ -1,8 +1,7 @@
 <script setup>
 import Navbar from "@/components/_organisms/Navbar/Navbar.vue";
 import ContentWrapper from "@/components/_molecules/ContentWrapper/ContentWrapper.vue";
-import RoomSelection from "@/components/_organisms/RoomSelection/RoomSelection.vue"
-
+import RoomSelection from "@/components/_organisms/RoomSelection/RoomSelection.vue";
 </script>
 
 <template>

@@ -12,7 +12,7 @@ defineProps({
     type: String,
     default: "text",
   },
-  errorMsg: String
+  errorMsg: String,
 });
 </script>
 
@@ -27,9 +27,11 @@ defineProps({
       @input="$emit('update:modelValue', $event.target.value)"
       v-bind="$attrs"
       :type="inputType"
-      :class="{ 'border border-red-500' : errorMsg }"
+      :class="{ 'border border-red-500': errorMsg }"
     />
-    <span class="flex absolute text-xs text-red-500 " id="errorMsg">{{ errorMsg }}</span>
+    <span class="flex absolute text-xs text-red-500" id="errorMsg">{{
+      errorMsg
+    }}</span>
   </div>
 </template>
 

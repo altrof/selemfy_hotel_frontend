@@ -8,8 +8,7 @@ import ButtonWithLoader from "@/components/_atoms/ButtonWithLoader/ButtonWithLoa
 import IncrementDecrementField from "@/components/_atoms/IncrementDecrementField/IncrementDecrementField.vue";
 import BaseSelector from "@/components/_atoms/BaseSelector/BaseSelector.vue";
 import { onMounted, ref } from "vue";
-import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue"
-
+import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
 
 const {
   increaseAmountAdults,
@@ -19,9 +18,7 @@ const {
   checkScreen,
 } = useBookingStore();
 
-const {
-  checkRoomAvailability
-} = useRoomsStore();
+const { checkRoomAvailability } = useRoomsStore();
 
 const { availableRoomsData } = storeToRefs(useRoomsStore());
 
@@ -38,11 +35,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    v-if="!bookingFormMob"
-    data-testid="booking-form"
-    class="flex inline"
-  >
+  <div v-if="!bookingFormMob" data-testid="booking-form" class="flex inline">
     <div class="dates">
       <BaseInputCalendar
         v-model="checkIn"
@@ -85,19 +78,29 @@ onMounted(() => {
         :options="roomTypeOptions"
         :selected-option="selectedRoomTypeOption"
       />
-        <ButtonWithLoader
-          class="w-40 h-20 mt-3"
-          button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
-          @click="checkRoomAvailability(checkIn, checkOut, amountAdults, amountChildren, selectedRoomTypeOption)"
-          button-text="Check availability"
-        />
-
+      <ButtonWithLoader
+        class="w-40 h-20 mt-3"
+        button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
+        @click="
+          checkRoomAvailability(
+            checkIn,
+            checkOut,
+            amountAdults,
+            amountChildren,
+            selectedRoomTypeOption
+          )
+        "
+        button-text="Check availability"
+      />
     </div>
-
   </div>
 
   <!--  If screen width <= 750 -->
-  <div v-else data-testid="booking-form" class="flex-col w-72 place-items-center">
+  <div
+    v-else
+    data-testid="booking-form"
+    class="flex-col w-72 place-items-center"
+  >
     <div class="dates">
       <BaseInputCalendar
         class="w-52"
@@ -160,5 +163,4 @@ onMounted(() => {
 .dates {
   margin: 0 20px 0 20px;
 }
-
 </style>

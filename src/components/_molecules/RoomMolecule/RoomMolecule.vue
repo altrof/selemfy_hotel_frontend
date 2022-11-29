@@ -2,30 +2,27 @@
 import { ref, inject } from "vue";
 import VueEasyLightbox, { useEasyLightbox } from "vue-easy-lightbox";
 
-const $image = inject('$image')
+const $image = inject("$image");
 
 const props = defineProps({
   room: String,
   roomData: Object,
   styleImgsBlock: String,
-  images: Array
+  images: Array,
 });
 
-
 const roomsViewData = [
-        { roomType: 'REGULAR', roomSize: 20},
-        { roomType: 'DELUXE', roomSize: 35},
-        { roomType: 'ECONOMY', roomSize: 16},
-        { roomType: 'KING', roomSize: 46},
-    ]
+  { roomType: "REGULAR", roomSize: 20 },
+  { roomType: "DELUXE", roomSize: 35 },
+  { roomType: "ECONOMY", roomSize: 16 },
+  { roomType: "KING", roomSize: 46 },
+];
 const imgUrl = ref(null);
 
 const imgArr = ref([]);
 
 const { visibleRef, indexRef, imgsRef } = useEasyLightbox({
-  imgs: [
-    props.images
-  ],
+  imgs: [props.images],
 });
 
 const showImg = (roomImgId) => {
@@ -33,86 +30,84 @@ const showImg = (roomImgId) => {
   imgArr.value = imgsRef.value[0];
   visibleRef.value = true;
 };
-
 </script>
 
 <template>
-    <div v-bind="$attrs">
-      <hr class="new1 pb-10" />
-      <h1 class="font">{{ room }}</h1>
-      <div class="pb-10">
-        <div class="grid grid-cols-2 gap-2">
-          <img
-            class="object-cover w-fit h-full cursor-pointer"
-            :src="imgsRef[0][0]"
-            @click="() => showImg(0)"
-            alt="room"
-          >
-          <div class="grid grid-cols-2 grid-rows-2 gap-2">
-            <div v-for="(roomImg, roomImgId) in imgsRef[0].slice(1)">
-              <img
-                class="object-cover w-full h-64 cursor-pointer"
-                :src="roomImg"
-                alt="Room"
-                @click="() => showImg(roomImgId+1)"
-              />
-            </div>
+  <div v-bind="$attrs">
+    <hr class="new1 pb-10" />
+    <h1 class="font">{{ room }}</h1>
+    <div class="pb-10">
+      <div class="grid grid-cols-2 gap-2">
+        <img
+          class="object-cover w-fit h-full cursor-pointer"
+          :src="imgsRef[0][0]"
+          @click="() => showImg(0)"
+          alt="room"
+        />
+        <div class="grid grid-cols-2 grid-rows-2 gap-2">
+          <div v-for="(roomImg, roomImgId) in imgsRef[0].slice(1)">
+            <img
+              class="object-cover w-full h-64 cursor-pointer"
+              :src="roomImg"
+              alt="Room"
+              @click="() => showImg(roomImgId + 1)"
+            />
           </div>
         </div>
-
-        <vue-easy-lightbox
-          :visible="visibleRef"
-          :index="indexRef"
-          :imgs="imgArr"
-          :scroll-disabled="false"
-          @hide="visibleRef = false"
-        />
       </div>
 
-      <div class="containerHead pb-16">
-        <div class="item">
-          <p>
-            Our luxurious {{ room.toLowerCase() }} suite is the pinnacle of an
-            amalgamation between traditional hospitality and modern amenities.
-            If you were to spend a day doing absolutely nothing, taking in the
-            majestic seascape outdoors, this suite would let you do just that
-          </p>
-        </div>
-        <div class="item">
-          <p>
-            <strong>Size:</strong>
-            &nbsp;{{ roomData.size }} m2&nbsp;
-          </p>
-          <p>
-            <strong>Beds:</strong>
-            &nbsp;{{ roomData.numberOfBeds }} &nbsp;
-          </p>
-          <p>
-            <strong>Rooms feature:</strong>
-            &nbsp;
-            <span class="fa"></span>
-            &nbsp;
-            <span class="fa"></span>
-            &nbsp;
-            <span class="fa"></span>
-          </p>
-          <li>mini-bar, safe, hair dryer, flat-screen TV, writing table.</li>
-        </div>
-      </div>
+      <vue-easy-lightbox
+        :visible="visibleRef"
+        :index="indexRef"
+        :imgs="imgArr"
+        :scroll-disabled="false"
+        @hide="visibleRef = false"
+      />
+    </div>
 
-      <div class="text-center pb-16">
-        <router-link
-          class="rounded-md text-xl px-16 py-3 book-now"
-          to="/"
-          tag="button"
-          >BOOK NOW</router-link
-        >
+    <div class="containerHead pb-16">
+      <div class="item">
+        <p>
+          Our luxurious {{ room.toLowerCase() }} suite is the pinnacle of an
+          amalgamation between traditional hospitality and modern amenities. If
+          you were to spend a day doing absolutely nothing, taking in the
+          majestic seascape outdoors, this suite would let you do just that
+        </p>
+      </div>
+      <div class="item">
+        <p>
+          <strong>Size:</strong>
+          &nbsp;{{ roomData.size }} m2&nbsp;
+        </p>
+        <p>
+          <strong>Beds:</strong>
+          &nbsp;{{ roomData.numberOfBeds }} &nbsp;
+        </p>
+        <p>
+          <strong>Rooms feature:</strong>
+          &nbsp;
+          <span class="fa"></span>
+          &nbsp;
+          <span class="fa"></span>
+          &nbsp;
+          <span class="fa"></span>
+        </p>
+        <li>mini-bar, safe, hair dryer, flat-screen TV, writing table.</li>
       </div>
     </div>
+
+    <div class="text-center pb-16">
+      <router-link
+        class="rounded-md text-xl px-16 py-3 book-now"
+        to="/"
+        tag="button"
+        >BOOK NOW</router-link
+      >
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
-
 hr.new1 {
   border-top: 1px solid black;
 }

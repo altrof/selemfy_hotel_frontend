@@ -9,7 +9,7 @@ export const useLoginStore = defineStore("login", () => {
     alert(
       "Check for existing account: \n" +
         "Email: " +
-      username.value +
+        username.value +
         "\n" +
         "Password: " +
         password.value

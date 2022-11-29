@@ -7,7 +7,7 @@ TODO: this entire component is too big and complex
 I suggest we refactor this into smaller pieces 
 using RoomMolecule component.
 */
-const $image = inject('$image')
+const $image = inject("$image");
 
 const props = defineProps({
   rooms: Array,
@@ -18,35 +18,35 @@ const props = defineProps({
 const imgUrl = ref(null);
 
 const regularRoomImages = [
-  $image('regular-room-1.jpg', 'rooms-images/regular-room-images').href,
-  $image('regular-room-2.jpg', 'rooms-images/regular-room-images').href,
-  $image('regular-room-3.jpg', 'rooms-images/regular-room-images').href,
-  $image('regular-room-4.jpg', 'rooms-images/regular-room-images').href,
-  $image('regular-room-5.jpg', 'rooms-images/regular-room-images').href,
+  $image("regular-room-1.jpg", "rooms-images/regular-room-images").href,
+  $image("regular-room-2.jpg", "rooms-images/regular-room-images").href,
+  $image("regular-room-3.jpg", "rooms-images/regular-room-images").href,
+  $image("regular-room-4.jpg", "rooms-images/regular-room-images").href,
+  $image("regular-room-5.jpg", "rooms-images/regular-room-images").href,
 ];
 
 const deluxeRoomImages = [
-  $image('deluxe-room-1.jpg', 'rooms-images/deluxe-room-images').href,
-  $image('deluxe-room-2.jpg', 'rooms-images/deluxe-room-images').href,
-  $image('deluxe-room-3.jpg', 'rooms-images/deluxe-room-images').href,
-  $image('deluxe-room-4.jpg', 'rooms-images/deluxe-room-images').href,
-  $image('deluxe-room-5.jpg', 'rooms-images/deluxe-room-images').href,
+  $image("deluxe-room-1.jpg", "rooms-images/deluxe-room-images").href,
+  $image("deluxe-room-2.jpg", "rooms-images/deluxe-room-images").href,
+  $image("deluxe-room-3.jpg", "rooms-images/deluxe-room-images").href,
+  $image("deluxe-room-4.jpg", "rooms-images/deluxe-room-images").href,
+  $image("deluxe-room-5.jpg", "rooms-images/deluxe-room-images").href,
 ];
 
 const economyRoomImages = [
-  $image('economy-room-1.jpg', 'rooms-images/economy-room-images').href,
-  $image('economy-room-2.jpg', 'rooms-images/economy-room-images').href,
-  $image('economy-room-3.jpg', 'rooms-images/economy-room-images').href,
-  $image('economy-room-4.jpg', 'rooms-images/economy-room-images').href,
-  $image('economy-room-4.jpg', 'rooms-images/economy-room-images').href,
+  $image("economy-room-1.jpg", "rooms-images/economy-room-images").href,
+  $image("economy-room-2.jpg", "rooms-images/economy-room-images").href,
+  $image("economy-room-3.jpg", "rooms-images/economy-room-images").href,
+  $image("economy-room-4.jpg", "rooms-images/economy-room-images").href,
+  $image("economy-room-4.jpg", "rooms-images/economy-room-images").href,
 ];
 
 const kingRoomImages = [
-  $image('king-room-1.jpg', 'rooms-images/king-room-images').href,
-  $image('king-room-2.jpg', 'rooms-images/king-room-images').href,
-  $image('king-room-3.jpg', 'rooms-images/king-room-images').href,
-  $image('king-room-4.jpg', 'rooms-images/king-room-images').href,
-  $image('king-room-5.jpg', 'rooms-images/king-room-images').href,
+  $image("king-room-1.jpg", "rooms-images/king-room-images").href,
+  $image("king-room-2.jpg", "rooms-images/king-room-images").href,
+  $image("king-room-3.jpg", "rooms-images/king-room-images").href,
+  $image("king-room-4.jpg", "rooms-images/king-room-images").href,
+  $image("king-room-5.jpg", "rooms-images/king-room-images").href,
 ];
 
 const imgArr = ref([]);
@@ -67,8 +67,10 @@ const showImg = (arrayId, roomImgId) => {
 };
 
 const getRoomInfo = (roomType) => {
-  return props.roomsData.filter(roomInfoObj => roomInfoObj.roomType === roomType)
-}
+  return props.roomsData.filter(
+    (roomInfoObj) => roomInfoObj.roomType === roomType
+  );
+};
 </script>
 
 <template>
@@ -83,14 +85,14 @@ const getRoomInfo = (roomType) => {
             :src="imgsRef[arrayTypeId][0]"
             @click="() => showImg(arrayTypeId, 0)"
             alt="room"
-          >
+          />
           <div class="grid grid-cols-2 grid-rows-2 gap-2">
             <div v-for="(roomImg, roomImgId) in imgsRef[arrayTypeId].slice(1)">
               <img
                 class="object-cover w-full h-64 cursor-pointer"
                 :src="roomImg"
                 alt="Room"
-                @click="() => showImg(arrayTypeId, roomImgId+1)"
+                @click="() => showImg(arrayTypeId, roomImgId + 1)"
               />
             </div>
           </div>
@@ -145,7 +147,6 @@ const getRoomInfo = (roomType) => {
 </template>
 
 <style lang="scss" scoped>
-
 hr.new1 {
   border-top: 1px solid black;
 }

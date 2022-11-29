@@ -15,7 +15,6 @@ export const useRegisterStore = defineStore("registerStore", () => {
   const policyAgreement = ref(false);
 
   const registerAccount = () => {
-
     const requestBody = {
       username: username.value,
       password: password.value,
@@ -26,18 +25,28 @@ export const useRegisterStore = defineStore("registerStore", () => {
       identityCode: identityCode.value,
       dateOfBirth: dateOfBirth.value,
       phoneNumber: phoneNumber.value,
-      policyAgreement: policyAgreement.value
-    }
+      policyAgreement: policyAgreement.value,
+    };
 
     // AuthAPI.registerAccount with requestBody
 
     console.log(requestBody);
 
     return { status: 200 };
-  }
+  };
 
   return {
-    username, password, confirmPassword, email, firstName, lastName, country, identityCode, dateOfBirth, phoneNumber, policyAgreement,
-    registerAccount
-  }
-})
+    username,
+    password,
+    confirmPassword,
+    email,
+    firstName,
+    lastName,
+    country,
+    identityCode,
+    dateOfBirth,
+    phoneNumber,
+    policyAgreement,
+    registerAccount,
+  };
+});
