@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { getAllPersons, getPersonByIdentityCode } from "../services/modules/PersonAPI";
+import { getAllPersons, getPersonByIdentityCode, addPerson } from "../services/modules/PersonAPI";
 
 class Person {
   constructor(idCode, firstName, lastName, dateOfBirth) {
@@ -25,6 +25,12 @@ export const usePersonstore = defineStore("person", () => {
       )
   }
 
+  async function addPersonDataToDB(identityCode, firstName, lastName, dateOfBirth) {
+    addPerson(identityCode, firstName, lastName, dateOfBirth).then(
+      (response) => { console.log(response) }
+      )
+  }
+
   function addPersonToBooking(idCode, firstName, lastName, dateOfBirth) {
     const currentPerson = new Person(idCode, firstName, lastName, dateOfBirth);
     peopleInBooking.value[idCode] = currentPerson;
@@ -37,5 +43,9 @@ export const usePersonstore = defineStore("person", () => {
     alert(alertMessage);
   }
 
-  return { responseData, peopleInBooking, addPersonToBooking, getPersonDataFromDB };
+  return { responseData, 
+        peopleInBooking, 
+        addPersonToBooking, 
+        getPersonDataFromDB,
+        addPersonDataToDB };
 });
