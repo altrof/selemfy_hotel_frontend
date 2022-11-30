@@ -1,12 +1,39 @@
 <script setup>
+import { onBeforeMount, ref, computed, onMounted } from "vue";
 import BaseInput from "@/components/_atoms/BaseInput/BaseInput.vue";
 import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
 import { usePersonstore } from "@/stores/person";
+import countryAPI from "@/services/countryAPI.js";
+
 
 const { 
   addPersonToBooking, 
   getPersonDataFromDB,
   addPersonDataToDB } = usePersonstore();
+
+
+  const countries = ref([
+  {
+    name: "",
+    flagEmoji: "",
+    flagSvg: "",
+    nameWithFlag: "",
+  },
+]);
+
+onBeforeMount(async () => {
+  await countryAPI.getAllCountries().then((response) => {
+    response.map((el) =>
+      countries.value.push({
+        nameWithFlag: el.flag + " " + el.name.common,
+        name: el.name.common,
+        flagEmoji: el.flag,
+        flagSvg: el.flags.svg,
+      })
+    );
+  });
+});
+
 </script>
 
 <template>
@@ -39,6 +66,18 @@ const {
       autocomplete="on"
     />
 
+            <div class="pl-2 mr-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2"
+                >Country</label
+              >
+              <v-select
+                :options="countries"
+                label="nameWithFlag"
+                class="w-44 pt-2"
+                v-model="country"
+              />
+            </div>
+
     <BaseButton
       class="float-right"
       @click-handler="getPersonDataFromDB(idCode)"
@@ -47,7 +86,7 @@ const {
 
     <BaseButton
       class="float-right"
-      @click-handler="addPersonDataToDB(idCode, firstName, lastName, dateOfBirth)"
+      @click-handler="addPersonDataToDB(idCode, firstName, lastName, dateOfBirth, country)"
       textContent="Add"
     />
   </div>

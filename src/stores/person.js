@@ -3,11 +3,12 @@ import { ref } from "vue";
 import { getAllPersons, getPersonByIdentityCode, addPerson } from "../services/modules/PersonAPI";
 
 class Person {
-  constructor(idCode, firstName, lastName, dateOfBirth) {
+  constructor(idCode, firstName, lastName, dateOfBirth, country) {
     this.idCode = idCode;
     this.firstName = firstName;
     this.lastName = lastName;
     this.dateOfBirth = dateOfBirth;
+    this.country = country;
   }
 }
 
@@ -25,14 +26,16 @@ export const usePersonstore = defineStore("person", () => {
       )
   }
 
-  async function addPersonDataToDB(identityCode, firstName, lastName, dateOfBirth) {
-    addPerson(identityCode, firstName, lastName, dateOfBirth).then(
+  async function addPersonDataToDB(identityCode, firstName, lastName, dateOfBirth, country) {
+
+    
+    addPerson(identityCode, firstName, lastName, dateOfBirth, country['name']).then(
       (response) => { console.log(response) }
       )
   }
 
-  function addPersonToBooking(idCode, firstName, lastName, dateOfBirth) {
-    const currentPerson = new Person(idCode, firstName, lastName, dateOfBirth);
+  function addPersonToBooking(idCode, firstName, lastName, dateOfBirth, country) {
+    const currentPerson = new Person(idCode, firstName, lastName, dateOfBirth, country);
     peopleInBooking.value[idCode] = currentPerson;
 
     let alertMessage = `Added ${currentPerson.firstName} ${currentPerson.lastName}
