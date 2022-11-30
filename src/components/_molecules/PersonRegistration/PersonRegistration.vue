@@ -3,7 +3,7 @@ import BaseInput from "@/components/_atoms/BaseInput/BaseInput.vue";
 import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
 import { usePersonstore } from "@/stores/person";
 
-const { addPersonToBooking } = usePersonstore();
+const { addPersonToBooking, getPersonDataFromDB } = usePersonstore();
 </script>
 
 <template>
@@ -38,9 +38,7 @@ const { addPersonToBooking } = usePersonstore();
 
     <BaseButton
       class="float-right"
-      @click-handler="
-        addPersonToBooking(idCode, firstName, lastName, dateOfBirth)
-      "
+      @click-handler="getPersonDataFromDB(idCode)"
       textContent="Add"
     />
   </div>
