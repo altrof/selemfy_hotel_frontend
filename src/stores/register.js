@@ -18,7 +18,6 @@ export const useRegisterStore = defineStore("registerStore", () => {
   const responseData = ref(null);
 
   const registerAccount = async () => {
-
     const requestBody = {
       username: username.value,
       password: password.value,
@@ -29,13 +28,14 @@ export const useRegisterStore = defineStore("registerStore", () => {
       identityCode: identityCode.value,
       dateOfBirth: dateOfBirth.value,
       phoneNumber: phoneNumber.value,
-    }
+    };
 
-    await AuthAPI.register(requestBody)
-      .then(response => responseData.value = response.data)
+    await AuthAPI.register(requestBody).then(
+      (response) => (responseData.value = response.data)
+    );
 
     return responseData.value;
-  }
+  };
 
   return {
     username,

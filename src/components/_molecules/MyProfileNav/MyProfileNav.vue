@@ -8,12 +8,15 @@ import { onMounted, ref } from "vue";
 const loggedIn = ref(false);
 const { openModal } = useModalWindowStore();
 
-onMounted(() => localStorage.getItem('userData') ? loggedIn.value = true : loggedIn.value = false)
+onMounted(() =>
+  localStorage.getItem("userData")
+    ? (loggedIn.value = true)
+    : (loggedIn.value = false)
+);
 const logout = () => {
-  localStorage.removeItem('userData');
+  localStorage.removeItem("userData");
   location.reload();
-}
-
+};
 </script>
 
 <template>

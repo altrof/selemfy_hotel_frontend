@@ -5,7 +5,6 @@ import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
 import { useBookingStore } from "@/stores/booking.js";
 import { storeToRefs } from "pinia";
 
-
 const $image = inject("$image");
 
 const props = defineProps({
@@ -36,8 +35,6 @@ const showImg = (roomImgId) => {
   imgArr.value = imgsRef.value[0];
   visibleRef.value = true;
 };
-
-
 </script>
 
 <template>
@@ -112,7 +109,8 @@ const showImg = (roomImgId) => {
       <BaseButton
         textContent="BOOK NOW"
         class="rounded-md text-xl px-16 py-3 book-now"
-        @click-handler="roomIsChosen(roomData)" />
+        @click-handler="roomIsChosen(roomData)"
+      />
     </div>
   </div>
 </template>

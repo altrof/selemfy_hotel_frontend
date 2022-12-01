@@ -4,7 +4,6 @@ import { useButtonLoaderStore } from "@/stores/buttonLoader.js";
 import router from "@/router/index.js";
 import { addBooking } from "@/services/modules/BookingAPI";
 
-
 export const useBookingStore = defineStore("bookingForm", () => {
   const amountAdults = ref(1);
   const amountChildren = ref(0);
@@ -29,11 +28,10 @@ export const useBookingStore = defineStore("bookingForm", () => {
   async function submitBooking() {
     addBooking();
   }
-  
 
   function roomIsChosen(chosenRoomData) {
     chosenRoom.value = chosenRoomData;
-    router.push("/booking/register")
+    router.push("/booking/register");
   }
 
   const updateScroll = () => {

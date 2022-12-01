@@ -1,6 +1,10 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { getAllPersons, getPersonByIdentityCode, addPerson } from "../services/modules/PersonAPI";
+import {
+  getAllPersons,
+  getPersonByIdentityCode,
+  addPerson,
+} from "../services/modules/PersonAPI";
 
 class Person {
   constructor(idCode, firstName, lastName, dateOfBirth, country, phoneNumber) {
@@ -18,28 +22,53 @@ export const usePersonstore = defineStore("person", () => {
   const peopleInBooking = ref({});
   const phoneNumber = ref(null);
 
-
   getAllPersons().then((response) => {
     responseData.value = response;
   });
 
   async function getPersonDataFromDB(identityCode) {
-    getPersonByIdentityCode(identityCode).then(
-      (response) => { console.log(response['data']) }
-      )
+    getPersonByIdentityCode(identityCode).then((response) => {
+      console.log(response["data"]);
+    });
   }
 
-  async function addPersonDataToDB(identityCode, firstName, lastName, dateOfBirth, country) {
-
+  async function addPersonDataToDB(
+    identityCode,
+    firstName,
+    lastName,
+    dateOfBirth,
+    country
+  ) {
     console.log(phoneNumber.value);
-    
-    addPerson(identityCode, firstName, lastName, dateOfBirth, country['name'], phoneNumber['value']).then(
-      (response) => { console.log(response) }
-      )
+
+    addPerson(
+      identityCode,
+      firstName,
+      lastName,
+      dateOfBirth,
+      country["name"],
+      phoneNumber["value"]
+    ).then((response) => {
+      console.log(response);
+    });
   }
 
-  function addPersonToBooking(idCode, firstName, lastName, dateOfBirth, country, phoneNumber) {
-    const currentPerson = new Person(idCode, firstName, lastName, dateOfBirth, country, phoneNumber);
+  function addPersonToBooking(
+    idCode,
+    firstName,
+    lastName,
+    dateOfBirth,
+    country,
+    phoneNumber
+  ) {
+    const currentPerson = new Person(
+      idCode,
+      firstName,
+      lastName,
+      dateOfBirth,
+      country,
+      phoneNumber
+    );
     peopleInBooking.value[idCode] = currentPerson;
 
     let alertMessage = `Added ${currentPerson.firstName} ${currentPerson.lastName}
@@ -50,10 +79,12 @@ export const usePersonstore = defineStore("person", () => {
     alert(alertMessage);
   }
 
-  return { responseData, 
-        peopleInBooking, 
-        phoneNumber,
-        addPersonToBooking, 
-        getPersonDataFromDB,
-        addPersonDataToDB };
+  return {
+    responseData,
+    peopleInBooking,
+    phoneNumber,
+    addPersonToBooking,
+    getPersonDataFromDB,
+    addPersonDataToDB,
+  };
 });

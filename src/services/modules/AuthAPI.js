@@ -4,16 +4,16 @@ export default {
   login(username, password) {
     if (username !== null && password !== null) {
       return api()
-        .post("/api/auth/login", {username, password})
-        .then(response => response)
-        .catch(error => error);
+        .post("/api/auth/login", { username, password })
+        .then((response) => response)
+        .catch((error) => error);
     }
   },
   register(accountData) {
     return api()
       .post("/api/auth/signup", accountData)
-      .then(response => response)
-      .catch(error => error);
+      .then((response) => response)
+      .catch((error) => error);
   },
   confirmEmailToken(token) {
     return api()

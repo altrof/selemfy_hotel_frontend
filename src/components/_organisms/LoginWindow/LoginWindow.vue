@@ -49,7 +49,6 @@ onMounted(() => {
     </div>
 
     <div class="mt-4 flex items-center justify-between">
-
       <ButtonWithLoader
         class="w-24 h-10"
         buttonText="Log in"

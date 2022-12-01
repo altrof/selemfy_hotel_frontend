@@ -6,14 +6,11 @@ import { usePersonstore } from "@/stores/person";
 import countryAPI from "@/services/countryAPI.js";
 import { VueTelInput } from "vue3-tel-input";
 
+const { addPersonToBooking, getPersonDataFromDB, addPersonDataToDB } =
+  usePersonstore();
 
-const { 
-  addPersonToBooking, 
-  getPersonDataFromDB,
-  addPersonDataToDB } = usePersonstore();
-
-  const phone = ref(null);
-  const countries = ref([
+const phone = ref(null);
+const countries = ref([
   {
     name: "",
     flagEmoji: "",
@@ -44,7 +41,6 @@ const onInput = (phoneText, phoneObject, input) => {
     usePersonstore().phoneNumber = phoneObject.number;
   }
 };
-
 </script>
 
 <template>
@@ -77,29 +73,27 @@ const onInput = (phoneText, phoneObject, input) => {
       autocomplete="on"
     />
 
-            <div class="pl-2 mr-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2"
-                >Country</label
-              >
-              <v-select
-                :options="countries"
-                label="nameWithFlag"
-                class="w-44 pt-2"
-                v-model="country"
-              />
-            </div>
+    <div class="pl-2 mr-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2">Country</label>
+      <v-select
+        :options="countries"
+        label="nameWithFlag"
+        class="w-44 pt-2"
+        v-model="country"
+      />
+    </div>
 
-          <div class="pt-2 pl-2 w-52">
-              <label class="block text-gray-700 text-sm font-bold mb-2"
-                >Phone number</label
-              >
-          <VueTelInput
-                v-model="phone"
-                class="h-9"
-                :inputOptions="phoneNumberInput"
-                @input="onInput"
-              />
-            </div>
+    <div class="pt-2 pl-2 w-52">
+      <label class="block text-gray-700 text-sm font-bold mb-2"
+        >Phone number</label
+      >
+      <VueTelInput
+        v-model="phone"
+        class="h-9"
+        :inputOptions="phoneNumberInput"
+        @input="onInput"
+      />
+    </div>
     <BaseButton
       class="float-right"
       @click-handler="getPersonDataFromDB(idCode)"
@@ -108,7 +102,16 @@ const onInput = (phoneText, phoneObject, input) => {
 
     <BaseButton
       class="float-right"
-      @click-handler="addPersonDataToDB(idCode, firstName, lastName, dateOfBirth, country, phone)"
+      @click-handler="
+        addPersonDataToDB(
+          idCode,
+          firstName,
+          lastName,
+          dateOfBirth,
+          country,
+          phone
+        )
+      "
       textContent="Add"
     />
   </div>

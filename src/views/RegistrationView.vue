@@ -10,7 +10,13 @@ import countryAPI from "@/services/countryAPI.js";
 import { VueTelInput } from "vue3-tel-input";
 import { useVuelidate } from "@vuelidate/core";
 import { notify } from "notiwind";
-import { required, email, minLength, sameAs, helpers } from "@vuelidate/validators";
+import {
+  required,
+  email,
+  minLength,
+  sameAs,
+  helpers,
+} from "@vuelidate/validators";
 import BaseInputWithError from "@/components/_atoms/BaseInputWithError/BaseInputWithError.vue";
 import TopNotification from "@/components/_atoms/TopNotification/TopNotification.vue";
 import BottomNotification from "@/components/_atoms/BottomNotification/BottomNotification.vue";
@@ -125,15 +131,16 @@ const signupButton = async () => {
 
   const backendRegisterAccResponse = await registerStore.registerAccount();
   if (backendRegisterAccResponse.statusCodeValue === 200) {
-    registrationFormState.value = 'confirm'
+    registrationFormState.value = "confirm";
   } else {
     await notify(
       {
         group: "bottom",
         title: "Server Error",
-        text: backendRegisterAccResponse.body
-      }, 5000
-    )
+        text: backendRegisterAccResponse.body,
+      },
+      5000
+    );
   }
 };
 

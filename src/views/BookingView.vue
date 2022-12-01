@@ -5,8 +5,7 @@ import RoomSelection from "@/components/_organisms/RoomSelection/RoomSelection.v
 
 import { useBookingStore } from "@/stores/booking.js";
 const { chosenRoom } = useBookingStore();
-
-</script> 
+</script>
 
 <template>
   <Navbar />
@@ -17,15 +16,13 @@ const { chosenRoom } = useBookingStore();
         </div>
     -->
 
-      <RoomSelection />
+    <RoomSelection />
 
     <!--TODO: does not toggle on value change
     <div v-else> 
       <p>Room has been chosen</p>
     </div> -->
-
   </ContentWrapper>
-  
 </template>
 
 <style scoped>
