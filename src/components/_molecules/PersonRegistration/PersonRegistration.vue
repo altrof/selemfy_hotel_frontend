@@ -9,7 +9,9 @@ import { VueTelInput } from "vue3-tel-input";
 const { addPersonToBooking, getPersonDataFromDB, addPersonDataToDB } =
   usePersonstore();
 
-const phone = ref(null);
+let wasIdCodeChecked = false;
+const personStore = usePersonstore()
+
 const countries = ref([
   {
     name: "",
@@ -37,40 +39,55 @@ onBeforeMount(async () => {
 });
 
 const onInput = (phoneText, phoneObject, input) => {
+
   if (phoneObject) {
-    usePersonstore().phoneNumber = phoneObject.number;
+    console.log(phoneText)
+    personStore.phoneNumber = phoneObject.number;
   }
 };
+
+async function checkDbOnFocusOut(idCode) {
+  if (!wasIdCodeChecked) {
+    wasIdCodeChecked = true;
+    getPersonDataFromDB(idCode)
+  } else {
+    wasIdCodeChecked = false;
+  }
+}
 </script>
 
 <template>
   <div class="p-10 border-4 border-gray-200 rounded-lg m-2">
     <BaseInput
-      v-model="firstName"
-      label="First Name"
-      placeholder="John"
-      autocomplete="on"
-    />
-
-    <BaseInput
-      v-model="lastName"
-      label="Last Name"
-      placeholder="Smith"
-      autocomplete="on"
-    />
-
-    <BaseInput
       v-model="idCode"
       label="Identiy Code"
       placeholder="61107121760"
       autocomplete="on"
+      @focusout="checkDbOnFocusOut(idCode)"
+    />
+    
+    <BaseInput
+      v-model="personStore.firstName"
+      label="First Name"
+      placeholder="John"
+      autocomplete="on"
+      :disabled = "personStore.inputDisabled"
     />
 
     <BaseInput
-      v-model="dateOfBirth"
+      v-model="personStore.lastName"
+      label="Last Name"
+      placeholder="Smith"
+      autocomplete="on"
+      :disabled = "personStore.inputDisabled"
+    />
+
+    <BaseInput
+      v-model="personStore.dateOfBirth"
       label="Date of Birth"
       type="date"
       autocomplete="on"
+      :disabled = "personStore.inputDisabled"
     />
 
     <div class="pl-2 mr-4">
@@ -79,7 +96,8 @@ const onInput = (phoneText, phoneObject, input) => {
         :options="countries"
         label="nameWithFlag"
         class="w-44 pt-2"
-        v-model="country"
+        v-model="personStore.country"
+        :disabled = "personStore.inputDisabled"
       />
     </div>
 
@@ -88,17 +106,13 @@ const onInput = (phoneText, phoneObject, input) => {
         >Phone number</label
       >
       <VueTelInput
-        v-model="phone"
         class="h-9"
         :inputOptions="phoneNumberInput"
         @input="onInput"
+        :disabled = "personStore.inputDisabled"
+
       />
     </div>
-    <BaseButton
-      class="float-right"
-      @click-handler="getPersonDataFromDB(idCode)"
-      textContent="Check"
-    />
 
     <BaseButton
       class="float-right"
@@ -108,8 +122,7 @@ const onInput = (phoneText, phoneObject, input) => {
           firstName,
           lastName,
           dateOfBirth,
-          country,
-          phone
+          country
         )
       "
       textContent="Add"

@@ -20,7 +20,12 @@ class Person {
 export const usePersonstore = defineStore("person", () => {
   const responseData = ref(null);
   const peopleInBooking = ref({});
+  const firstName = ref(null)
+  const lastName = ref(null)
+  const dateOfBirth = ref(null)
+  const country = ref(null)
   const phoneNumber = ref(null);
+  const inputDisabled = ref(false);
 
   getAllPersons().then((response) => {
     responseData.value = response;
@@ -28,7 +33,17 @@ export const usePersonstore = defineStore("person", () => {
 
   async function getPersonDataFromDB(identityCode) {
     getPersonByIdentityCode(identityCode).then((response) => {
-      console.log(response["data"]);
+      const responseData = response["data"]
+      if (responseData !== null) {
+        firstName.value = responseData["firstName"];
+        lastName.value = responseData["lastName"];
+        dateOfBirth.value = responseData["dateOfBirth"];
+        country.value = responseData["country"];
+        phoneNumber.value = responseData["phoneNumber"]
+        inputDisabled.value = true
+      } else {
+        inputDisabled.value = false
+      }
     });
   }
 
@@ -83,6 +98,12 @@ export const usePersonstore = defineStore("person", () => {
     responseData,
     peopleInBooking,
     phoneNumber,
+    firstName,
+    lastName,
+    dateOfBirth,
+    country,
+    phoneNumber,
+    inputDisabled,
     addPersonToBooking,
     getPersonDataFromDB,
     addPersonDataToDB,
