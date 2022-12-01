@@ -4,6 +4,7 @@ import BaseInput from "@/components/_atoms/BaseInput/BaseInput.vue";
 import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
 import { usePersonstore } from "@/stores/person";
 import countryAPI from "@/services/countryAPI.js";
+import { VueTelInput } from "vue3-tel-input";
 
 
 const { 
@@ -11,7 +12,7 @@ const {
   getPersonDataFromDB,
   addPersonDataToDB } = usePersonstore();
 
-
+  const phone = ref(null);
   const countries = ref([
   {
     name: "",
@@ -20,6 +21,10 @@ const {
     nameWithFlag: "",
   },
 ]);
+
+const phoneNumberInput = {
+  placeholder: "Phone number",
+};
 
 onBeforeMount(async () => {
   await countryAPI.getAllCountries().then((response) => {
@@ -33,6 +38,12 @@ onBeforeMount(async () => {
     );
   });
 });
+
+const onInput = (phoneText, phoneObject, input) => {
+  if (phoneObject) {
+    usePersonstore().phoneNumber = phoneObject.number;
+  }
+};
 
 </script>
 
@@ -78,6 +89,17 @@ onBeforeMount(async () => {
               />
             </div>
 
+          <div class="pt-2 pl-2 w-52">
+              <label class="block text-gray-700 text-sm font-bold mb-2"
+                >Phone number</label
+              >
+          <VueTelInput
+                v-model="phone"
+                class="h-9"
+                :inputOptions="phoneNumberInput"
+                @input="onInput"
+              />
+            </div>
     <BaseButton
       class="float-right"
       @click-handler="getPersonDataFromDB(idCode)"
@@ -86,7 +108,7 @@ onBeforeMount(async () => {
 
     <BaseButton
       class="float-right"
-      @click-handler="addPersonDataToDB(idCode, firstName, lastName, dateOfBirth, country)"
+      @click-handler="addPersonDataToDB(idCode, firstName, lastName, dateOfBirth, country, phone)"
       textContent="Add"
     />
   </div>

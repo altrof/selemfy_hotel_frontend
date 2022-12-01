@@ -9,13 +9,14 @@ const getPersonByIdentityCode = (identityCode) => {
     return api().get(`/api/person/public/${identityCode}`)
   };
 
-  const addPerson = (identityCode, firstName, lastName, dateOfBirth, country) => {
+  const addPerson = (identityCode, firstName, lastName, dateOfBirth, country, phoneNumber) => {
     return api().post(`/api/person/public/`, {
       "identityCode": identityCode,
       "firstName":firstName,
       "lastName":lastName,
       "dateOfBirth":dateOfBirth,
-      "country": country
+      "country": country,
+      "phoneNumber": phoneNumber
     });
   };
 
