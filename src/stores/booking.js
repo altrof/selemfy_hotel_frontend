@@ -31,7 +31,7 @@ export const useBookingStore = defineStore("bookingForm", () => {
 
   function roomIsChosen(chosenRoomData) {
     chosenRoom.value = chosenRoomData;
-    router.push("/booking/register");
+    //router.push("/booking/register");
   }
 
   const updateScroll = () => {

@@ -2,26 +2,28 @@
 import Navbar from "@/components/_organisms/Navbar/Navbar.vue";
 import ContentWrapper from "@/components/_molecules/ContentWrapper/ContentWrapper.vue";
 import RoomSelection from "@/components/_organisms/RoomSelection/RoomSelection.vue";
+import PersonRegistration from "@/components/_molecules/PersonRegistration/PersonRegistration.vue";
+import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
 
 import { useBookingStore } from "@/stores/booking.js";
-const { chosenRoom } = useBookingStore();
+const { chosenRoom, amountAdults, amountChildren, submitBooking } =
+  useBookingStore();
 </script>
 
 <template>
   <Navbar />
   <ContentWrapper>
     <p>I am booking view</p>
-    <!--
-    <div v-if="chosenRoom === null">
-        </div>
-    -->
-
-    <RoomSelection />
-
-    <!--TODO: does not toggle on value change
+    
+    <div v-if="useBookingStore().chosenRoom === null">
+      <RoomSelection />    
+    </div>
     <div v-else> 
-      <p>Room has been chosen</p>
-    </div> -->
+        <div v-for="n in amountAdults + amountChildren">
+          <PersonRegistration />
+    </div>
+      <BaseButton textContent="Submit" @click-handler="submitBooking()" />
+    </div>
   </ContentWrapper>
 </template>
 
