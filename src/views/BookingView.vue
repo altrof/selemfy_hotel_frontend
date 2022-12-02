@@ -14,14 +14,14 @@ const { chosenRoom, amountAdults, amountChildren, submitBooking } =
   <Navbar />
   <ContentWrapper>
     <p>I am booking view</p>
-    
+
     <div v-if="useBookingStore().chosenRoom === null">
-      <RoomSelection />    
+      <RoomSelection />
     </div>
-    <div v-else> 
-        <div v-for="n in amountAdults + amountChildren">
-          <PersonRegistration />
-    </div>
+    <div v-else>
+      <div v-for="n in amountAdults + amountChildren">
+        <PersonRegistration :formNumber="n" />
+      </div>
       <BaseButton textContent="Submit" @click-handler="submitBooking()" />
     </div>
   </ContentWrapper>

@@ -6,24 +6,13 @@ import {
   addPerson,
 } from "../services/modules/PersonAPI";
 
-class Person {
-  constructor(idCode, firstName, lastName, dateOfBirth, country, phoneNumber) {
-    this.idCode = idCode;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.dateOfBirth = dateOfBirth;
-    this.country = country;
-    this.phoneNumber = phoneNumber;
-  }
-}
-
 export const usePersonstore = defineStore("person", () => {
   const responseData = ref(null);
-  const peopleInBooking = ref({});
-  const firstName = ref(null)
-  const lastName = ref(null)
-  const dateOfBirth = ref(null)
-  const country = ref(null)
+  const peopleInBooking = ref(initiatePersonInBooking());
+  const firstName = ref(null);
+  const lastName = ref(null);
+  const dateOfBirth = ref(null);
+  const country = ref(null);
   const phoneNumber = ref(null);
   const inputDisabled = ref(false);
 
@@ -31,18 +20,32 @@ export const usePersonstore = defineStore("person", () => {
     responseData.value = response;
   });
 
-  async function getPersonDataFromDB(identityCode) {
+  function initiatePersonInBooking() {
+    let myObject = {}
+    for (let i = 1; i <=  4; i++) {
+      myObject[i] = {}
+    }
+    return myObject
+  }
+
+  async function getPersonDataFromDB(identityCode, formNumber) {
     getPersonByIdentityCode(identityCode).then((response) => {
-      const responseData = response["data"]
+      const responseData = response["data"];
       if (responseData !== null) {
-        firstName.value = responseData["firstName"];
-        lastName.value = responseData["lastName"];
-        dateOfBirth.value = responseData["dateOfBirth"];
-        country.value = responseData["country"];
-        phoneNumber.value = responseData["phoneNumber"]
-        inputDisabled.value = true
+        console.log(responseData)
+        const currentPerson = {
+          "idCode": responseData['identityCode'],
+          "firstName": responseData['firstName'],
+          "lastName": responseData['lastName'],
+          "dateOfBirth": responseData['dateOfBirth'],
+          "country": responseData['country'],
+          "phoneNumber": responseData['phoneNumber'],
+          "inputDisabled": true
+        };
+        peopleInBooking.value[formNumber] = currentPerson;
+        
       } else {
-        inputDisabled.value = false
+        peopleInBooking.value[formNumber]["inputDisabled"] = false;
       }
     });
   }
@@ -54,8 +57,6 @@ export const usePersonstore = defineStore("person", () => {
     dateOfBirth,
     country
   ) {
-    console.log(phoneNumber.value);
-
     addPerson(
       identityCode,
       firstName,
@@ -76,14 +77,14 @@ export const usePersonstore = defineStore("person", () => {
     country,
     phoneNumber
   ) {
-    const currentPerson = new Person(
+    const currentPerson = {
       idCode,
       firstName,
       lastName,
       dateOfBirth,
       country,
-      phoneNumber
-    );
+      phoneNumber,
+    };
     peopleInBooking.value[idCode] = currentPerson;
 
     let alertMessage = `Added ${currentPerson.firstName} ${currentPerson.lastName}

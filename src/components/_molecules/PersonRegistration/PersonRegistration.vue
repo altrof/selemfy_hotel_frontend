@@ -6,11 +6,17 @@ import { usePersonstore } from "@/stores/person";
 import countryAPI from "@/services/countryAPI.js";
 import { VueTelInput } from "vue3-tel-input";
 
-const { addPersonToBooking, getPersonDataFromDB, addPersonDataToDB } =
+const { peopleInBooking, addPersonToBooking, getPersonDataFromDB, addPersonDataToDB } =
   usePersonstore();
 
+const props = defineProps({
+  formNumber: Number
+});
+
 let wasIdCodeChecked = false;
-const personStore = usePersonstore()
+let myId = "abc"
+let myFirstName = "kuku"
+const personStore = usePersonstore();
 
 const countries = ref([
   {
@@ -39,20 +45,24 @@ onBeforeMount(async () => {
 });
 
 const onInput = (phoneText, phoneObject, input) => {
-
   if (phoneObject) {
-    console.log(phoneText)
     personStore.phoneNumber = phoneObject.number;
   }
 };
 
 async function checkDbOnFocusOut(idCode) {
+  console.log(props.formNumber)
+  console.log(personStore.peopleInBooking[props.formNumber])
   if (!wasIdCodeChecked) {
     wasIdCodeChecked = true;
-    getPersonDataFromDB(idCode)
+    getPersonDataFromDB(idCode, props.formNumber);
   } else {
     wasIdCodeChecked = false;
   }
+}
+
+function getMyName(name='John') {
+  return name
 }
 </script>
 
@@ -65,29 +75,30 @@ async function checkDbOnFocusOut(idCode) {
       autocomplete="on"
       @focusout="checkDbOnFocusOut(idCode)"
     />
-    
+
     <BaseInput
-      v-model="personStore.firstName"
+      v-model="personStore.peopleInBooking[props.formNumber]['firstName']"
+      id="idFirstName"
       label="First Name"
       placeholder="John"
       autocomplete="on"
-      :disabled = "personStore.inputDisabled"
+      :disabled="personStore.peopleInBooking[props.formNumber]['inputDisabled']"
     />
 
     <BaseInput
-      v-model="personStore.lastName"
+      v-model="personStore.peopleInBooking[props.formNumber]['lastName']"
       label="Last Name"
       placeholder="Smith"
       autocomplete="on"
-      :disabled = "personStore.inputDisabled"
+      :disabled="personStore.peopleInBooking[props.formNumber]['inputDisabled']"
     />
 
     <BaseInput
-      v-model="personStore.dateOfBirth"
+      v-model="personStore.peopleInBooking[props.formNumber]['dateOfBirth']"
       label="Date of Birth"
       type="date"
       autocomplete="on"
-      :disabled = "personStore.inputDisabled"
+      :disabled="personStore.peopleInBooking[props.formNumber]['inputDisabled']"
     />
 
     <div class="pl-2 mr-4">
@@ -96,8 +107,8 @@ async function checkDbOnFocusOut(idCode) {
         :options="countries"
         label="nameWithFlag"
         class="w-44 pt-2"
-        v-model="personStore.country"
-        :disabled = "personStore.inputDisabled"
+        v-model="personStore.peopleInBooking[props.formNumber]['country']"
+        :disabled="personStore.peopleInBooking[props.formNumber]['inputDisabled']"
       />
     </div>
 
@@ -109,21 +120,14 @@ async function checkDbOnFocusOut(idCode) {
         class="h-9"
         :inputOptions="phoneNumberInput"
         @input="onInput"
-        :disabled = "personStore.inputDisabled"
-
+        :disabled="personStore.inputDisabled"
       />
     </div>
 
     <BaseButton
       class="float-right"
       @click-handler="
-        addPersonDataToDB(
-          idCode,
-          firstName,
-          lastName,
-          dateOfBirth,
-          country
-        )
+        addPersonDataToDB(idCode, firstName, lastName, dateOfBirth, country)
       "
       textContent="Add"
     />
