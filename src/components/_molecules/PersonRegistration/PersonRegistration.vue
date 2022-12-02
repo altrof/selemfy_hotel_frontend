@@ -14,8 +14,6 @@ const props = defineProps({
 });
 
 let wasIdCodeChecked = false;
-let myId = "abc"
-let myFirstName = "kuku"
 const personStore = usePersonstore();
 
 const countries = ref([
@@ -51,8 +49,6 @@ const onInput = (phoneText, phoneObject, input) => {
 };
 
 async function checkDbOnFocusOut(idCode) {
-  console.log(props.formNumber)
-  console.log(personStore.peopleInBooking[props.formNumber])
   if (!wasIdCodeChecked) {
     wasIdCodeChecked = true;
     getPersonDataFromDB(idCode, props.formNumber);
@@ -126,9 +122,7 @@ function getMyName(name='John') {
 
     <BaseButton
       class="float-right"
-      @click-handler="
-        addPersonDataToDB(idCode, firstName, lastName, dateOfBirth, country)
-      "
+      @click-handler="addPersonDataToDB(idCode, firstName, lastName, dateOfBirth, country)"
       textContent="Add"
     />
   </div>

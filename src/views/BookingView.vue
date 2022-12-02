@@ -4,10 +4,19 @@ import ContentWrapper from "@/components/_molecules/ContentWrapper/ContentWrappe
 import RoomSelection from "@/components/_organisms/RoomSelection/RoomSelection.vue";
 import PersonRegistration from "@/components/_molecules/PersonRegistration/PersonRegistration.vue";
 import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
-
+import { usePersonstore } from "@/stores/person.js";
 import { useBookingStore } from "@/stores/booking.js";
+import { onMounted } from "vue";
+
 const { chosenRoom, amountAdults, amountChildren, submitBooking } =
   useBookingStore();
+
+const { countNumberOfPeopleInBooking } =
+  usePersonstore();
+
+  onMounted(() => {
+  countNumberOfPeopleInBooking(amountAdults + amountChildren);
+});
 </script>
 
 <template>

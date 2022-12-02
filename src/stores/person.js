@@ -8,7 +8,7 @@ import {
 
 export const usePersonstore = defineStore("person", () => {
   const responseData = ref(null);
-  const peopleInBooking = ref(initiatePersonInBooking());
+  const peopleInBooking = ref({});
   const firstName = ref(null);
   const lastName = ref(null);
   const dateOfBirth = ref(null);
@@ -16,23 +16,23 @@ export const usePersonstore = defineStore("person", () => {
   const phoneNumber = ref(null);
   const inputDisabled = ref(false);
 
+
   getAllPersons().then((response) => {
     responseData.value = response;
   });
 
-  function initiatePersonInBooking() {
-    let myObject = {}
-    for (let i = 1; i <=  4; i++) {
-      myObject[i] = {}
+
+  function countNumberOfPeopleInBooking(count) {
+    for (let i = 1; i <=  count; i++) {
+      peopleInBooking.value[i] = {}
     }
-    return myObject
   }
 
   async function getPersonDataFromDB(identityCode, formNumber) {
+    console.log(`Formnumber ${formNumber}`)
     getPersonByIdentityCode(identityCode).then((response) => {
       const responseData = response["data"];
       if (responseData !== null) {
-        console.log(responseData)
         const currentPerson = {
           "idCode": responseData['identityCode'],
           "firstName": responseData['firstName'],
@@ -98,6 +98,7 @@ export const usePersonstore = defineStore("person", () => {
   return {
     responseData,
     peopleInBooking,
+    countNumberOfPeopleInBooking,
     phoneNumber,
     firstName,
     lastName,
