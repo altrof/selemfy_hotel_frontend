@@ -6,7 +6,7 @@ import { usePersonstore } from "@/stores/person";
 import countryAPI from "@/services/countryAPI.js";
 import { VueTelInput } from "vue3-tel-input";
 
-const { peopleInBooking, addPersonToBooking, getPersonDataFromDB, addPersonDataToDB } =
+const { peopleInBooking, getPersonDataFromDB, addPersonDataToDB } =
   usePersonstore();
 
 const props = defineProps({

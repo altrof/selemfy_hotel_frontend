@@ -8,13 +8,7 @@ import {
 
 export const usePersonstore = defineStore("person", () => {
   const responseData = ref(null);
-  const peopleInBooking = ref({});
-  const firstName = ref(null);
-  const lastName = ref(null);
-  const dateOfBirth = ref(null);
-  const country = ref(null);
-  const phoneNumber = ref(null);
-  const inputDisabled = ref(false);
+  const peopleInBooking = ref({});;
 
 
   getAllPersons().then((response) => {
@@ -69,44 +63,10 @@ export const usePersonstore = defineStore("person", () => {
     });
   }
 
-  function addPersonToBooking(
-    idCode,
-    firstName,
-    lastName,
-    dateOfBirth,
-    country,
-    phoneNumber
-  ) {
-    const currentPerson = {
-      idCode,
-      firstName,
-      lastName,
-      dateOfBirth,
-      country,
-      phoneNumber,
-    };
-    peopleInBooking.value[idCode] = currentPerson;
-
-    let alertMessage = `Added ${currentPerson.firstName} ${currentPerson.lastName}
-            \n So far we have booked the following people:\n`;
-    for (let idCode of Object.keys(peopleInBooking.value)) {
-      alertMessage += `${peopleInBooking.value[idCode].firstName} ${peopleInBooking.value[idCode].lastName}\n`;
-    }
-    alert(alertMessage);
-  }
-
   return {
     responseData,
     peopleInBooking,
     countNumberOfPeopleInBooking,
-    phoneNumber,
-    firstName,
-    lastName,
-    dateOfBirth,
-    country,
-    phoneNumber,
-    inputDisabled,
-    addPersonToBooking,
     getPersonDataFromDB,
     addPersonDataToDB,
   };
