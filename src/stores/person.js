@@ -10,11 +10,10 @@ export const usePersonstore = defineStore("person", () => {
   const responseData = ref(null);
   const peopleInBooking = ref({});;
 
-
-  getAllPersons().then((response) => {
+  /*getAllPersons().then((response) => {
     responseData.value = response;
   });
-
+*/
 
   function countNumberOfPeopleInBooking(count) {
     for (let i = 1; i <=  count; i++) {
@@ -34,30 +33,25 @@ export const usePersonstore = defineStore("person", () => {
           "dateOfBirth": responseData['dateOfBirth'],
           "country": responseData['country'],
           "phoneNumber": responseData['phoneNumber'],
-          "inputDisabled": true
+          "foundInDatabase": true
         };
         peopleInBooking.value[formNumber] = currentPerson;
         
       } else {
-        peopleInBooking.value[formNumber]["inputDisabled"] = false;
+        peopleInBooking.value[formNumber]["foundInDatabase"] = false;
       }
     });
   }
 
-  async function addPersonDataToDB(
-    identityCode,
-    firstName,
-    lastName,
-    dateOfBirth,
-    country
-  ) {
+  async function addPersonDataToDB(formNumber) {
+    console.log(peopleInBooking)
     addPerson(
-      identityCode,
-      firstName,
-      lastName,
-      dateOfBirth,
-      country["name"],
-      phoneNumber["value"]
+      peopleInBooking.value[formNumber]['idCode'],
+      peopleInBooking.value[formNumber]['firstName'],
+      peopleInBooking.value[formNumber]['lastName'],
+      peopleInBooking.value[formNumber]['dateOfBirth'],
+      peopleInBooking.value[formNumber]['country']['name'],
+      peopleInBooking.value[formNumber]['phoneNumber']
     ).then((response) => {
       console.log(response);
     });

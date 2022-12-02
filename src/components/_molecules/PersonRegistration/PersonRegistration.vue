@@ -44,7 +44,7 @@ onBeforeMount(async () => {
 
 const onInput = (phoneText, phoneObject, input) => {
   if (phoneObject) {
-    personStore.phoneNumber = phoneObject.number;
+    personStore.peopleInBooking[props.formNumber].phoneNumber = phoneObject.number;
   }
 };
 
@@ -65,11 +65,11 @@ function getMyName(name='John') {
 <template>
   <div class="p-10 border-4 border-gray-200 rounded-lg m-2">
     <BaseInput
-      v-model="idCode"
+      v-model="personStore.peopleInBooking[props.formNumber]['idCode']"
       label="Identiy Code"
       placeholder="61107121760"
       autocomplete="on"
-      @focusout="checkDbOnFocusOut(idCode)"
+      @focusout="checkDbOnFocusOut(personStore.peopleInBooking[props.formNumber]['idCode'])"
     />
 
     <BaseInput
@@ -78,7 +78,7 @@ function getMyName(name='John') {
       label="First Name"
       placeholder="John"
       autocomplete="on"
-      :disabled="personStore.peopleInBooking[props.formNumber]['inputDisabled']"
+      :disabled="personStore.peopleInBooking[props.formNumber]['foundInDatabase']"
     />
 
     <BaseInput
@@ -86,7 +86,7 @@ function getMyName(name='John') {
       label="Last Name"
       placeholder="Smith"
       autocomplete="on"
-      :disabled="personStore.peopleInBooking[props.formNumber]['inputDisabled']"
+      :disabled="personStore.peopleInBooking[props.formNumber]['foundInDatabase']"
     />
 
     <BaseInput
@@ -94,7 +94,7 @@ function getMyName(name='John') {
       label="Date of Birth"
       type="date"
       autocomplete="on"
-      :disabled="personStore.peopleInBooking[props.formNumber]['inputDisabled']"
+      :disabled="personStore.peopleInBooking[props.formNumber]['foundInDatabase']"
     />
 
     <div class="pl-2 mr-4">
@@ -104,7 +104,7 @@ function getMyName(name='John') {
         label="nameWithFlag"
         class="w-44 pt-2"
         v-model="personStore.peopleInBooking[props.formNumber]['country']"
-        :disabled="personStore.peopleInBooking[props.formNumber]['inputDisabled']"
+        :disabled="personStore.peopleInBooking[props.formNumber]['foundInDatabase']"
       />
     </div>
 
@@ -116,13 +116,13 @@ function getMyName(name='John') {
         class="h-9"
         :inputOptions="phoneNumberInput"
         @input="onInput"
-        :disabled="personStore.inputDisabled"
+        :disabled="personStore.peopleInBooking[props.formNumber]['foundInDatabase']"
       />
     </div>
 
     <BaseButton
       class="float-right"
-      @click-handler="addPersonDataToDB(idCode, firstName, lastName, dateOfBirth, country)"
+      @click-handler="addPersonDataToDB(props.formNumber)"
       textContent="Add"
     />
   </div>

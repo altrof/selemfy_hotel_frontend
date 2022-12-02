@@ -1,9 +1,9 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { useButtonLoaderStore } from "@/stores/buttonLoader.js";
+import { usePersonstore } from "@/stores/person";
 import router from "@/router/index.js";
-import { addBooking } from "@/services/modules/BookingAPI";
-
+import { addBooking } from "../services/modules/BookingAPI";
 export const useBookingStore = defineStore("bookingForm", () => {
   const amountAdults = ref(1);
   const amountChildren = ref(0);
@@ -15,6 +15,9 @@ export const useBookingStore = defineStore("bookingForm", () => {
   const windowWidth = ref(null);
   const scrolledNav = ref(null);
 
+  const { peopleInBooking, addPersonDataToDB } =
+  usePersonstore();
+
   function checkScreen() {
     windowWidth.value = window.innerWidth;
     if (windowWidth.value <= 750) {
@@ -25,13 +28,28 @@ export const useBookingStore = defineStore("bookingForm", () => {
     return;
   }
 
-  async function submitBooking() {
-    addBooking();
-  }
 
   function roomIsChosen(chosenRoomData) {
     chosenRoom.value = chosenRoomData;
   }
+
+  async function submitBooking() {
+    console.log(chosenRoom.value)
+    const ownerId = peopleInBooking[1]['idCode'];
+    let otherIds = []
+    for (let formNumber in peopleInBooking) {
+      if (!peopleInBooking[formNumber]['foundInDatabase']) {
+        addPersonDataToDB(peopleInBooking[formNumber])
+      }
+      if (formNumber > 1) {
+        otherIDs.push(peopleInBooking[formNumber]['idCode'])
+      }
+      console.log(peopleInBooking[formNumber]);
+    }
+    
+    addBooking(chosenRoom.value['id'], ownerId, otherIds, null);
+  }
+
 
   const updateScroll = () => {
     const scrollPosition = window.scrollY;
