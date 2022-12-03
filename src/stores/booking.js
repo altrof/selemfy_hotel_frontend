@@ -39,7 +39,7 @@ export const useBookingStore = defineStore("bookingForm", () => {
     let otherIds = []
     for (let formNumber in peopleInBooking) {
       if (!peopleInBooking[formNumber]['foundInDatabase']) {
-        addPersonDataToDB(peopleInBooking[formNumber])
+        addPersonDataToDB(formNumber)
       }
       if (formNumber > 1) {
         otherIds.push(peopleInBooking[formNumber]['idCode'])
