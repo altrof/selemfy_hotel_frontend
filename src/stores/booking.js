@@ -108,30 +108,6 @@ export const useBookingStore = defineStore("bookingForm", () => {
     }
   };
 
-  const checkRoomAvailability = async () => {
-    await buttonLoader.setIsLoading(true);
-    setTimeout(() => {
-      alert(
-        "This is data: \n" +
-          "Checkin: " +
-          checkIn.value +
-          "\n" +
-          "Checkout: " +
-          checkOut.value +
-          "\n" +
-          "Adults: " +
-          amountAdults.value +
-          "\n" +
-          "Children: " +
-          amountChildren.value +
-          "\n" +
-          "Room type: " +
-          roomType.value
-      );
-      buttonLoader.setIsLoading(false);
-    }, 2000);
-  };
-
   return {
     amountAdults,
     amountChildren,
@@ -147,7 +123,6 @@ export const useBookingStore = defineStore("bookingForm", () => {
     increaseAmountChildren,
     decreaseAmountAdults,
     decreaseAmountChildren,
-    checkRoomAvailability,
     updateScroll,
   };
 });

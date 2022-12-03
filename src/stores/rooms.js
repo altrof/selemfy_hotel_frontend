@@ -26,8 +26,10 @@ export const useRoomsStore = defineStore("Rooms", () => {
           availableRoomsData.value = response;
           apiUrl.value = response.config.baseURL + response.config.url;
           router.push("/booking");
-        }
-      );
+        }).catch(
+          () => {
+            alert("Something went wrong. Could not search for available rooms")
+          });
     }
   }
 
