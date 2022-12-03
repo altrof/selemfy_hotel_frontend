@@ -34,7 +34,6 @@ export const useBookingStore = defineStore("bookingForm", () => {
   }
 
   async function submitBooking() {
-    console.log(chosenRoom.value)
     const ownerId = peopleInBooking[1]['idCode'];
     let otherIds = []
     for (let formNumber in peopleInBooking) {
@@ -54,6 +53,15 @@ export const useBookingStore = defineStore("bookingForm", () => {
       lateCheckOut: true,
     }
     addBooking(chosenRoom.value['id'], ownerId, otherIds, requestBody);
+  }
+
+  function cancelBooking() {
+    chosenRoom.value = null;
+    amountAdults.value = 1
+    amountChildren.value = 0;
+    checkIn.value = null;
+    checkOut.value = null;
+    router.push("/");
   }
 
 
@@ -124,6 +132,7 @@ export const useBookingStore = defineStore("bookingForm", () => {
     roomIsChosen,
     checkScreen,
     submitBooking,
+    cancelBooking,
     increaseAmountAdults,
     increaseAmountChildren,
     decreaseAmountAdults,

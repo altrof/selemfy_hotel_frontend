@@ -119,11 +119,5 @@ function getMyName(name='John') {
         :disabled="personStore.peopleInBooking[props.formNumber]['foundInDatabase']"
       />
     </div>
-
-    <BaseButton
-      class="float-right"
-      @click-handler="addPersonDataToDB(props.formNumber)"
-      textContent="Add"
-    />
   </div>
 </template>

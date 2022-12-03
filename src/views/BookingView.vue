@@ -8,7 +8,7 @@ import { usePersonstore } from "@/stores/person.js";
 import { useBookingStore } from "@/stores/booking.js";
 import { onMounted } from "vue";
 
-const { chosenRoom, amountAdults, amountChildren, submitBooking } =
+const { chosenRoom, amountAdults, amountChildren, submitBooking, cancelBooking } =
   useBookingStore();
 
 const { countNumberOfPeopleInBooking } =
@@ -31,6 +31,7 @@ const { countNumberOfPeopleInBooking } =
       <div v-for="n in amountAdults + amountChildren">
         <PersonRegistration :formNumber="n" />
       </div>
+      <BaseButton textContent="Cancel" @click-handler="cancelBooking()" />
       <BaseButton textContent="Submit" @click-handler="submitBooking()" />
     </div>
   </ContentWrapper>
