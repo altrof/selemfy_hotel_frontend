@@ -16,6 +16,7 @@ const addPerson = (
   country,
   phoneNumber
 ) => {
+  console.log(`PersonAPI.addPerson was called: ${identityCode}, ${firstName}, ${lastName}, ${country}`)
   return api().post(`/api/person/public/`, {
     identityCode: identityCode,
     firstName: firstName,

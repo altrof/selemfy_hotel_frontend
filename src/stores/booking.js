@@ -34,13 +34,15 @@ export const useBookingStore = defineStore("bookingForm", () => {
   }
 
   async function submitBooking() {
-    const ownerId = peopleInBooking[1]['idCode'];
+    let ownerId = ""
     let otherIds = []
     for (let formNumber in peopleInBooking) {
       if (!peopleInBooking[formNumber]['foundInDatabase']) {
         addPersonDataToDB(formNumber)
       }
-      if (formNumber > 1) {
+      if (formNumber == 1) {
+        ownerId = peopleInBooking[formNumber]['idCode']
+      } else {
         otherIds.push(peopleInBooking[formNumber]['idCode'])
       }
       console.log(peopleInBooking[formNumber]);
@@ -52,7 +54,15 @@ export const useBookingStore = defineStore("bookingForm", () => {
       comments: "boo",
       lateCheckOut: true,
     }
-    addBooking(chosenRoom.value['id'], ownerId, otherIds, requestBody);
+    addBooking(chosenRoom.value['id'], ownerId, otherIds, requestBody).then((response) => {
+      console.log("Added booking")
+      console.log(response);
+      if (response['status'] === 200) {
+        alert("Successfully added booking!")
+      } else {
+        alert("Failed to add booking. Something went wrong.")
+      }
+    });
   }
 
   function cancelBooking() {
