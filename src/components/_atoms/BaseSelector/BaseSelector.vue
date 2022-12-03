@@ -1,9 +1,13 @@
 <script setup>
-defineProps({
+const props = defineProps({
   labelText: String,
   options: Array,
   selectedOption: String,
 });
+
+const clickHandler = (input) => {
+  props.selectedOption=input
+}
 </script>
 
 <template>
@@ -13,7 +17,7 @@ defineProps({
     </label>
     <div class="w-full border border-gray-400 shadow">
       <select class="w-full p-1 items-center">
-        <option class="w-full" v-for="option in options" :value="option.value">
+        <option class="w-full" v-for="option in options" :value="option.value" @click="clickHandler(option)">
           {{ option }}
         </option>
       </select>

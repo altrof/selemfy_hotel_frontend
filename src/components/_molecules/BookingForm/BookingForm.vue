@@ -18,6 +18,8 @@ const {
   checkScreen,
 } = useBookingStore();
 
+let roomType = ref(null)
+
 const { checkRoomAvailability } = useRoomsStore();
 
 const { availableRoomsData } = storeToRefs(useRoomsStore());
@@ -27,6 +29,10 @@ const { checkIn, checkOut, amountChildren, amountAdults, bookingFormMob } =
 
 const roomTypeOptions = ["Any", "ECONOMY", "REGULAR", "DELUXE", "KING_SIZE"];
 const selectedRoomTypeOption = ref("Any");
+
+const changeHandler = (value) => {
+  console.log(value)
+}
 
 onMounted(() => {
   window.addEventListener("resize", checkScreen);
@@ -77,6 +83,7 @@ onMounted(() => {
         button-style="bg-sky-900 hover:bg-sky-700 text-white"
         :options="roomTypeOptions"
         :selected-option="selectedRoomTypeOption"
+        @click="changeHandler(selectedRoomTypeOption)"
       />
       <ButtonWithLoader
         class="w-40 h-20 mt-3"
@@ -144,6 +151,7 @@ onMounted(() => {
         label-text="Room"
         :options="roomTypeOptions"
         :selected-option="selectedRoomTypeOption"
+        v-model="roomType"
       />
       <ButtonWithLoader
         class="w-52 h-24 mt-2 mb-2"
