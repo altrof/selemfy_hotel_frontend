@@ -42,12 +42,18 @@ export const useBookingStore = defineStore("bookingForm", () => {
         addPersonDataToDB(peopleInBooking[formNumber])
       }
       if (formNumber > 1) {
-        otherIDs.push(peopleInBooking[formNumber]['idCode'])
+        otherIds.push(peopleInBooking[formNumber]['idCode'])
       }
       console.log(peopleInBooking[formNumber]);
     }
-    
-    addBooking(chosenRoom.value['id'], ownerId, otherIds, null);
+    const requestBody = {
+      price: 100,
+      checkInDate: checkIn.value,
+      checkOutDate: checkOut.value,
+      comments: "boo",
+      lateCheckOut: true,
+    }
+    addBooking(chosenRoom.value['id'], ownerId, otherIds, requestBody);
   }
 
 
