@@ -68,6 +68,7 @@ const roomsViewDataStatic = [
 ];
 
 onMounted(() => {
+  console.log(`availableRoomsData ${availableRoomsData}`)
   if (availableRoomsData.value !== null) {
     console.log(availableRoomsData.value["data"][0]);
   }

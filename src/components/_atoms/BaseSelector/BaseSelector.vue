@@ -5,9 +5,6 @@ const props = defineProps({
   selectedOption: String,
 });
 
-const clickHandler = (input) => {
-  props.selectedOption=input
-}
 </script>
 
 <template>
@@ -17,7 +14,7 @@ const clickHandler = (input) => {
     </label>
     <div class="w-full border border-gray-400 shadow">
       <select class="w-full p-1 items-center">
-        <option class="w-full" v-for="option in options" :value="option.value" @click="clickHandler(option)">
+        <option class="w-full" v-for="option in options" :value="option.value">
           {{ option }}
         </option>
       </select>

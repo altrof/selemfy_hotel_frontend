@@ -30,14 +30,14 @@ const { checkIn, checkOut, amountChildren, amountAdults, bookingFormMob } =
 const roomTypeOptions = ["Any", "ECONOMY", "REGULAR", "DELUXE", "KING_SIZE"];
 const selectedRoomTypeOption = ref("Any");
 
-const changeHandler = (value) => {
-  console.log(value)
-}
-
 onMounted(() => {
   window.addEventListener("resize", checkScreen);
   checkScreen();
 });
+
+const changeRoomTypeOptions = (event) => {
+  selectedRoomTypeOption.value = event.target.value
+};
 </script>
 
 <template>
@@ -83,7 +83,7 @@ onMounted(() => {
         button-style="bg-sky-900 hover:bg-sky-700 text-white"
         :options="roomTypeOptions"
         :selected-option="selectedRoomTypeOption"
-        @click="changeHandler(selectedRoomTypeOption)"
+        @change="changeRoomTypeOptions($event)"
       />
       <ButtonWithLoader
         class="w-40 h-20 mt-3"
@@ -151,8 +151,10 @@ onMounted(() => {
         label-text="Room"
         :options="roomTypeOptions"
         :selected-option="selectedRoomTypeOption"
-        v-model="roomType"
+        @change="changeRoomTypeOptions($event)"
       />
+      
+      
       <ButtonWithLoader
         class="w-52 h-24 mt-2 mb-2"
         button-style="bg-sky-900 hover:bg-sky-700 border-r-0"
