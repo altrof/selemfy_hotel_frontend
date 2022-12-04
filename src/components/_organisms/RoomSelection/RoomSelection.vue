@@ -7,17 +7,12 @@ import { onMounted, ref, inject } from "vue";
 import { useRoomsStore } from "@/stores/rooms";
 import { storeToRefs } from "pinia";
 
-const isRoomsAvailable = ref(false);
 const roomOffers = ref(["Economy", "Regular", "Deluxe", "Family"]); // will change based on what rooms are compatible
 
-const { roomsViewData, availableRoomsData } = storeToRefs(useRoomsStore());
+const { isRoomsAvailable, roomsViewData, availableRoomsData } = storeToRefs(useRoomsStore());
 
 const roomTypes = ["REGULAR", "DELUXE", "ECONOMY", "KING"];
 
-const roomsAreAvailable = () => {
-  /*future check if any rooms are available*/
-  isRoomsAvailable.value = true;
-};
 
 const $image = inject("$image");
 // Maybe all of this would be better off in room store?
@@ -60,49 +55,29 @@ const images = {
   ECONOMY: economyRoomImages,
 };
 
-const roomsViewDataStatic = [
-  { roomType: "REGULAR", roomSize: 20 },
-  { roomType: "DELUXE", roomSize: 35 },
-  { roomType: "ECONOMY", roomSize: 16 },
-  { roomType: "KING", roomSize: 46 },
-];
-
-onMounted(() => {
-  console.log(`availableRoomsData ${availableRoomsData}`)
-  if (availableRoomsData.value !== null) {
-    console.log(availableRoomsData.value["data"][0]);
-  }
-  roomsAreAvailable();
-});
 </script>
 
 <template>
-  <p v-if="isRoomsAvailable">Please choose your room type:</p>
-  <p class="flex place-content-around" v-else>
-    No rooms available for this date
-  </p>
   <div v-if="availableRoomsData === null || availableRoomsData === undefined">
     <h1>ERROR: Booking was not requested</h1>
   </div>
   <div v-else>
     <div
-      class="flex flex-wrap place-content-around"
-      v-for="(room, arrayIndex) in availableRoomsData['data']"
-    >
-      <!-- <RoomSelection :data="roomOffer" /> -->
+      class="room-selection"
+      v-for="(room, arrayIndex) in availableRoomsData['data']">
       <RoomMolecule
-        class="p-10 border-4 border-gray-200 rounded-lg m-2 room"
+        class="p-10 border-4 border-gray-200 rounded-lg m-2"
         :room="room['roomType']"
         :room-data="room"
         :images="images[room['roomType']]"
       />
+
     </div>
-    <div class="float-right"></div>
   </div>
 </template>
 
 <style scoped>
-.room {
-  width: 50vw;
+.room-selection {
+
 }
 </style>

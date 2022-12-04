@@ -7,6 +7,7 @@ export const useRoomsStore = defineStore("Rooms", () => {
   const roomsViewData = ref(null);
   const availableRoomsData = ref(null);
   const apiUrl = ref(null);
+  const isRoomsAvailable = ref(false);
 
   /* 
         This function is repurposed from booking store
@@ -23,11 +24,20 @@ export const useRoomsStore = defineStore("Rooms", () => {
     if (startDate !== null && endDate !== null) {
       getAvailableRooms(startDate, endDate, adult, children, roomType).then(
         (response) => {
-          availableRoomsData.value = response;
-          apiUrl.value = response.config.baseURL + response.config.url;
-          router.push("/booking");
+          if (response['status'] === 200) {
+            availableRoomsData.value = response;
+            apiUrl.value = response.config.baseURL + response.config.url;
+            if (availableRoomsData.value['data'].length > 0) {
+              isRoomsAvailable.value = true
+            }
+            router.push("/booking");
+          } else {
+            // Since /error is not a public endpoint, only responses with status 200 are returned to the front-end. 
+            alert("Failed to search for available rooms. You should never see this.")
+          }
         }).catch(
           () => {
+            isRoomsAvailable.value = false
             alert("Something went wrong. Could not search for available rooms")
           });
     }
@@ -44,6 +54,7 @@ export const useRoomsStore = defineStore("Rooms", () => {
     checkRoomAvailability,
     roomsViewData,
     availableRoomsData,
+    isRoomsAvailable,
     apiUrl,
   };
 });

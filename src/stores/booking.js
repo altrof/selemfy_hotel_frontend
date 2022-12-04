@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { useButtonLoaderStore } from "@/stores/buttonLoader.js";
 import { usePersonstore } from "@/stores/person";
+import { useRoomsStore } from "@/stores/rooms";
 import router from "@/router/index.js";
 import { addBooking } from "../services/modules/BookingAPI";
 export const useBookingStore = defineStore("bookingForm", () => {
@@ -17,6 +18,8 @@ export const useBookingStore = defineStore("bookingForm", () => {
 
   const { peopleInBooking, addPersonDataToDB } =
   usePersonstore();
+
+  const { isRoomsAvailable } = useRoomsStore();
 
   function checkScreen() {
     windowWidth.value = window.innerWidth;
@@ -45,7 +48,6 @@ export const useBookingStore = defineStore("bookingForm", () => {
       } else {
         otherIds.push(peopleInBooking[formNumber]['idCode'])
       }
-      console.log(peopleInBooking[formNumber]);
     }
     const requestBody = {
       price: 100,
@@ -55,13 +57,14 @@ export const useBookingStore = defineStore("bookingForm", () => {
       lateCheckOut: true,
     }
     addBooking(chosenRoom.value['id'], ownerId, otherIds, requestBody).then((response) => {
-      console.log("Added booking")
-      console.log(response);
       if (response['status'] === 200) {
         alert("Successfully added booking!")
       } else {
-        alert("Failed to add booking. Something went wrong.")
+        // Since /error is not a public endpoint, only responses with status 200 are returned to the front-end. 
+        alert("Failed to add booking. You should never see this.")
       }
+    }).catch(() => {
+      alert("Something went wrong. Could not add a booking");
     });
   }
 
@@ -71,6 +74,7 @@ export const useBookingStore = defineStore("bookingForm", () => {
     amountChildren.value = 0;
     checkIn.value = null;
     checkOut.value = null;
+    isRoomsAvailable.value = false;
     router.push("/");
   }
 

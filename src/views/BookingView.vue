@@ -6,9 +6,14 @@ import PersonRegistration from "@/components/_molecules/PersonRegistration/Perso
 import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
 import { usePersonstore } from "@/stores/person.js";
 import { useBookingStore } from "@/stores/booking.js";
+import { useRoomsStore } from "@/stores/rooms";
 import { onMounted } from "vue";
+import { storeToRefs } from "pinia";
 
-const { chosenRoom, amountAdults, amountChildren, submitBooking, cancelBooking } =
+
+const { isRoomsAvailable } = useRoomsStore();
+
+const { checkIn, checkOut, chosenRoom, amountAdults, amountChildren, submitBooking, cancelBooking } =
   useBookingStore();
 
 const { countNumberOfPeopleInBooking } =
@@ -17,15 +22,23 @@ const { countNumberOfPeopleInBooking } =
   onMounted(() => {
   countNumberOfPeopleInBooking(amountAdults + amountChildren);
 });
+
+const bookingInfoDates = `Start date: ${checkIn}, end date: ${checkOut}`
+const bookingInfoNumbers = `Adults: ${amountAdults}, children: ${amountChildren}`
 </script>
 
 <template>
   <Navbar />
   <ContentWrapper>
-    <p>I am booking view</p>
-
-    <div v-if="useBookingStore().chosenRoom === null">
+    <div v-if="!isRoomsAvailable">
+      <p class="flex place-content-around">
+      No rooms available for this date</p>
+    </div>
+    <div v-else-if="useBookingStore().chosenRoom === null">
+      <div class="flex place-content-around">{{bookingInfoDates}}</div>
+      <div class="flex place-content-around">{{bookingInfoNumbers}}</div>
       <RoomSelection />
+      <BaseButton textContent="Cancel" @click-handler="cancelBooking()" />
     </div>
     <div v-else>
       <div v-for="n in amountAdults + amountChildren">

@@ -5,6 +5,7 @@ import BaseButton from "@/components/_atoms/BaseButton/BaseButton.vue";
 import { usePersonstore } from "@/stores/person";
 import countryAPI from "@/services/countryAPI.js";
 import { VueTelInput } from "vue3-tel-input";
+import { useRoomsStore } from "@/stores/rooms.js";
 
 const { peopleInBooking, getPersonDataFromDB, addPersonDataToDB } =
   usePersonstore();

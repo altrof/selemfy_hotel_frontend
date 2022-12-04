@@ -5,7 +5,6 @@ const getAllRooms = () => {
 };
 
 const getAvailableRooms = (startDate, endDate, adults, children, roomType) => {
-  console.log(roomType);
   let paramString = `?adults=${adults}`;
 
   if (children !== undefined) {

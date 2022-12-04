@@ -145,7 +145,6 @@ const changeRoomTypeOptions = (event) => {
       />
     </div>
     <div class="h-full">
-      <!-- Need to modify BaseSelector to capture clicks?-->
       <BaseSelector
         class="pt-4 pb-4 w-52"
         label-text="Room"
@@ -153,7 +152,6 @@ const changeRoomTypeOptions = (event) => {
         :selected-option="selectedRoomTypeOption"
         @change="changeRoomTypeOptions($event)"
       />
-      
       
       <ButtonWithLoader
         class="w-52 h-24 mt-2 mb-2"

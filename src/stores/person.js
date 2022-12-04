@@ -22,7 +22,6 @@ export const usePersonstore = defineStore("person", () => {
   }
 
   async function getPersonDataFromDB(identityCode, formNumber) {
-    console.log(`Formnumber ${formNumber}`)
     getPersonByIdentityCode(identityCode).then((response) => {
       const responseData = response["data"];
       if (responseData !== null) {
@@ -44,9 +43,6 @@ export const usePersonstore = defineStore("person", () => {
   }
 
   async function addPersonDataToDB(formNumber) {
-    console.log("Attempting to add person")
-    console.log(peopleInBooking)
-    console.log(peopleInBooking.value[formNumber])
     addPerson(
       peopleInBooking.value[formNumber]['idCode'],
       peopleInBooking.value[formNumber]['firstName'],
@@ -55,8 +51,7 @@ export const usePersonstore = defineStore("person", () => {
       peopleInBooking.value[formNumber]['country']['name'],
       peopleInBooking.value[formNumber]['phoneNumber']
     ).then((response) => {
-      console.log("Added person")
-      console.log(response);
+      // Todo: We could add some custom notification here?
     });
   }
 
