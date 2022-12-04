@@ -15,6 +15,7 @@ export const useBookingStore = defineStore("bookingForm", () => {
   const bookingFormMob = ref(null);
   const windowWidth = ref(null);
   const scrolledNav = ref(null);
+  const bookingPrice = ref(0)
 
   const { peopleInBooking, addPersonDataToDB } =
   usePersonstore();
@@ -31,9 +32,31 @@ export const useBookingStore = defineStore("bookingForm", () => {
     return;
   }
 
+  function calculateRoomPrice(roomType) {
+    let pricePerDay = 0;
+    let finalPrice = 0;
+    if (roomType === 'REGULAR') {
+      pricePerDay = 100
+    } else if (roomType === 'DELUXE') {
+      pricePerDay = 250
+    } else if (roomType === 'KING_SIZE') {
+      pricePerDay = 140
+    } else if (roomType === 'ECONOMY') {
+      pricePerDay = 80
+    }
+
+    const end = new Date(checkOut.value)
+    const start = new Date(checkIn.value)
+
+    const numberOfDays = (end - start) / 86400000;
+    finalPrice = (pricePerDay * amountAdults.value) + (pricePerDay * amountChildren.value / 2) 
+    return finalPrice
+  }
+
 
   function roomIsChosen(chosenRoomData) {
     chosenRoom.value = chosenRoomData;
+    bookingPrice.value = calculateRoomPrice(chosenRoom.value['roomType'])
   }
 
   async function submitBooking() {
@@ -50,10 +73,9 @@ export const useBookingStore = defineStore("bookingForm", () => {
       }
     }
     const requestBody = {
-      price: 100,
+      price: bookingPrice.value,
       checkInDate: checkIn.value,
       checkOutDate: checkOut.value,
-      comments: "boo",
       lateCheckOut: true,
     }
     addBooking(chosenRoom.value['id'], ownerId, otherIds, requestBody).then((response) => {
@@ -75,6 +97,7 @@ export const useBookingStore = defineStore("bookingForm", () => {
     checkIn.value = null;
     checkOut.value = null;
     isRoomsAvailable.value = false;
+    bookingPrice.value = 0;
     router.push("/");
   }
 
@@ -119,6 +142,7 @@ export const useBookingStore = defineStore("bookingForm", () => {
     checkOut,
     bookingFormMob,
     chosenRoom,
+    bookingPrice,
     roomIsChosen,
     checkScreen,
     submitBooking,
@@ -128,5 +152,6 @@ export const useBookingStore = defineStore("bookingForm", () => {
     decreaseAmountAdults,
     decreaseAmountChildren,
     updateScroll,
+    calculateRoomPrice,
   };
 });

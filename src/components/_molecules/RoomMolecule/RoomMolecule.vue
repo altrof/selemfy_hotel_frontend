@@ -18,12 +18,6 @@ const props = defineProps({
   images: Array,
 });
 
-const roomsViewData = [
-  { roomType: "REGULAR", roomSize: 20 },
-  { roomType: "DELUXE", roomSize: 35 },
-  { roomType: "ECONOMY", roomSize: 16 },
-  { roomType: "KING", roomSize: 46 },
-];
 const imgUrl = ref(null);
 const imgArr = ref([]);
 
@@ -31,7 +25,7 @@ const { visibleRef, indexRef, imgsRef } = useEasyLightbox({
   imgs: [props.images],
 });
 
-const { roomIsChosen } = useBookingStore();
+const { roomIsChosen, calculateRoomPrice } = useBookingStore();
 const { chosenRoom } = storeToRefs(useBookingStore());
 
 const showImg = (roomImgId) => {
@@ -40,10 +34,6 @@ const showImg = (roomImgId) => {
   visibleRef.value = true;
 };
 
-onMounted(() => {
-  window.addEventListener("resize", checkScreen);
-  checkScreen();
-});
 </script>
 
 <template>
@@ -78,6 +68,10 @@ onMounted(() => {
         <p>
           <strong>Floor:</strong>
           &nbsp;{{ roomData.floorId }} &nbsp;
+        </p>
+        <p>
+          <strong>Price:</strong>
+          &nbsp;{{ calculateRoomPrice(room) }} &nbsp;
         </p>
         <p>
           <strong>Rooms features:</strong>
